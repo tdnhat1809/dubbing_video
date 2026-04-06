@@ -102,7 +102,7 @@ export default function LoginPage() {
 
             <div className="text-center pt-8">
               <p className="text-on-surface-variant text-sm">
-                Chưa có tài khoản? <a className="text-primary font-bold hover:underline ml-1" href="#">Đăng ký ngay</a>
+                Chưa có tài khoản? <Link className="text-primary font-bold hover:underline ml-1" href="/dang-ky">Đăng ký ngay</Link>
               </p>
             </div>
 

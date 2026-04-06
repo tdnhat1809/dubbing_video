@@ -53,7 +53,7 @@ export default function Header() {
             <span className="material-symbols-outlined text-sm">language</span>
             Tiếng Việt
           </div>
-          <Link href="/dang-nhap" className="px-6 py-2.5 bg-primary text-on-primary rounded-xl font-bold text-sm hover:scale-95 duration-200 ease-in-out shadow-lg shadow-primary/20">
+          <Link href="/dang-ky" className="px-6 py-2.5 bg-primary text-on-primary rounded-xl font-bold text-sm hover:scale-95 duration-200 ease-in-out shadow-lg shadow-primary/20">
             Đăng Ký
           </Link>
         </div>

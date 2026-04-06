@@ -1,10 +1,10 @@
 'use client';
-import { useState } from 'react';
+import { useState, useEffect, useCallback } from 'react';
 
 const tutorialVideos = [
-  { title: 'Hướng dẫn dịch Video Anh-Việt', views: '125K lượt xem', date: '2 ngày trước', duration: '12:45', img: '/images/library/chat-gpt-2.jpg' },
-  { title: 'Hướng dẫn dịch Video TikTok', views: '89K lượt xem', date: '1 tuần trước', duration: '08:20', img: '/images/library/ceo-tiktok-1.jpg' },
-  { title: 'Hướng dẫn lồng tiếng AI nâng cao', views: '210K lượt xem', date: '3 tuần trước', duration: '15:10', img: '/images/library/ted-01.jpg' },
+  { title: 'Hướng dẫn dịch Video tự động', views: '125K lượt xem', date: '2 ngày trước', duration: '12:45', img: '/images/library/chat-gpt-2.jpg', video: 'https://dichtudong.com/vi-vn/image/huong-dan.mp4' },
+  { title: 'Hướng dẫn dịch Video TikTok', views: '89K lượt xem', date: '1 tuần trước', duration: '08:20', img: '/images/library/ceo-tiktok-1.jpg', video: 'https://dichtudong.com/vi-vn/image/huong-dan-dich-tu-dong.mp4' },
+  { title: 'Hướng dẫn lồng tiếng AI nâng cao', views: '210K lượt xem', date: '3 tuần trước', duration: '15:10', img: '/images/library/ted-01.jpg', video: 'https://dichtudong.com/vi-vn/image/huong-dan-chinh-sua-noi-dung.mp4' },
 ];
 
 const faqItems = [
@@ -15,8 +15,40 @@ const faqItems = [
   { q: 'Dịch video từ ngôn ngữ nào?', a: 'Chúng tôi hỗ trợ hơn 50 ngôn ngữ bao gồm Tiếng Anh, Tiếng Trung, Tiếng Nhật, Tiếng Hàn, Tiếng Pháp, Tiếng Đức và nhiều ngôn ngữ khác.' },
 ];
 
+/* ─── Video Modal ─── */
+function VideoModal({ video, onClose }) {
+  useEffect(() => {
+    const handleKey = (e) => { if (e.key === 'Escape') onClose(); };
+    document.addEventListener('keydown', handleKey);
+    document.body.style.overflow = 'hidden';
+    return () => { document.removeEventListener('keydown', handleKey); document.body.style.overflow = ''; };
+  }, [onClose]);
+
+  return (
+    <div className="fixed inset-0 z-[9999] flex items-center justify-center" onClick={onClose}>
+      <div className="absolute inset-0 bg-black/80 backdrop-blur-sm animate-fadeIn" />
+      <div className="relative z-10 w-[90vw] max-w-[900px] animate-scaleIn" onClick={(e) => e.stopPropagation()}>
+        <button className="absolute -top-12 right-0 w-10 h-10 bg-white/10 hover:bg-white/20 rounded-full flex items-center justify-center text-white transition-colors group" onClick={onClose}>
+          <span className="material-symbols-outlined text-2xl group-hover:rotate-90 transition-transform">close</span>
+        </button>
+        <div className="mb-4">
+          <h3 className="text-white text-xl font-bold">{video.title}</h3>
+          <p className="text-white/60 text-sm mt-1">{video.views} • {video.date}</p>
+        </div>
+        <div className="relative bg-black rounded-2xl overflow-hidden shadow-2xl shadow-black/50">
+          <video className="w-full aspect-video" controls autoPlay playsInline src={video.video}>
+            Trình duyệt của bạn không hỗ trợ phát video.
+          </video>
+        </div>
+      </div>
+    </div>
+  );
+}
+
 export default function HuongDanPage() {
   const [openFaq, setOpenFaq] = useState(1);
+  const [selectedVideo, setSelectedVideo] = useState(null);
+  const handleClose = useCallback(() => setSelectedVideo(null), []);
 
   return (
     <>
@@ -34,7 +66,7 @@ export default function HuongDanPage() {
           {/* Video Grid */}
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             {tutorialVideos.map((video, i) => (
-              <div key={i} className="group relative bg-white/5 rounded-2xl overflow-hidden border border-white/10 hover:border-primary/50 transition-all duration-500 cursor-pointer">
+              <div key={i} className="group relative bg-white/5 rounded-2xl overflow-hidden border border-white/10 hover:border-primary/50 transition-all duration-500 cursor-pointer" onClick={() => setSelectedVideo(video)}>
                 <div className="aspect-video relative overflow-hidden">
                   <img className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" src={video.img} alt={video.title} />
                   <div className="absolute inset-0 bg-black/40 group-hover:bg-black/20 transition-colors duration-300 flex items-center justify-center">
@@ -61,7 +93,6 @@ export default function HuongDanPage() {
       {/* FAQ Section */}
       <section id="faq" className="py-32 px-8 max-w-screen-2xl mx-auto">
         <div className="flex flex-col lg:flex-row gap-20 items-start">
-          {/* Left Side: FAQ */}
           <div className="w-full lg:w-[60%]">
             <div className="mb-12">
               <span className="bg-primary/10 text-primary px-4 py-1.5 rounded-full text-sm font-bold tracking-widest uppercase mb-6 inline-block">FAQ</span>
@@ -70,23 +101,15 @@ export default function HuongDanPage() {
             <div className="space-y-6">
               {faqItems.map((item, i) => (
                 <div key={i} className={`rounded-2xl transition-all duration-300 ${openFaq === i ? 'bg-surface-container-low border-l-4 border-primary shadow-lg shadow-primary/5' : 'bg-surface-container-low'}`}>
-                  <div
-                    className={`p-6 flex justify-between items-center cursor-pointer ${openFaq === i ? 'border-b border-outline-variant/10' : ''}`}
-                    onClick={() => setOpenFaq(openFaq === i ? -1 : i)}
-                  >
+                  <div className={`p-6 flex justify-between items-center cursor-pointer ${openFaq === i ? 'border-b border-outline-variant/10' : ''}`} onClick={() => setOpenFaq(openFaq === i ? -1 : i)}>
                     <h3 className={`font-bold text-lg ${openFaq === i ? 'text-primary' : 'text-on-surface'}`}>{item.q}</h3>
                     <span className={`material-symbols-outlined text-primary transition-transform ${openFaq === i ? 'rotate-180' : ''}`}>expand_more</span>
                   </div>
-                  {openFaq === i && (
-                    <div className="p-6 text-on-surface-variant leading-relaxed">
-                      {item.a}
-                    </div>
-                  )}
+                  {openFaq === i && (<div className="p-6 text-on-surface-variant leading-relaxed">{item.a}</div>)}
                 </div>
               ))}
             </div>
           </div>
-          {/* Right Side: Illustration */}
           <div className="w-full lg:w-[40%] sticky top-32">
             <div className="relative bg-surface-variant rounded-[40px] overflow-hidden aspect-square flex items-center justify-center p-12">
               <div className="absolute inset-0 bg-gradient-to-tr from-primary/20 to-transparent"></div>
@@ -112,6 +135,16 @@ export default function HuongDanPage() {
           </div>
         </div>
       </section>
+
+      {/* Video Modal */}
+      {selectedVideo && <VideoModal video={selectedVideo} onClose={handleClose} />}
+
+      <style jsx global>{`
+        @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+        @keyframes scaleIn { from { opacity: 0; transform: scale(0.9) translateY(20px); } to { opacity: 1; transform: scale(1) translateY(0); } }
+        .animate-fadeIn { animation: fadeIn 0.3s ease-out forwards; }
+        .animate-scaleIn { animation: scaleIn 0.4s cubic-bezier(0.16, 1, 0.3, 1) forwards; }
+      `}</style>
     </>
   );
 }
