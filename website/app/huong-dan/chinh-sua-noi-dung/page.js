@@ -1,11 +1,45 @@
+'use client';
+import { useState, useEffect, useCallback } from 'react';
+
+const steps = [
+  { step: 1, title: 'Mở video đã dịch', desc: 'Truy cập mục "Video của tôi" và chọn video cần chỉnh sửa. Nhấn vào biểu tượng bút chì để vào chế độ chỉnh sửa.', icon: 'edit' },
+  { step: 2, title: 'Chỉnh sửa phụ đề', desc: 'Chọn dòng phụ đề cần sửa, nhập nội dung mới. Hệ thống sẽ tự động đồng bộ thời gian với video.', icon: 'subtitles' },
+  { step: 3, title: 'Điều chỉnh thời gian', desc: 'Kéo thanh timeline để điều chỉnh thời điểm bắt đầu và kết thúc của mỗi đoạn phụ đề cho chính xác.', icon: 'timer' },
+  { step: 4, title: 'Thay đổi giọng đọc', desc: 'Chọn giọng AI mới cho từng đoạn hoặc toàn bộ video. Hỗ trợ giọng nam, nữ, trẻ em đa ngôn ngữ.', icon: 'record_voice_over' },
+  { step: 5, title: 'Xem trước & Lưu', desc: 'Nhấn "Preview" để xem trước thay đổi. Hài lòng rồi nhấn "Lưu và Xuất" để tạo bản video mới.', icon: 'save' },
+];
+
+function VideoModal({ onClose }) {
+  useEffect(() => {
+    const h = (e) => { if (e.key === 'Escape') onClose(); };
+    document.addEventListener('keydown', h);
+    document.body.style.overflow = 'hidden';
+    return () => { document.removeEventListener('keydown', h); document.body.style.overflow = ''; };
+  }, [onClose]);
+  return (
+    <div className="fixed inset-0 z-[9999] flex items-center justify-center" onClick={onClose}>
+      <div className="absolute inset-0 bg-black/80 backdrop-blur-sm animate-fadeIn" />
+      <div className="relative z-10 w-[90vw] max-w-[900px] animate-scaleIn" onClick={(e) => e.stopPropagation()}>
+        <button className="absolute -top-12 right-0 w-10 h-10 bg-white/10 hover:bg-white/20 rounded-full flex items-center justify-center text-white transition-colors group" onClick={onClose}>
+          <span className="material-symbols-outlined text-2xl group-hover:rotate-90 transition-transform">close</span>
+        </button>
+        <div className="mb-4">
+          <h3 className="text-white text-xl font-bold">Hướng dẫn Chỉnh Sửa Nội Dung</h3>
+          <p className="text-white/60 text-sm mt-1">Video hướng dẫn chỉnh sửa phụ đề và giọng đọc</p>
+        </div>
+        <div className="relative bg-black rounded-2xl overflow-hidden shadow-2xl shadow-black/50">
+          <video className="w-full aspect-video" controls autoPlay playsInline src="https://dichtudong.com/vi-vn/image/huong-dan-chinh-sua-noi-dung.mp4">
+            Trình duyệt không hỗ trợ phát video.
+          </video>
+        </div>
+      </div>
+    </div>
+  );
+}
+
 export default function HDChinhSuaPage() {
-  const steps = [
-    { step: 1, title: 'Mở video đã dịch', desc: 'Truy cập mục "Video của tôi" và chọn video cần chỉnh sửa. Nhấn vào biểu tượng bút chì để vào chế độ chỉnh sửa.', icon: 'edit' },
-    { step: 2, title: 'Chỉnh sửa phụ đề', desc: 'Chọn dòng phụ đề cần sửa, nhập nội dung mới. Hệ thống sẽ tự động đồng bộ thời gian với video.', icon: 'subtitles' },
-    { step: 3, title: 'Điều chỉnh thời gian', desc: 'Kéo thanh timeline để điều chỉnh thời điểm bắt đầu và kết thúc của mỗi đoạn phụ đề cho chính xác.', icon: 'timer' },
-    { step: 4, title: 'Thay đổi giọng đọc', desc: 'Chọn giọng AI mới cho từng đoạn hoặc toàn bộ video. Hỗ trợ giọng nam, nữ, trẻ em đa ngôn ngữ.', icon: 'record_voice_over' },
-    { step: 5, title: 'Xem trước & Lưu', desc: 'Nhấn "Preview" để xem trước thay đổi. Hài lòng rồi nhấn "Lưu và Xuất" để tạo bản video mới.', icon: 'save' },
-  ];
+  const [showVideo, setShowVideo] = useState(false);
+  const handleClose = useCallback(() => setShowVideo(false), []);
 
   return (
     <>
@@ -22,7 +56,11 @@ export default function HDChinhSuaPage() {
             <span className="text-white font-semibold">HD Chỉnh Sửa Nội Dung</span>
           </nav>
           <h1 className="text-[#f4f1ff] text-4xl md:text-6xl font-extrabold tracking-tight mb-4">HD Chỉnh Sửa Nội Dung</h1>
-          <p className="text-[#f4f1ff]/60 text-lg max-w-2xl">Hướng dẫn chỉnh sửa phụ đề, giọng đọc và nội dung video sau khi dịch tự động.</p>
+          <p className="text-[#f4f1ff]/60 text-lg max-w-2xl mb-8">Hướng dẫn chỉnh sửa phụ đề, giọng đọc và nội dung video sau khi dịch tự động.</p>
+          <button onClick={() => setShowVideo(true)} className="flex items-center gap-3 bg-[#ff0000] hover:bg-[#cc0000] text-white px-8 py-4 rounded-2xl font-bold shadow-2xl shadow-red-500/30 transition-all active:scale-95">
+            <span className="material-symbols-outlined text-3xl" style={{fontVariationSettings: "'FILL' 1"}}>play_circle</span>
+            Xem Video Hướng Dẫn
+          </button>
         </div>
       </section>
 
@@ -44,6 +82,14 @@ export default function HDChinhSuaPage() {
           ))}
         </div>
       </main>
+
+      {showVideo && <VideoModal onClose={handleClose} />}
+      <style jsx global>{`
+        @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+        @keyframes scaleIn { from { opacity: 0; transform: scale(0.9) translateY(20px); } to { opacity: 1; transform: scale(1) translateY(0); } }
+        .animate-fadeIn { animation: fadeIn 0.3s ease-out forwards; }
+        .animate-scaleIn { animation: scaleIn 0.4s cubic-bezier(0.16, 1, 0.3, 1) forwards; }
+      `}</style>
     </>
   );
 }
