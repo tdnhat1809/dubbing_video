@@ -1,5 +1,6 @@
 'use client';
 import { useState, useRef, useCallback } from 'react';
+import { useRouter } from 'next/navigation';
 
 const sidebarItems = [
   { icon: 'cloud_upload', label: 'XUẤT BẢN', id: 'publish' },
@@ -36,6 +37,7 @@ const advancedOptions = [
 ];
 
 export default function DashboardPage() {
+  const router = useRouter();
   const [activeMenu, setActiveMenu] = useState('new');
   const [srcLang, setSrcLang] = useState('Phát hiện ngôn ngữ');
   const [tgtLang, setTgtLang] = useState('Tiếng Việt');
@@ -222,7 +224,7 @@ export default function DashboardPage() {
 
         {/* Tiếp tục Button */}
         <div className="absolute bottom-10 left-1/2 -translate-x-1/2">
-          <button className="flex items-center gap-3 px-10 py-4 rounded-2xl text-white font-bold text-base shadow-2xl hover:shadow-indigo-500/30 transition-all active:scale-95" style={{ background: 'linear-gradient(135deg, #6366f1, #8b5cf6)' }}>
+          <button onClick={() => router.push('/dashboard/editor')} className="flex items-center gap-3 px-10 py-4 rounded-2xl text-white font-bold text-base shadow-2xl hover:shadow-indigo-500/30 transition-all active:scale-95" style={{ background: 'linear-gradient(135deg, #6366f1, #8b5cf6)' }}>
             Tiếp tục
             <span className="material-symbols-outlined bg-white/20 rounded-full p-1 text-lg">arrow_forward</span>
           </button>
@@ -235,7 +237,7 @@ export default function DashboardPage() {
           <button
             key={item.id}
             className={`w-full flex flex-col items-center py-3 px-1 gap-1.5 transition-all relative group ${activeMenu === item.id ? 'text-[#62d6ed]' : 'text-white/35 hover:text-white/60'}`}
-            onClick={() => setActiveMenu(item.id)}
+            onClick={() => { setActiveMenu(item.id); if (item.id === 'progress') router.push('/dashboard/progress'); else if (item.id === 'settings') router.push('/dashboard/settings'); else if (item.id === 'new') router.push('/dashboard'); }}
           >
             {activeMenu === item.id && (
               <div className="absolute right-0 top-1/2 -translate-y-1/2 w-[3px] h-6 rounded-l-full bg-[#62d6ed]" />
