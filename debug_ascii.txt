@@ -1,0 +1,10 @@
+Resolution 640x360 FPS=30.0 bottom85=306
+T=15s boxes=1
+  0 y1=203 y2=245 MID 368x41
+T=16s boxes=1
+  0 y1=323 y2=359 BOT 157x36
+T=17s boxes=1
+  0 y1=323 y2=359 BOT 348x36
+T=18s boxes=1
+  0 y1=325 y2=359 BOT 348x34
+T=19s boxes=0

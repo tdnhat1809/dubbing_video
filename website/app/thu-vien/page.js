@@ -1,25 +1,94 @@
 'use client';
-import { useState } from 'react';
+import { useState, useEffect, useCallback } from 'react';
 
 const videos = [
-  { id: 1, title: 'CEO TikTok phát biểu trước Quốc hội', category: 'Tiktok', lang: 'Dịch: Anh -> Việt (AI)', aspect: 'aspect-video', img: '/images/library/ceo-tiktok-1.jpg', filter: 'Tiktok' },
-  { id: 2, title: 'ChatGPT - Trí tuệ nhân tạo thay đổi thế giới', category: 'Tech Review', lang: 'Dịch: Anh -> Việt (AI)', aspect: 'aspect-video', img: '/images/library/chat-gpt-2.jpg', filter: 'Youtube' },
-  { id: 3, title: 'Hoạt hình Anime - Dịch lồng tiếng', category: 'Animation', lang: 'Dịch: Nhật -> Việt (AI)', aspect: 'aspect-[9/16]', img: '/images/library/hoat-hinh-01.jpg', filter: 'Video' },
-  { id: 4, title: 'Thanh Xuân - Ca khúc viral TikTok', category: 'Music', lang: 'Dịch: Trung -> Việt (AI)', aspect: 'aspect-[9/16]', img: '/images/library/thanh-xuan.jpg', filter: 'Tiktok' },
-  { id: 5, title: 'Sean - Phỏng vấn quốc tế', category: 'Interview', lang: 'Dịch: Anh -> Việt (AI)', aspect: 'aspect-video', img: '/images/library/sean-1.jpg', filter: 'Youtube' },
-  { id: 6, title: 'Hữu Minh - Chia sẻ kinh nghiệm', category: 'Vlog', lang: 'Dịch: Việt -> Anh (AI)', aspect: 'aspect-video', img: '/images/library/huu-minh.jpg', filter: 'Video' },
-  { id: 7, title: 'AI và tương lai công nghệ', category: 'Tech', lang: 'Dịch: Anh -> Việt (AI)', aspect: 'aspect-square', img: '/images/library/ai-02.jpg', filter: 'Video' },
-  { id: 8, title: 'TED Talk - Bài thuyết trình #1', category: 'Education', lang: 'Dịch: Anh -> Việt (AI)', aspect: 'aspect-video', img: '/images/library/ted-01.jpg', filter: 'Youtube' },
-  { id: 9, title: 'TED Talk - Bài thuyết trình #2', category: 'Education', lang: 'Dịch: Anh -> Việt (AI)', aspect: 'aspect-[3/4]', img: '/images/library/ted-02.jpg', filter: 'Audio' },
-  { id: 10, title: 'TED Talk - Bài thuyết trình #3', category: 'Education', lang: 'Dịch: Anh -> Việt (AI)', aspect: 'aspect-video', img: '/images/library/ted-03.jpg', filter: 'Youtube' },
+  { id: 1, title: 'CEO TikTok phát biểu trước Quốc hội', category: 'Tiktok', lang: 'Dịch: Anh -> Việt (AI)', aspect: 'aspect-video', img: '/images/library/ceo-tiktok-1.jpg', filter: 'Tiktok', video: 'https://dichtudong.com/vi-vn/image/video-tai-lieu/tai_lieu11.mp4' },
+  { id: 2, title: 'ChatGPT - Trí tuệ nhân tạo thay đổi thế giới', category: 'Tech Review', lang: 'Dịch: Anh -> Việt (AI)', aspect: 'aspect-video', img: '/images/library/chat-gpt-2.jpg', filter: 'Youtube', video: 'https://dichtudong.com/vi-vn/image/video-tai-lieu/tai_lieu%207.mp4' },
+  { id: 3, title: 'Thanh Xuân - Phim ngắn viral', category: 'Video', lang: 'Dịch: Trung -> Việt (AI)', aspect: 'aspect-[9/16]', img: '/images/library/thanh-xuan.jpg', filter: 'Tiktok', video: 'https://dichtudong.com/vi-vn/image/video-tai-lieu/tai_lieu1.mp4' },
+  { id: 4, title: 'Hoạt hình Anime - Dịch lồng tiếng', category: 'Animation', lang: 'Dịch: Nhật -> Việt (AI)', aspect: 'aspect-[9/16]', img: '/images/library/hoat-hinh-01.jpg', filter: 'Video', video: 'https://dichtudong.com/vi-vn/image/video-tai-lieu/tai_lieu16.mp4' },
+  { id: 5, title: 'Sean - Phỏng vấn quốc tế', category: 'Interview', lang: 'Dịch: Anh -> Việt (AI)', aspect: 'aspect-video', img: '/images/library/sean-1.jpg', filter: 'Youtube', video: 'https://dichtudong.com/vi-vn/image/video-tai-lieu/tai_lieu6.mp4' },
+  { id: 6, title: 'Hữu Minh - Chia sẻ kinh nghiệm', category: 'Vlog', lang: 'Dịch: Việt -> Anh (AI)', aspect: 'aspect-video', img: '/images/library/huu-minh.jpg', filter: 'Video', video: 'https://dichtudong.com/vi-vn/image/video-tai-lieu/tai_lieu2.mp4' },
+  { id: 7, title: 'AI và tương lai công nghệ', category: 'Tech', lang: 'Dịch: Anh -> Việt (AI)', aspect: 'aspect-square', img: '/images/library/ai-02.jpg', filter: 'Video', video: 'https://dichtudong.com/vi-vn/image/video-tai-lieu/tai_lieu10.mp4' },
+  { id: 8, title: 'TED Talk - Bài thuyết trình #1', category: 'Education', lang: 'Dịch: Anh -> Việt (AI)', aspect: 'aspect-video', img: '/images/library/ted-01.jpg', filter: 'Youtube', video: 'https://dichtudong.com/vi-vn/image/video-tai-lieu/tai_lieu9.mp4' },
+  { id: 9, title: 'TED Talk - Bài thuyết trình #2', category: 'Education', lang: 'Dịch: Anh -> Việt (AI)', aspect: 'aspect-[3/4]', img: '/images/library/ted-02.jpg', filter: 'Audio', video: 'https://dichtudong.com/vi-vn/image/video-tai-lieu/tai_lieu12.mp4' },
+  { id: 10, title: 'TED Talk - Bài thuyết trình #3', category: 'Education', lang: 'Dịch: Anh -> Việt (AI)', aspect: 'aspect-video', img: '/images/library/ted-03.jpg', filter: 'Youtube', video: 'https://dichtudong.com/vi-vn/image/video-tai-lieu/tai_lieu13.mp4' },
 ];
 
 const filters = ['Tất Cả', 'Video', 'Audio', 'Youtube', 'Tiktok'];
 
+/* ─── Video Modal Component ─── */
+function VideoModal({ video, onClose }) {
+  // Close on Esc key
+  useEffect(() => {
+    const handleKeyDown = (e) => {
+      if (e.key === 'Escape') onClose();
+    };
+    document.addEventListener('keydown', handleKeyDown);
+    document.body.style.overflow = 'hidden';
+    return () => {
+      document.removeEventListener('keydown', handleKeyDown);
+      document.body.style.overflow = '';
+    };
+  }, [onClose]);
+
+  return (
+    <div
+      className="fixed inset-0 z-[9999] flex items-center justify-center"
+      onClick={onClose}
+    >
+      {/* Backdrop */}
+      <div className="absolute inset-0 bg-black/80 backdrop-blur-sm animate-fadeIn" />
+
+      {/* Modal Content */}
+      <div
+        className="relative z-10 w-[90vw] max-w-[900px] animate-scaleIn"
+        onClick={(e) => e.stopPropagation()}
+      >
+        {/* Close Button */}
+        <button
+          className="absolute -top-12 right-0 w-10 h-10 bg-white/10 hover:bg-white/20 rounded-full flex items-center justify-center text-white transition-colors group"
+          onClick={onClose}
+        >
+          <span className="material-symbols-outlined text-2xl group-hover:rotate-90 transition-transform">close</span>
+        </button>
+
+        {/* Video Title */}
+        <div className="mb-4">
+          <h3 className="text-white text-xl font-bold">{video.title}</h3>
+          <p className="text-white/60 text-sm mt-1">{video.lang}</p>
+        </div>
+
+        {/* Video Player */}
+        <div className="relative bg-black rounded-2xl overflow-hidden shadow-2xl shadow-black/50">
+          <video
+            className="w-full aspect-video"
+            controls
+            autoPlay
+            playsInline
+            src={video.video}
+          >
+            Trình duyệt của bạn không hỗ trợ phát video.
+          </video>
+        </div>
+
+        {/* Video Info */}
+        <div className="mt-4 flex items-center gap-4 text-white/50 text-sm">
+          <span className="bg-primary/20 text-primary px-3 py-1 rounded-full text-xs font-bold">{video.category}</span>
+          <span>{video.lang}</span>
+        </div>
+      </div>
+    </div>
+  );
+}
+
+/* ─── Main Page ─── */
 export default function ThuVienPage() {
   const [activeFilter, setActiveFilter] = useState('Tất Cả');
+  const [selectedVideo, setSelectedVideo] = useState(null);
 
   const filtered = activeFilter === 'Tất Cả' ? videos : videos.filter(v => v.filter === activeFilter);
+
+  const handleClose = useCallback(() => setSelectedVideo(null), []);
 
   return (
     <>
@@ -69,19 +138,31 @@ export default function ThuVienPage() {
       <main className="max-w-screen-2xl mx-auto px-8 py-20">
         <div className="columns-1 md:columns-2 lg:columns-3 gap-6">
           {filtered.map(video => (
-            <div key={video.id} className="mb-6 break-inside-avoid group cursor-pointer overflow-hidden rounded-xl bg-surface-container-lowest shadow-sm hover:shadow-2xl transition-all duration-500">
+            <div
+              key={video.id}
+              className="mb-6 break-inside-avoid group cursor-pointer overflow-hidden rounded-xl bg-surface-container-lowest shadow-sm hover:shadow-2xl transition-all duration-500"
+              onClick={() => setSelectedVideo(video)}
+            >
               <div className={`relative overflow-hidden ${video.aspect}`}>
                 <img
                   alt={video.title}
                   className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
                   src={video.img}
                 />
+                {/* Play overlay */}
                 <div className="absolute inset-0 bg-gradient-to-t from-[rgba(48,41,80,0.8)] to-transparent flex flex-col justify-end p-6">
                   <span className="text-white/70 text-xs font-bold uppercase tracking-wider mb-2">{video.category}</span>
                   <h3 className="text-white text-xl font-bold leading-tight">{video.title}</h3>
                   <div className="flex items-center gap-2 mt-4 text-white/90 text-sm">
                     <span className="material-symbols-outlined text-[18px]" style={{fontVariationSettings: "'FILL' 1"}}>play_circle</span>
                     <span>{video.lang}</span>
+                  </div>
+                </div>
+
+                {/* Central play button on hover */}
+                <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                  <div className="w-20 h-20 bg-primary/90 rounded-full flex items-center justify-center shadow-2xl shadow-primary/40 transform group-hover:scale-100 scale-75 transition-all duration-500">
+                    <span className="material-symbols-outlined text-white text-5xl" style={{fontVariationSettings: "'FILL' 1"}}>play_arrow</span>
                   </div>
                 </div>
               </div>
@@ -94,6 +175,29 @@ export default function ThuVienPage() {
           </button>
         </div>
       </main>
+
+      {/* Video Modal */}
+      {selectedVideo && (
+        <VideoModal video={selectedVideo} onClose={handleClose} />
+      )}
+
+      {/* Animations */}
+      <style jsx global>{`
+        @keyframes fadeIn {
+          from { opacity: 0; }
+          to { opacity: 1; }
+        }
+        @keyframes scaleIn {
+          from { opacity: 0; transform: scale(0.9) translateY(20px); }
+          to { opacity: 1; transform: scale(1) translateY(0); }
+        }
+        .animate-fadeIn {
+          animation: fadeIn 0.3s ease-out forwards;
+        }
+        .animate-scaleIn {
+          animation: scaleIn 0.4s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+        }
+      `}</style>
     </>
   );
 }

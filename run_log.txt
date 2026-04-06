@@ -1,0 +1,351 @@
+﻿c:\python\ommivoice\env\Sc
+ripts\python.exe : c:\pyth
+on\ommivoice\video_subtitl
+e_api.py:42: 
+FutureWarning: 
+At line:1 char:1
++ c:\python\ommivoice\env\
+Scripts\python.exe c:\pyth
+on\ommivoice\video_ ...
++ ~~~~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo        
+      : NotSpecified: (c  
+  :\python\ommiv...Futu   
+ reWarning: :String) [    
+], RemoteException
+    + FullyQualifiedError 
+   Id : NativeCommandErr  
+  or
+ 
+
+All support for the 
+`google.generativeai` 
+package has ended. It 
+will no longer be 
+receiving 
+updates or bug fixes. 
+Please switch to the 
+`google.genai` package as 
+soon as possible.
+See README for more 
+details:
+
+https://github.com/google-
+gemini/deprecated-generati
+ve-ai-python/blob/main/REA
+DME.md
+
+  import 
+google.generativeai as 
+genai
+[33mChecking 
+connectivity to the model 
+hosters, this may take a 
+while. To bypass this 
+check, set `PADDLE_PDX_DIS
+ABLE_MODEL_SOURCE_CHECK` 
+to `True`.[0m
+─É├ú x├│a tß║Ñt cß║ú tß╗çp v├á th╞░ mß╗Ñc trong "crop_subtitle".
+─É├ú x├│a tß║Ñt cß║ú tß╗çp v├á th╞░ mß╗Ñc trong "output_process".
+≡ƒöº Setup Instructions:
+1. Make sure you have installed: pip install googletrans==4.0.0-rc1
+2. Your ngrok auth token is already set
+3. Make sure your test.py and gemini_srt_translator.py files are in the same directory
+4. Run this script to start the API
+
+==================================================
+≡ƒÜÇ Starting Video Subtitle Extraction and Translation API v2.0...
+Γ£¿ New Features:
+   - Fixed signal threading issues
+   - Added Google Translate as backup
+   - Improved error handling
+   - Better subprocess management
+Downloading ngrok ...
+Downloading ngrok: 0%
+Downloading ngrok: 1%
+Downloading ngrok: 2%
+Downloading ngrok: 3%
+Downloading ngrok: 4%
+Downloading ngrok: 5%
+Downloading ngrok: 6%
+Downloading ngrok: 7%
+Downloading ngrok: 8%
+Downloading ngrok: 9%
+Downloading ngrok: 10%
+Downloading ngrok: 11%
+Downloading ngrok: 12%
+Downloading ngrok: 13%
+Downloading ngrok: 14%
+Downloading ngrok: 15%
+Downloading ngrok: 16%
+Downloading ngrok: 17%
+Downloading ngrok: 18%
+Downloading ngrok: 19%
+Downloading ngrok: 20%
+Downloading ngrok: 21%
+Downloading ngrok: 22%
+Downloading ngrok: 23%
+Downloading ngrok: 24%
+Downloading ngrok: 25%
+Downloading ngrok: 26%
+Downloading ngrok: 27%
+Downloading ngrok: 28%
+Downloading ngrok: 29%
+Downloading ngrok: 30%
+Downloading ngrok: 31%
+Downloading ngrok: 32%
+Downloading ngrok: 33%
+Downloading ngrok: 34%
+Downloading ngrok: 35%
+Downloading ngrok: 36%
+Downloading ngrok: 37%
+Downloading ngrok: 38%
+Downloading ngrok: 39%
+Downloading ngrok: 40%
+Downloading ngrok: 41%
+Downloading ngrok: 42%
+Downloading ngrok: 43%
+Downloading ngrok: 44%
+Downloading ngrok: 45%
+Downloading ngrok: 46%
+Downloading ngrok: 47%
+Downloading ngrok: 48%
+Downloading ngrok: 49%
+Downloading ngrok: 50%
+Downloading ngrok: 51%
+Downloading ngrok: 52%
+Downloading ngrok: 53%
+Downloading ngrok: 54%
+Downloading ngrok: 55%
+Downloading ngrok: 56%
+Downloading ngrok: 57%
+Downloading ngrok: 58%
+Downloading ngrok: 59%
+Downloading ngrok: 60%
+Downloading ngrok: 61%
+Downloading ngrok: 62%
+Downloading ngrok: 63%
+Downloading ngrok: 64%
+Downloading ngrok: 65%
+Downloading ngrok: 66%
+Downloading ngrok: 67%
+Downloading ngrok: 68%
+Downloading ngrok: 69%
+Downloading ngrok: 70%
+Downloading ngrok: 71%
+Downloading ngrok: 72%
+Downloading ngrok: 73%
+Downloading ngrok: 74%
+Downloading ngrok: 75%
+Downloading ngrok: 76%
+Downloading ngrok: 77%
+Downloading ngrok: 78%
+Downloading ngrok: 79%
+Downloading ngrok: 80%
+Downloading ngrok: 81%
+Downloading ngrok: 82%
+Downloading ngrok: 83%
+Downloading ngrok: 84%
+Downloading ngrok: 85%
+Downloading ngrok: 86%
+Downloading ngrok: 87%
+Downloading ngrok: 88%
+Downloading ngrok: 89%
+Downloading ngrok: 90%
+Downloading ngrok: 91%
+Downloading ngrok: 92%
+Downloading ngrok: 93%
+Downloading ngrok: 94%
+Downloading ngrok: 95%
+Downloading ngrok: 96%
+Downloading ngrok: 97%
+Downloading ngrok: 98%
+Downloading ngrok: 99%
+Downloading ngrok: 100%
+                                                                                                    
+Installing ngrok ... 
+INFO:pyngrok.process:Updat
+ing authtoken for default 
+"config_path" of 
+"ngrok_path": C:\Users\Adm
+in\AppData\Local\ngrok\ngr
+ok.exe
+INFO:pyngrok.ngrok:Opening
+ tunnel named: http-8000-2
+3d38c9f-66c9-433b-a0a2-f55
+4666a051e
+INFO:pyngrok.process.ngrok
+:t=2026-04-05T11:13:28+070
+0 lvl=info msg="no 
+configuration paths 
+supplied"
+INFO:pyngrok.process.ngrok
+:t=2026-04-05T11:13:28+070
+0 lvl=info msg="using 
+configuration at default 
+config path" path=C:\\User
+s\\Admin\\AppData\\Local\\
+ngrok\\ngrok.yml
+INFO:pyngrok.process.ngrok
+:t=2026-04-05T11:13:28+070
+0 lvl=info msg="open 
+config file" path=C:\\User
+s\\Admin\\AppData\\Local\\
+ngrok\\ngrok.yml err=nil
+INFO:pyngrok.process.ngrok
+:t=2026-04-05T11:13:28+070
+0 lvl=info msg="FIPS 140 
+mode" enabled=false
+INFO:pyngrok.process.ngrok
+:t=2026-04-05T11:13:28+070
+0 lvl=info msg="starting 
+web service" obj=web 
+addr=127.0.0.1:4040 
+allow_hosts=[]
+INFO:pyngrok.process.ngrok
+:t=2026-04-05T11:13:30+070
+0 lvl=info msg="client 
+session established" 
+obj=tunnels.session
+INFO:pyngrok.process.ngrok
+:t=2026-04-05T11:13:30+070
+0 lvl=info msg="tunnel 
+session started" 
+obj=tunnels.session
+INFO:pyngrok.process.ngrok
+:t=2026-04-05T11:13:30+070
+0 lvl=info msg=start 
+pg=/api/tunnels 
+id=6f80a8c73dea87e4
+INFO:pyngrok.process.ngrok
+:t=2026-04-05T11:13:30+070
+0 lvl=info msg=end 
+pg=/api/tunnels 
+id=6f80a8c73dea87e4 
+status=200 dur=0s
+INFO:pyngrok.process.ngrok
+:t=2026-04-05T11:13:30+070
+0 lvl=info msg=start 
+pg=/api/tunnels 
+id=ff955222f5e00ac3
+INFO:pyngrok.process.ngrok
+:t=2026-04-05T11:13:30+070
+0 lvl=info msg=end 
+pg=/api/tunnels 
+id=ff955222f5e00ac3 
+status=200 dur=0s
+INFO:pyngrok.process.ngrok
+:t=2026-04-05T11:13:30+070
+0 lvl=info msg=start 
+pg=/api/tunnels 
+id=64a68529f3c7e10f
+INFO:pyngrok.process.ngrok
+:t=2026-04-05T11:13:30+070
+0 lvl=info msg=end 
+pg=/api/tunnels 
+id=64a68529f3c7e10f 
+status=200 dur=0s
+INFO:pyngrok.process.ngrok
+:t=2026-04-05T11:13:30+070
+0 lvl=info msg=start 
+pg=/api/tunnels 
+id=b2fad1f5cd73f4ea
+INFO:pyngrok.process.ngrok
+:t=2026-04-05T11:13:30+070
+0 lvl=info msg="started 
+tunnel" obj=tunnels name=h
+ttp-8000-23d38c9f-66c9-433
+b-a0a2-f554666a051e addr=h
+ttp://localhost:8000 url=h
+ttps://a4da-14-169-216-156
+.ngrok-free.app
+INFO:pyngrok.process.ngrok
+:t=2026-04-05T11:13:30+070
+0 lvl=info msg=end 
+pg=/api/tunnels 
+id=b2fad1f5cd73f4ea 
+status=201 dur=289.4397ms
+                                                                                                    
+≡ƒîÉ Public URL: https://a4da-14-169-216-156.ngrok-free.app
+≡ƒöù API Health Check: https://a4da-14-169-216-156.ngrok-free.app/health
+≡ƒôñ Upload Video: https://a4da-14-169-216-156.ngrok-free.app/process-video
+≡ƒîì Translate SRT (Gemini): https://a4da-14-169-216-156.ngrok-free.app/translate-srt
+≡ƒîì Translate SRT (Google): https://a4da-14-169-216-156.ngrok-free.app/translate-simple
+≡ƒîì Translate Default SRT: https://a4da-14-169-216-156.ngrok-free.app/translate-default-srt
+Γ£à API is now publicly accessible!
+≡ƒôû API Documentation:
+   - Health Check: GET https://a4da-14-169-216-156.ngrok-free.app/health
+   - Process Video: POST https://a4da-14-169-216-156.ngrok-free.app/process-video
+   - Translate SRT (Gemini): POST https://a4da-14-169-216-156.ngrok-free.app/translate-srt
+   - Translate SRT (Google): POST https://a4da-14-169-216-156.ngrok-free.app/translate-simple
+   - Translate Default SRT: POST https://a4da-14-169-216-156.ngrok-free.app/translate-default-srt
+   - Check Processing Status: GET https://a4da-14-169-216-156.ngrok-free.app/status/<task_id>
+   - Check Translation Status: GET https://a4da-14-169-216-156.ngrok-free.app/translation-status/<task_id>
+   - Download SRT: GET https://a4da-14-169-216-156.ngrok-free.app/download/<task_id>
+   - Download Translated SRT: GET https://a4da-14-169-216-156.ngrok-free.app/download-translated/<task_id>
+   - List Tasks: GET https://a4da-14-169-216-156.ngrok-free.app/tasks
+
+≡ƒô¥ Test your API with these curl commands:
+
+1. Health Check:
+curl "https://a4da-14-169-216-156.ngrok-free.app/health"
+
+2. Upload Video:
+curl -X POST -F "video=@your_video.mp4" -F "num_workers=5" "https://a4da-14-169-216-156.ngrok-free.app/process-video"
+
+3. Translate SRT file (Gemini):
+curl -X POST -F "srt_file=@your_subtitles.srt" -F "target_language=VIETNAMESE" "https://a4da-14-169-216-156.ngrok-free.app/translate-srt"
+
+4. Translate SRT file (Google Translate):
+curl -X POST -F "srt_file=@your_subtitles.srt" -F "target_language=VIETNAMESE" "https://a4da-14-169-216-156.ngrok-free.app/translate-simple"
+
+5. Translate default SRT file (Gemini):
+curl -X POST -F "target_language=VIETNAMESE" -F "method=gemini" "https://a4da-14-169-216-156.ngrok-free.app/translate-default-srt"
+
+6. Translate default SRT file (Google):
+curl -X POST -F "target_language=VIETNAMESE" -F "method=google" "https://a4da-14-169-216-156.ngrok-free.app/translate-default-srt"
+
+7. Check Processing Status:
+curl "https://a4da-14-169-216-156.ngrok-free.app/status/TASK_ID"
+
+8. Check Translation Status:
+curl "https://a4da-14-169-216-156.ngrok-free.app/translation-status/TASK_ID"
+ * Serving Flask app 'video_subtitle_api'
+ * Debug mode: off
+INFO:werkzeug:[31m[1mWAR
+NING: This is a 
+development server. Do 
+not use it in a 
+production deployment. 
+Use a production WSGI 
+server instead.[0m
+ * Running on all 
+addresses (0.0.0.0)
+ * Running on 
+http://127.0.0.1:8000
+ * Running on 
+http://192.168.1.6:8000
+INFO:werkzeug:[33mPress 
+CTRL+C to quit[0m
+INFO:pyngrok.process.ngrok
+:t=2026-04-05T11:17:27+070
+0 lvl=info msg="received 
+stop request" obj=app 
+stopReq="{err:<nil> 
+restart:false}"
+INFO:pyngrok.process.ngrok
+:t=2026-04-05T11:17:27+070
+0 lvl=info msg="session 
+closing" 
+obj=tunnels.session 
+err=nil
+INFO:pyngrok.process.ngrok
+:t=2026-04-05T11:17:27+070
+0 lvl=info msg="accept 
+failed" 
+obj=tunnels.session 
+obj=csess id=c189ffdfef4a 
+err="reconnecting session 
+closed"

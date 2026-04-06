@@ -1,0 +1,47 @@
+﻿Collecting mistralai==1.9.1
+  Downloading mistralai-1.9.1-py3-none-any.whl (381 kB)
+     -------------------------------------- 381.8/381.8 kB 1.7 MB/s eta 0:00:00
+Requirement already satisfied: eval-type-backport>=0.2.0 in c:\python\ommivoice\env\lib\site-packages (from mistralai==1.9.1) (0.3.1)
+Requirement already satisfied: httpx>=0.28.1 in c:\python\ommivoice\env\lib\site-packages (from mistralai==1.9.1) (0.28.1)
+Requirement already satisfied: pydantic>=2.10.3 in c:\python\ommivoice\env\lib\site-packages (from mistralai==1.9.1) (2.12.5)
+Requirement already satisfied: python-dateutil>=2.8.2 in c:\python\ommivoice\env\lib\site-packages (from mistralai==1.9.1) (2.9.0.post0)
+Requirement already satisfied: typing-inspection>=0.4.0 in c:\python\ommivoice\env\lib\site-packages (from mistralai==1.9.1) (0.4.2)
+Requirement already satisfied: anyio in c:\python\ommivoice\env\lib\site-packages (from httpx>=0.28.1->mistralai==1.9.1) (4.13.0)
+Requirement already satisfied: certifi in c:\python\ommivoice\env\lib\site-packages (from httpx>=0.28.1->mistralai==1.9.1) (2026.2.25)
+Requirement already satisfied: httpcore==1.* in c:\python\ommivoice\env\lib\site-packages (from httpx>=0.28.1->mistralai==1.9.1) (1.0.9)
+Requirement already satisfied: idna in c:\python\ommivoice\env\lib\site-packages (from httpx>=0.28.1->mistralai==1.9.1) (3.11)
+Requirement already satisfied: h11>=0.16 in c:\python\ommivoice\env\lib\site-packages (from httpcore==1.*->httpx>=0.28.1->mistralai==1.9.1) (0.16.0)
+Requirement already satisfied: annotated-types>=0.6.0 in c:\python\ommivoice\env\lib\site-packages (from pydantic>=2.10.3->mistralai==1.9.1) (0.7.0)
+Requirement already satisfied: pydantic-core==2.41.5 in c:\python\ommivoice\env\lib\site-packages (from pydantic>=2.10.3->mistralai==1.9.1) (2.41.5)
+Requirement already satisfied: typing-extensions>=4.14.1 in c:\python\ommivoice\env\lib\site-packages (from pydantic>=2.10.3->mistralai==1.9.1) (4.15.0)
+Requirement already satisfied: six>=1.5 in c:\python\ommivoice\env\lib\site-packages (from python-dateutil>=2.8.2->mistralai==1.9.1) (1.17.0)
+Installing collected packages: mistralai
+  Attempting uninstall: mistralai
+    Found existing installation: mistralai 2.3.0
+    Uninstalling mistralai-2.3.0:
+      Successfully uninstalled mistralai-2.3.0
+Successfully installed mistralai-1.9.1
+c:\python\ommivoice\env\Sc
+ripts\pip.exe : 
+At line:1 char:1
++ c:\python\ommivoice\env\
+Scripts\pip.exe install 
+mistralai==1.9.1 2>&1 ...
++ ~~~~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo        
+      : NotSpecified: (:  
+  String) [], RemoteExc   
+ eption
+    + FullyQualifiedError 
+   Id : NativeCommandErr  
+  or
+ 
+[notice] A new release of 
+pip available: 22.3 -> 
+26.0.1
+[notice] To update, run: C
+:\python\ommivoice\env\Scr
+ipts\python.exe -m pip 
+install --upgrade pip

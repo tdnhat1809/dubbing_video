@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+
+<html lang="vi"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Liên Hệ - DichTuDong.com</title>
+<link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@100;300;400;500;600;700;800;900&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+        tailwind.config = {
+          darkMode: "class",
+          theme: {
+            extend: {
+              "colors": {
+                      "primary-dim": "#3735d0",
+                      "surface": "#faf4ff",
+                      "on-background": "#302950",
+                      "surface-variant": "#e1d7ff",
+                      "on-secondary-fixed": "#2f2c69",
+                      "inverse-surface": "#0f072e",
+                      "secondary-fixed": "#d0cdff",
+                      "error-container": "#f74b6d",
+                      "on-tertiary-container": "#525464",
+                      "surface-container-low": "#f4eeff",
+                      "on-error": "#ffefef",
+                      "surface-tint": "#4544dc",
+                      "secondary-dim": "#4b4886",
+                      "surface-container": "#ece4ff",
+                      "tertiary-fixed-dim": "#d8d8ec",
+                      "on-secondary-container": "#43407d",
+                      "on-tertiary": "#f3f1ff",
+                      "on-secondary": "#f5f1ff",
+                      "tertiary": "#595a6b",
+                      "error": "#b41340",
+                      "surface-dim": "#d9ceff",
+                      "surface-container-high": "#e6deff",
+                      "surface-container-lowest": "#ffffff",
+                      "surface-container-highest": "#e1d7ff",
+                      "on-primary-fixed-variant": "#10009c",
+                      "on-tertiary-fixed": "#404251",
+                      "background": "#faf4ff",
+                      "on-tertiary-fixed-variant": "#5c5e6e",
+                      "primary-container": "#9496ff",
+                      "outline-variant": "#b1a7d6",
+                      "inverse-on-surface": "#a097c5",
+                      "on-secondary-fixed-variant": "#4c4987",
+                      "on-surface-variant": "#5e5680",
+                      "surface-bright": "#faf4ff",
+                      "tertiary-fixed": "#e6e6fa",
+                      "secondary-container": "#d0cdff",
+                      "primary-fixed-dim": "#8486ff",
+                      "secondary": "#575493",
+                      "primary-fixed": "#9496ff",
+                      "on-primary-container": "#0b0081",
+                      "primary": "#4544dc",
+                      "error-dim": "#a70138",
+                      "tertiary-dim": "#4d4f5f",
+                      "on-primary": "#f4f1ff",
+                      "inverse-primary": "#8183ff",
+                      "secondary-fixed-dim": "#c0bdff",
+                      "outline": "#7a719d",
+                      "on-error-container": "#510017",
+                      "tertiary-container": "#e6e6fa",
+                      "on-surface": "#302950",
+                      "on-primary-fixed": "#000000"
+              },
+              "borderRadius": {
+                      "DEFAULT": "0.25rem",
+                      "lg": "0.5rem",
+                      "xl": "0.75rem",
+                      "full": "9999px"
+              },
+              "fontFamily": {
+                      "headline": ["Be Vietnam Pro"],
+                      "body": ["Be Vietnam Pro"],
+                      "label": ["Be Vietnam Pro"]
+              }
+            },
+          },
+        }
+      </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        body { font-family: 'Be Vietnam Pro', sans-serif; }
+        .glass-panel {
+            background: rgba(225, 215, 255, 0.6);
+            backdrop-filter: blur(20px);
+        }
+        .primary-gradient {
+            background: linear-gradient(135deg, #4544dc 0%, #9496ff 100%);
+        }
+    </style>
+</head>
+<body class="bg-surface text-on-surface">
+<!-- TopNavBar -->
+<header class="sticky top-0 w-full z-50 bg-surface-container-low dark:bg-slate-900 shadow-xl shadow-[#302950]/5">
+<nav class="flex justify-between items-center px-8 py-4 max-w-7xl mx-auto">
+<div class="text-2xl font-black tracking-tighter text-[#4544dc] dark:text-[#9496ff]">DichTuDong.com</div>
+<div class="hidden md:flex items-center space-x-8">
+<a class="text-[#302950] dark:text-slate-300 opacity-80 hover:text-[#4544dc] hover:opacity-100 transition-all font-be-vietnam-pro" href="#">Home</a>
+<a class="text-[#302950] dark:text-slate-300 opacity-80 hover:text-[#4544dc] hover:opacity-100 transition-all font-be-vietnam-pro" href="#">Features</a>
+<a class="text-[#302950] dark:text-slate-300 opacity-80 hover:text-[#4544dc] hover:opacity-100 transition-all font-be-vietnam-pro" href="#">Pricing</a>
+<a class="text-[#4544dc] font-bold border-b-2 border-[#4544dc] pb-1 font-be-vietnam-pro" href="#">Contact</a>
+</div>
+<div class="flex items-center space-x-4">
+<button class="text-[#4544dc] dark:text-[#9496ff] font-medium px-4 py-2 hover:opacity-80 transition-all">Log In</button>
+<button class="primary-gradient text-on-primary px-6 py-2.5 rounded-xl font-bold scale-95 duration-200 hover:scale-100 shadow-lg shadow-primary/20">Get Started</button>
+</div>
+</nav>
+</header>
+<main class="relative">
+<!-- Hero Background Texture -->
+<div class="absolute inset-0 overflow-hidden -z-10">
+<div class="absolute -top-[10%] -left-[10%] w-[40%] h-[40%] rounded-full bg-primary/5 blur-[120px]"></div>
+<div class="absolute top-[20%] -right-[5%] w-[30%] h-[30%] rounded-full bg-secondary-container/10 blur-[100px]"></div>
+</div>
+<!-- Contact Section -->
+<section class="max-w-7xl mx-auto px-8 py-20 lg:py-32">
+<div class="grid lg:grid-cols-2 gap-20 items-start">
+<!-- Left Column: Info -->
+<div class="space-y-12">
+<div class="space-y-6">
+<h1 class="text-5xl md:text-6xl font-black tracking-tight text-on-background leading-tight">
+                            Liên Hệ Với <br/><span class="text-primary">Chúng Tôi</span>
+</h1>
+<p class="text-lg text-on-surface-variant leading-relaxed max-w-md">
+                            Đội ngũ của chúng tôi luôn sẵn sàng hỗ trợ bạn. Hãy gửi tin nhắn hoặc gọi cho chúng tôi nếu bạn có bất kỳ câu hỏi nào.
+                        </p>
+</div>
+<div class="grid gap-6">
+<!-- Phone Card -->
+<div class="flex items-start gap-5 p-6 rounded-xl bg-surface-container-lowest transition-all hover:bg-surface-container-low group">
+<div class="w-12 h-12 rounded-lg bg-primary/10 flex items-center justify-center text-primary group-hover:bg-primary group-hover:text-on-primary transition-colors">
+<span class="material-symbols-outlined">call</span>
+</div>
+<div>
+<p class="text-sm font-bold text-outline uppercase tracking-wider mb-1">Phone</p>
+<p class="text-xl font-bold text-on-background">+84 33 444 8546</p>
+</div>
+</div>
+<!-- Email Card -->
+<div class="flex items-start gap-5 p-6 rounded-xl bg-surface-container-lowest transition-all hover:bg-surface-container-low group">
+<div class="w-12 h-12 rounded-lg bg-primary/10 flex items-center justify-center text-primary group-hover:bg-primary group-hover:text-on-primary transition-colors">
+<span class="material-symbols-outlined">mail</span>
+</div>
+<div>
+<p class="text-sm font-bold text-outline uppercase tracking-wider mb-1">Email</p>
+<p class="text-xl font-bold text-on-background">support@dichtudong.com</p>
+</div>
+</div>
+<!-- Address Card -->
+<div class="flex items-start gap-5 p-6 rounded-xl bg-surface-container-lowest transition-all hover:bg-surface-container-low group">
+<div class="w-12 h-12 rounded-lg bg-primary/10 flex items-center justify-center text-primary group-hover:bg-primary group-hover:text-on-primary transition-colors">
+<span class="material-symbols-outlined">location_on</span>
+</div>
+<div>
+<p class="text-sm font-bold text-outline uppercase tracking-wider mb-1">Address</p>
+<p class="text-xl font-bold text-on-background">Việt Nam</p>
+</div>
+</div>
+</div>
+<!-- Social Icons -->
+<div class="pt-8 space-y-4">
+<p class="text-sm font-bold text-on-surface-variant uppercase tracking-widest">Theo dõi chúng tôi</p>
+<div class="flex gap-4">
+<a class="w-10 h-10 flex items-center justify-center rounded-full bg-surface-container-high text-primary hover:primary-gradient hover:text-on-primary transition-all" href="#">
+<span class="material-symbols-outlined text-xl">social_leaderboard</span>
+</a>
+<a class="w-10 h-10 flex items-center justify-center rounded-full bg-surface-container-high text-primary hover:primary-gradient hover:text-on-primary transition-all" href="#">
+<span class="material-symbols-outlined text-xl">brand_family</span>
+</a>
+<a class="w-10 h-10 flex items-center justify-center rounded-full bg-surface-container-high text-primary hover:primary-gradient hover:text-on-primary transition-all" href="#">
+<span class="material-symbols-outlined text-xl">play_circle</span>
+</a>
+<a class="w-10 h-10 flex items-center justify-center rounded-full bg-surface-container-high text-primary hover:primary-gradient hover:text-on-primary transition-all" href="#">
+<span class="material-symbols-outlined text-xl">palette</span>
+</a>
+</div>
+</div>
+</div>
+<!-- Right Column: Form -->
+<div class="glass-panel p-8 md:p-12 rounded-3xl shadow-2xl shadow-primary/5">
+<form class="space-y-8">
+<div class="grid md:grid-cols-2 gap-6">
+<div class="space-y-2">
+<label class="text-sm font-semibold text-on-surface-variant ml-1">Họ Tên</label>
+<input class="w-full px-6 py-4 rounded-xl bg-surface-container-lowest border-none focus:ring-2 focus:ring-primary/20 transition-all text-on-background" placeholder="Nhập tên của bạn" type="text"/>
+</div>
+<div class="space-y-2">
+<label class="text-sm font-semibold text-on-surface-variant ml-1">Email</label>
+<input class="w-full px-6 py-4 rounded-xl bg-surface-container-lowest border-none focus:ring-2 focus:ring-primary/20 transition-all text-on-background" placeholder="example@email.com" type="email"/>
+</div>
+</div>
+<div class="space-y-2">
+<label class="text-sm font-semibold text-on-surface-variant ml-1">Chủ Đề</label>
+<input class="w-full px-6 py-4 rounded-xl bg-surface-container-lowest border-none focus:ring-2 focus:ring-primary/20 transition-all text-on-background" placeholder="Bạn cần hỗ trợ về điều gì?" type="text"/>
+</div>
+<div class="space-y-2">
+<label class="text-sm font-semibold text-on-surface-variant ml-1">Nội Dung</label>
+<textarea class="w-full px-6 py-4 rounded-xl bg-surface-container-lowest border-none focus:ring-2 focus:ring-primary/20 transition-all text-on-background resize-none" placeholder="Viết tin nhắn của bạn tại đây..." rows="6"></textarea>
+</div>
+<button class="w-full primary-gradient text-on-primary py-5 rounded-xl text-lg font-bold shadow-xl shadow-primary/30 flex items-center justify-center gap-3 group" type="submit">
+                            Gửi Tin Nhắn
+                            <span class="material-symbols-outlined group-hover:translate-x-1 transition-transform">arrow_forward</span>
+</button>
+</form>
+</div>
+</div>
+</section>
+<!-- Newsletter Section -->
+<section class="max-w-7xl mx-auto px-8 pb-32">
+<div class="primary-gradient rounded-3xl p-12 md:p-20 text-center relative overflow-hidden">
+<!-- Abstract Texture Overlay -->
+<div class="absolute inset-0 opacity-10 pointer-events-none" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuBRIJGxxThHr0tJ5NIpt_EixllXuM5r901ma2FC2H5RToXT9oVenZlqrlSGlQeUg8_sZGo7W-VrAeATKdt8L4U6wD_9rKQkfSxrzrhIDeMUyB4UcQhHmLHpsrcYOilTwKFS6qb9qSSD9tgtMSHpA6Er1gazPAxdEJfSEq8b9FtuRux1dWhEiFrGvcVH01Q8vMrUMaTuhmyIXPcSEwF6T13AZqeApkBW4vJScHmKcoISiWkFkbWnFbIP87O04FOeQVEiNbvw_nv0wntt');"></div>
+<div class="relative z-10 max-w-3xl mx-auto space-y-8">
+<h2 class="text-3xl md:text-5xl font-black text-on-primary leading-tight">
+                        Tham gia với chúng tôi để nhận thông tin ưu đãi mới nhất
+                    </h2>
+<p class="text-on-primary/80 text-lg">
+                        Cập nhật các tính năng AI mới nhất và nhận mã giảm giá đặc quyền chỉ dành cho thành viên đăng ký sớm.
+                    </p>
+<div class="flex flex-col sm:flex-row items-center gap-4 max-w-lg mx-auto">
+<input class="w-full px-6 py-4 rounded-xl bg-surface-container-lowest/20 border-white/20 text-white placeholder:text-white/60 focus:ring-white focus:bg-white/30 backdrop-blur-md transition-all outline-none" placeholder="Địa chỉ email của bạn" type="email"/>
+<button class="w-full sm:w-auto px-8 py-4 bg-on-primary text-primary font-black rounded-xl hover:bg-surface-container-lowest transition-colors shadow-lg">
+                            Đăng Ký
+                        </button>
+</div>
+</div>
+</div>
+</section>
+</main>
+<!-- Footer -->
+<footer class="w-full py-16 bg-surface-container-low dark:bg-slate-900 border-t border-[#b1a7d6]/10">
+<div class="max-w-7xl mx-auto px-8">
+<div class="grid grid-cols-2 md:grid-cols-4 gap-12 mb-16">
+<div class="space-y-6">
+<div class="text-xl font-bold text-[#302950] dark:text-slate-100">Product</div>
+<ul class="space-y-4">
+<li><a class="text-[#302950]/70 dark:text-slate-400 hover:text-[#4544dc] transition-colors font-be-vietnam-pro body-lg leading-relaxed" href="#">Features</a></li>
+<li><a class="text-[#302950]/70 dark:text-slate-400 hover:text-[#4544dc] transition-colors font-be-vietnam-pro body-lg leading-relaxed" href="#">Security</a></li>
+<li><a class="text-[#302950]/70 dark:text-slate-400 hover:text-[#4544dc] transition-colors font-be-vietnam-pro body-lg leading-relaxed" href="#">Enterprise</a></li>
+</ul>
+</div>
+<div class="space-y-6">
+<div class="text-xl font-bold text-[#302950] dark:text-slate-100">Company</div>
+<ul class="space-y-4">
+<li><a class="text-[#302950]/70 dark:text-slate-400 hover:text-[#4544dc] transition-colors font-be-vietnam-pro body-lg leading-relaxed" href="#">About Us</a></li>
+<li><a class="text-[#302950]/70 dark:text-slate-400 hover:text-[#4544dc] transition-colors font-be-vietnam-pro body-lg leading-relaxed" href="#">Careers</a></li>
+<li><a class="text-[#302950]/70 dark:text-slate-400 hover:text-[#4544dc] transition-colors font-be-vietnam-pro body-lg leading-relaxed" href="#">Press</a></li>
+</ul>
+</div>
+<div class="space-y-6">
+<div class="text-xl font-bold text-[#302950] dark:text-slate-100">Support</div>
+<ul class="space-y-4">
+<li><a class="text-[#302950]/70 dark:text-slate-400 hover:text-[#4544dc] transition-colors font-be-vietnam-pro body-lg leading-relaxed" href="#">Help Center</a></li>
+<li><a class="text-[#302950]/70 dark:text-slate-400 hover:text-[#4544dc] transition-colors font-be-vietnam-pro body-lg leading-relaxed" href="#">Contact Us</a></li>
+<li><a class="text-[#302950]/70 dark:text-slate-400 hover:text-[#4544dc] transition-colors font-be-vietnam-pro body-lg leading-relaxed" href="#">Documentation</a></li>
+</ul>
+</div>
+<div class="space-y-6">
+<div class="text-xl font-bold text-[#302950] dark:text-slate-100">Legal</div>
+<ul class="space-y-4">
+<li><a class="text-[#302950]/70 dark:text-slate-400 hover:text-[#4544dc] transition-colors font-be-vietnam-pro body-lg leading-relaxed" href="#">Privacy Policy</a></li>
+<li><a class="text-[#302950]/70 dark:text-slate-400 hover:text-[#4544dc] transition-colors font-be-vietnam-pro body-lg leading-relaxed" href="#">Terms of Service</a></li>
+<li><a class="text-[#302950]/70 dark:text-slate-400 hover:text-[#4544dc] transition-colors font-be-vietnam-pro body-lg leading-relaxed" href="#">Cookie Policy</a></li>
+</ul>
+</div>
+</div>
+<div class="pt-8 border-t border-[#b1a7d6]/10 flex flex-col md:flex-row justify-between items-center gap-6">
+<div class="text-xl font-black text-[#4544dc] dark:text-[#9496ff]">DichTuDong.com</div>
+<p class="text-[#302950]/70 dark:text-slate-400 font-be-vietnam-pro body-lg leading-relaxed text-sm">© 2024 DichTuDong.com. Crafted for global cinematic excellence.</p>
+</div>
+</div>
+</footer>
+</body></html>

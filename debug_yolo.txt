@@ -1,0 +1,33 @@
+Video: 640x360, FPS=30.0
+Bottom 85% zone starts at y=306
+
+=== 14.0s (frame 420) === 1 boxes
+  [0] y1=324 y2=360 conf=0.40 BOTTOM size=151x36
+
+=== 14.5s (frame 435) === 0 boxes
+
+=== 15.0s (frame 450) === 1 boxes
+  [0] y1=204 y2=246 conf=0.33 center size=368x42
+
+=== 15.5s (frame 465) === 1 boxes
+  [0] y1=325 y2=359 conf=0.72 BOTTOM size=154x34
+
+=== 16.0s (frame 480) === 1 boxes
+  [0] y1=324 y2=360 conf=0.72 BOTTOM size=158x36
+
+=== 16.5s (frame 495) === 1 boxes
+  [0] y1=325 y2=360 conf=0.82 BOTTOM size=347x34
+
+=== 17.0s (frame 510) === 1 boxes
+  [0] y1=323 y2=360 conf=0.86 BOTTOM size=348x36
+
+=== 17.5s (frame 525) === 1 boxes
+  [0] y1=324 y2=360 conf=0.82 BOTTOM size=349x35
+
+=== 18.0s (frame 540) === 1 boxes
+  [0] y1=326 y2=360 conf=0.83 BOTTOM size=348x34
+
+=== 18.5s (frame 555) === 1 boxes
+  [0] y1=325 y2=359 conf=0.82 BOTTOM size=346x34
+
+=== 19.0s (frame 570) === 0 boxes

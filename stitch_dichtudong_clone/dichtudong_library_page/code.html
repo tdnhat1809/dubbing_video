@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+
+<html class="light" lang="vi"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "inverse-surface": "#0f072e",
+                    "primary": "#4544dc",
+                    "on-surface-variant": "#5e5680",
+                    "on-primary": "#f4f1ff",
+                    "tertiary-dim": "#4d4f5f",
+                    "on-background": "#302950",
+                    "on-secondary": "#f5f1ff",
+                    "secondary-fixed": "#d0cdff",
+                    "primary-container": "#9496ff",
+                    "surface-container": "#ece4ff",
+                    "on-error": "#ffefef",
+                    "surface": "#faf4ff",
+                    "outline-variant": "#b1a7d6",
+                    "surface-dim": "#d9ceff",
+                    "primary-dim": "#3735d0",
+                    "primary-fixed": "#9496ff",
+                    "outline": "#7a719d",
+                    "on-secondary-container": "#43407d",
+                    "surface-container-lowest": "#ffffff",
+                    "on-tertiary-fixed-variant": "#5c5e6e",
+                    "on-primary-fixed": "#000000",
+                    "tertiary": "#595a6b",
+                    "surface-variant": "#e1d7ff",
+                    "error": "#b41340",
+                    "surface-container-high": "#e6deff",
+                    "surface-container-highest": "#e1d7ff",
+                    "on-secondary-fixed-variant": "#4c4987",
+                    "tertiary-fixed": "#e6e6fa",
+                    "on-secondary-fixed": "#2f2c69",
+                    "surface-container-low": "#f4eeff",
+                    "on-primary-fixed-variant": "#10009c",
+                    "on-surface": "#302950",
+                    "secondary": "#575493",
+                    "on-tertiary": "#f3f1ff",
+                    "surface-tint": "#4544dc",
+                    "on-tertiary-container": "#525464",
+                    "primary-fixed-dim": "#8486ff",
+                    "on-error-container": "#510017",
+                    "error-dim": "#a70138",
+                    "on-tertiary-fixed": "#404251",
+                    "secondary-container": "#d0cdff",
+                    "secondary-fixed-dim": "#c0bdff",
+                    "error-container": "#f74b6d",
+                    "tertiary-fixed-dim": "#d8d8ec",
+                    "secondary-dim": "#4b4886",
+                    "on-primary-container": "#0b0081",
+                    "inverse-on-surface": "#a097c5",
+                    "inverse-primary": "#8183ff",
+                    "surface-bright": "#faf4ff",
+                    "tertiary-container": "#e6e6fa",
+                    "background": "#faf4ff"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.25rem",
+                    "lg": "0.5rem",
+                    "xl": "0.75rem",
+                    "full": "9999px"
+            },
+            "fontFamily": {
+                    "headline": ["Be Vietnam Pro"],
+                    "body": ["Be Vietnam Pro"],
+                    "label": ["Be Vietnam Pro"]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        body { font-family: 'Be Vietnam Pro', sans-serif; background-color: #faf4ff; color: #302950; }
+        .material-symbols-outlined { font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24; }
+        .masonry-grid { columns: 1; gap: 1.5rem; }
+        @media (min-width: 768px) { .masonry-grid { columns: 2; } }
+        @media (min-width: 1024px) { .masonry-grid { columns: 3; } }
+        .glass-scrim { background: linear-gradient(to top, rgba(48, 41, 80, 0.8) 0%, rgba(48, 41, 80, 0) 100%); }
+        .geometric-shape { position: absolute; filter: blur(60px); z-index: -1; opacity: 0.4; }
+    </style>
+</head>
+<body class="bg-surface text-on-background">
+<!-- Top Navigation Bar -->
+<nav class="bg-white/60 dark:bg-slate-950/60 backdrop-blur-xl shadow-[0_8px_30px_rgb(48,41,80,0.06)] docked full-width top-0 sticky z-50 bg-gradient-to-b from-slate-200/20 to-transparent">
+<div class="flex justify-between items-center w-full px-8 py-4 max-w-screen-2xl mx-auto font-['Be_Vietnam_Pro'] text-sm tracking-tight">
+<div class="text-xl font-black bg-gradient-to-br from-[#4544dc] to-[#9496ff] bg-clip-text text-transparent">
+                DichTuDong.com
+            </div>
+<div class="hidden md:flex items-center gap-8">
+<a class="text-slate-600 hover:text-[#4544dc] transition-colors hover:bg-slate-100/50 rounded-lg px-3 py-2 transition-all" href="#">Trang chủ</a>
+<a class="text-slate-600 hover:text-[#4544dc] transition-colors hover:bg-slate-100/50 rounded-lg px-3 py-2 transition-all" href="#">Sản phẩm</a>
+<a class="text-slate-600 hover:text-[#4544dc] transition-colors hover:bg-slate-100/50 rounded-lg px-3 py-2 transition-all" href="#">Giá cả</a>
+<a class="text-[#4544dc] font-bold border-b-2 border-[#4544dc] pb-1 hover:bg-slate-100/50 rounded-lg px-3 py-2 transition-all" href="#">Thư viện</a>
+<a class="text-slate-600 hover:text-[#4544dc] transition-colors hover:bg-slate-100/50 rounded-lg px-3 py-2 transition-all" href="#">Liên hệ</a>
+</div>
+<div class="flex items-center gap-4">
+<button class="text-slate-600 font-medium px-4 py-2 hover:bg-slate-100/50 rounded-lg transition-all">Đăng nhập</button>
+<button class="bg-[#4544dc] text-[#f4f1ff] px-6 py-2 rounded-xl font-bold shadow-lg shadow-[#4544dc]/20 hover:scale-[0.98] transition-transform">Đăng ký</button>
+</div>
+</div>
+</nav>
+<!-- Hero Section -->
+<header class="relative overflow-hidden pt-20 pb-32 px-6">
+<!-- Decorative Shapes -->
+<div class="geometric-shape top-[-10%] left-[-5%] w-[400px] h-[400px] rounded-full bg-primary-container"></div>
+<div class="geometric-shape bottom-[-20%] right-[-10%] w-[500px] h-[500px] rounded-full bg-surface-container"></div>
+<div class="geometric-shape top-[20%] right-[10%] w-0 h-0 border-l-[150px] border-l-transparent border-r-[150px] border-r-transparent border-b-[260px] border-b-primary opacity-20"></div>
+<div class="max-w-4xl mx-auto text-center">
+<nav class="flex justify-center items-center gap-2 mb-6 text-sm font-medium text-on-surface-variant/70">
+<span>Trang Chủ</span>
+<span class="material-symbols-outlined text-[12px]">chevron_right</span>
+<span class="text-primary font-semibold">Thư Viện</span>
+</nav>
+<h1 class="text-6xl md:text-7xl italic font-light tracking-tight text-on-background mb-8 font-headline">
+                Thư Viện
+            </h1>
+<p class="text-lg md:text-xl text-on-surface-variant leading-relaxed max-w-3xl mx-auto font-body">
+                Tất cả Video trong Thư Viện đều được tạo hoàn toàn tự động bằng <span class="font-bold text-primary">dichtudong.com</span> và chưa qua BẤT KỲ chỉnh sửa nào. Chúng tôi muốn cung cấp cho khách hàng cái nhìn khách quan nhất về sức mạnh công cụ của chúng tôi.
+            </p>
+</div>
+</header>
+<!-- Filter Section -->
+<section class="bg-surface-container-low py-10 sticky top-[72px] z-40">
+<div class="max-w-screen-2xl mx-auto px-8">
+<div class="flex flex-wrap justify-center gap-4">
+<button class="px-8 py-3 rounded-full bg-primary text-on-primary font-semibold shadow-xl shadow-primary/20 transition-all">Tất Cả</button>
+<button class="px-8 py-3 rounded-full border border-outline-variant text-on-surface hover:bg-surface-container-highest transition-all font-medium">Video</button>
+<button class="px-8 py-3 rounded-full border border-outline-variant text-on-surface hover:bg-surface-container-highest transition-all font-medium">Audio</button>
+<button class="px-8 py-3 rounded-full border border-outline-variant text-on-surface hover:bg-surface-container-highest transition-all font-medium">Youtube</button>
+<button class="px-8 py-3 rounded-full border border-outline-variant text-on-surface hover:bg-surface-container-highest transition-all font-medium">Tiktok</button>
+</div>
+</div>
+</section>
+<!-- Video Grid Gallery -->
+<main class="max-w-screen-2xl mx-auto px-8 py-20">
+<div class="masonry-grid">
+<!-- Card 1 -->
+<div class="mb-6 break-inside-avoid group cursor-pointer overflow-hidden rounded-xl bg-surface-container-lowest shadow-sm hover:shadow-2xl transition-all duration-500">
+<div class="relative overflow-hidden aspect-[9/16]">
+<img alt="Scenic travel vlog" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" data-alt="Stunning aerial view of mountain ranges with a winding road during golden hour, cinematic soft lighting" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBi1FJFoH-FrqIiJv0CRG3dwhENE0ToxSi_CwPvkh2gpg-hALQevtiQIY3Dx0DglYbEcEcw58xfh8wl2ztX2NGRQjy2EMmisGvw048vydsLoU8_FpkL2WNRPy8M-LBjODMPd4KHnqVccMmcVSsOSzKvbAP5D_qSplJjVzQ8fHC1dWcE_I0FQpG06yhS3xBk76qPtuiztye2u3zOYYcgmTxxtLfaaGCXI0d19efYh8oUz-2218GM8VOX3Tfa3mh8Dc4VNXGSMxI2J3iX"/>
+<div class="absolute inset-0 glass-scrim flex flex-col justify-end p-6">
+<span class="text-white/70 text-xs font-bold uppercase tracking-wider mb-2">Travel &amp; Adventure</span>
+<h3 class="text-white text-xl font-bold leading-tight">Hành Trình Khám Phá Thụy Sĩ</h3>
+<div class="flex items-center gap-2 mt-4 text-white/90 text-sm">
+<span class="material-symbols-outlined text-[18px]" style="font-variation-settings: 'FILL' 1;">play_circle</span>
+<span>Dịch: Việt -&gt; Anh (AI)</span>
+</div>
+</div>
+</div>
+</div>
+<!-- Card 2 -->
+<div class="mb-6 break-inside-avoid group cursor-pointer overflow-hidden rounded-xl bg-surface-container-lowest shadow-sm hover:shadow-2xl transition-all duration-500">
+<div class="relative overflow-hidden aspect-video">
+<img alt="Tech review setup" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" data-alt="Professional technology workspace with neon backlighting and modern hardware gadgets, clean cinematic atmosphere" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBBbMx2yIrrKNe9Qq8cSE26ZTD7nLLED37Ke9tSDVo094Yue2x2SXZSrHdEI8OikOlvW_RSIJ7EgOjCw4QTjo3GF-jPXUedCLeaayl40o0XHsLn6nf9QfcAHs7lTllsxujNeo3OsLK0FNQQpINC2OqZP3G17o2ot4aU0EoXRaGpwnNuGUeTM85zGwVmBv57Bdhh_BCNEQcVYz8GH-DRUcjZSyqYJS3qU0fV4hIHBJlWekQBJpVWSOU5-Zs1k4eaV6pixkAjIQKjBWFn"/>
+<div class="absolute inset-0 glass-scrim flex flex-col justify-end p-6">
+<span class="text-white/70 text-xs font-bold uppercase tracking-wider mb-2">Tech Review</span>
+<h3 class="text-white text-xl font-bold leading-tight">Đánh Giá MacBook Pro M3 Chip</h3>
+<div class="flex items-center gap-2 mt-4 text-white/90 text-sm">
+<span class="material-symbols-outlined text-[18px]" style="font-variation-settings: 'FILL' 1;">play_circle</span>
+<span>Dịch: Anh -&gt; Việt (AI)</span>
+</div>
+</div>
+</div>
+</div>
+<!-- Card 3 -->
+<div class="mb-6 break-inside-avoid group cursor-pointer overflow-hidden rounded-xl bg-surface-container-lowest shadow-sm hover:shadow-2xl transition-all duration-500">
+<div class="relative overflow-hidden aspect-square">
+<img alt="Cinema production" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" data-alt="Behind the scenes of a movie set with professional lighting and a vintage camera silhouette" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCYBLWlZn7g8yMbEqhTInAfCkaclXoTd9D7xXu7fLjDxp7czrWLUWOo6TWzX4khacQc9fJdF9VsjP3v_7UTFm50BoMIU67u_jEweUdPoXijHy5yb6H1zFYUu1zLA_b4s2otFzI0z0g0Y0jgOUVyY60DCpQXyraURLgkIbUbDP2Og3T4DB3YUcyoS7NfXnm3JYo45UnglvUTrBtkjf5nyCjw5XQtw7zxyg1ouFxufEOdngMUZ82iUiSs0SSS13PflFB3PQWbHldfgUpd"/>
+<div class="absolute inset-0 glass-scrim flex flex-col justify-end p-6">
+<span class="text-white/70 text-xs font-bold uppercase tracking-wider mb-2">Cinema</span>
+<h3 class="text-white text-xl font-bold leading-tight">Phân Tích Cấu Trúc Kịch Bản</h3>
+<div class="flex items-center gap-2 mt-4 text-white/90 text-sm">
+<span class="material-symbols-outlined text-[18px]" style="font-variation-settings: 'FILL' 1;">play_circle</span>
+<span>Dịch: Pháp -&gt; Việt (AI)</span>
+</div>
+</div>
+</div>
+</div>
+<!-- Card 4 -->
+<div class="mb-6 break-inside-avoid group cursor-pointer overflow-hidden rounded-xl bg-surface-container-lowest shadow-sm hover:shadow-2xl transition-all duration-500">
+<div class="relative overflow-hidden aspect-video">
+<img alt="Vlog style" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" data-alt="Young person talking directly to camera in a brightly lit modern apartment, lifestyle vlog aesthetic" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDGFl9LCi4F28_6PKvMFRe0FCX6SCg11GgXtZv0koOmfcyOWHrZK9RnwCAzzY9QqJxOH7MKtz0DUik41thnaMTS0PRBk5zeESx_A2ZkAxgU33HGEM00MA50v2DHpYB-pi9Ghyu6BWiOPBl6q6DUYZUGBy9DEbh9yR69EOfq4h3IGOw9p0IBGey-ziH8BNvpAnMyBK7coTsp63S2NIA9m6OhD6qBeGRYfn09reatVCl0-77enQwej8_m__dJvobVe_AtmpbkdOJK4tRq"/>
+<div class="absolute inset-0 glass-scrim flex flex-col justify-end p-6">
+<span class="text-white/70 text-xs font-bold uppercase tracking-wider mb-2">Vlog</span>
+<h3 class="text-white text-xl font-bold leading-tight">Một Ngày Làm Việc Tại Nhà</h3>
+<div class="flex items-center gap-2 mt-4 text-white/90 text-sm">
+<span class="material-symbols-outlined text-[18px]" style="font-variation-settings: 'FILL' 1;">play_circle</span>
+<span>Dịch: Việt -&gt; Nhật (AI)</span>
+</div>
+</div>
+</div>
+</div>
+<!-- Card 5 -->
+<div class="mb-6 break-inside-avoid group cursor-pointer overflow-hidden rounded-xl bg-surface-container-lowest shadow-sm hover:shadow-2xl transition-all duration-500">
+<div class="relative overflow-hidden aspect-[3/4]">
+<img alt="Nature scenery" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" data-alt="Close up of lush green forest with sunlight filtering through leaves, dreamlike cinematic bokeh" src="https://lh3.googleusercontent.com/aida-public/AB6AXuD1vHdy6OYXp2dm2AN7M5G1_FdCAHY1UppdGXJWsNtNcC5ovEVnSsBSAbyy4B5OQSCyapwZMnQ3ThLQqXMFaWRCiJTqkdKayomMZmUvFMQmuJLl4nDEByBry7waT8ZozXj0vcvgN0IaQoEuA39btAJTuefnUHWZllhfJaNWI9UANqaPLtUCjTdpK87WGCJhKSgpjq2vmZIT9p-J9eSOGMu76dHcbYG2zwmMB-XWsqgsEh1fPJg5PHrcCdAJ7KKeqO9jGqQmSJG_1X60"/>
+<div class="absolute inset-0 glass-scrim flex flex-col justify-end p-6">
+<span class="text-white/70 text-xs font-bold uppercase tracking-wider mb-2">Nature</span>
+<h3 class="text-white text-xl font-bold leading-tight">Tiếng Gọi Từ Rừng Xanh</h3>
+<div class="flex items-center gap-2 mt-4 text-white/90 text-sm">
+<span class="material-symbols-outlined text-[18px]" style="font-variation-settings: 'FILL' 1;">play_circle</span>
+<span>Dịch: Anh -&gt; Việt (AI)</span>
+</div>
+</div>
+</div>
+</div>
+<!-- Card 6 -->
+<div class="mb-6 break-inside-avoid group cursor-pointer overflow-hidden rounded-xl bg-surface-container-lowest shadow-sm hover:shadow-2xl transition-all duration-500">
+<div class="relative overflow-hidden aspect-[9/16]">
+<img alt="Culinary art" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" data-alt="Artistic food preparation with steam and dark background, dramatic side lighting on gourmet dish" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDRTbwjLN-dm1g3lknjA-83S5VCUvEJUhruY4Zwv7IUumTkGFkf9oeKXuTjaEbMaGdBKOHm-yjuqXbSz55Pbd9lm47vaEBwxnjGmR64PYDDNPTfOfIGTe2tS_6CG5pesm0krbCi6f2hL9MhSGHA9CpyDkJmi6QEs9WzJ7H2_0DKTumNqU7k9Lx3hBiVVpBYuqfn7bS63vyjtI0hqp3dpGLdWsbLiZtLCd7Ec6OgKmYImqmytcpjBDL2aA6wZazTweWY1KET91-nsxl9"/>
+<div class="absolute inset-0 glass-scrim flex flex-col justify-end p-6">
+<span class="text-white/70 text-xs font-bold uppercase tracking-wider mb-2">Culinary</span>
+<h3 class="text-white text-xl font-bold leading-tight">Bí Quyết Nấu Phở Truyền Thống</h3>
+<div class="flex items-center gap-2 mt-4 text-white/90 text-sm">
+<span class="material-symbols-outlined text-[18px]" style="font-variation-settings: 'FILL' 1;">play_circle</span>
+<span>Dịch: Việt -&gt; Trung (AI)</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="mt-20 text-center">
+<button class="px-10 py-4 rounded-xl border-2 border-primary text-primary font-bold hover:bg-primary hover:text-white transition-all duration-300">
+                Xem thêm video
+            </button>
+</div>
+</main>
+<!-- Footer -->
+<footer class="bg-[#faf4ff] dark:bg-slate-950 full-width py-12 border-t border-slate-200/30 dark:border-white/5 font-['Be_Vietnam_Pro'] text-xs uppercase tracking-widest">
+<div class="flex flex-col md:flex-row justify-between items-center w-full px-12 max-w-screen-2xl mx-auto gap-6">
+<div class="text-slate-500 dark:text-slate-400">
+                © 2024 DichTuDong.com. Nâng tầm tác phẩm toàn cầu.
+            </div>
+<div class="flex flex-wrap justify-center gap-8">
+<a class="text-slate-500 dark:text-slate-500 hover:text-slate-900 dark:hover:text-white transition-colors underline decoration-[#4544dc] decoration-2 underline-offset-4 opacity-80 hover:opacity-100 transition-opacity" href="#">Điều khoản</a>
+<a class="text-slate-500 dark:text-slate-500 hover:text-slate-900 dark:hover:text-white transition-colors underline decoration-[#4544dc] decoration-2 underline-offset-4 opacity-80 hover:opacity-100 transition-opacity" href="#">Bảo mật</a>
+<a class="text-slate-500 dark:text-slate-500 hover:text-slate-900 dark:hover:text-white transition-colors underline decoration-[#4544dc] decoration-2 underline-offset-4 opacity-80 hover:opacity-100 transition-opacity" href="#">Trợ giúp</a>
+<a class="text-slate-500 dark:text-slate-500 hover:text-slate-900 dark:hover:text-white transition-colors underline decoration-[#4544dc] decoration-2 underline-offset-4 opacity-80 hover:opacity-100 transition-opacity" href="#">API</a>
+<a class="text-slate-500 dark:text-slate-500 hover:text-slate-900 dark:hover:text-white transition-colors underline decoration-[#4544dc] decoration-2 underline-offset-4 opacity-80 hover:opacity-100 transition-opacity" href="#">Blog</a>
+</div>
+</div>
+</footer>
+</body></html>

@@ -1,0 +1,4 @@
+13s: 1box bot=1 mid=0 y1=322 y2=360
+14s: 1box bot=1 mid=0 y1=323 y2=359
+15s: 1box bot=0 mid=1 y1=203 y2=245
+16s: 1box bot=1 mid=0 y1=323 y2=359

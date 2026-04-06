@@ -1,0 +1,460 @@
+1
+00:00:00,300 --> 00:00:01,399
+Game kinh dị giáng xuống
+
+2
+00:00:01,399 --> 00:00:03,600
+Trước khi vào game, tôi là đứa cha không thương mẹ không yêu
+
+3
+00:00:03,600 --> 00:00:06,700
+Trầm cảm mức vừa, còn phải dậy sớm nấu cơm cho cả nhà
+
+4
+00:00:06,700 --> 00:00:08,199
+Lạnh thì tên cầm rìu đưa cho tôi áo bông dày
+
+5
+00:00:08,199 --> 00:00:09,800
+Đói thì kẻ chết đuối làm đầu bếp cho tôi
+
+6
+00:00:09,900 --> 00:00:11,699
+Chào mừng đến với phó bản Chung cư Ác Linh
+
+7
+00:00:11,699 --> 00:00:13,800
+Nhiệm vụ: sống sót trong chung cư suốt một tuần
+
+8
+00:00:13,900 --> 00:00:15,099
+Số người trong phó bản này: 3
+
+9
+00:00:16,399 --> 00:00:18,899
+Chúc các người chơi mau chết mau siêu sinh nhé, hì hì
+
+10
+00:00:19,100 --> 00:00:20,800
+Cùng với tiếng hệ thống đầy ác ý dứt lại
+
+11
+00:00:20,800 --> 00:00:22,699
+Bóng tối bao trùm trước mắt tôi cuối cùng cũng tan đi
+
+12
+00:00:22,699 --> 00:00:24,899
+Đây là một hành lang, màu tấm thảm loang lổ
+
+13
+00:00:24,899 --> 00:00:27,399
+Có vài mảng đỏ sẫm đặc biệt chói mắt, trông như vết máu
+
+14
+00:00:27,399 --> 00:00:29,300
+Bây giờ là ban ngày, ánh nắng đang chiếu vào
+
+15
+00:00:29,300 --> 00:00:31,699
+Nhìn tổng thể thì nó cũng chẳng khác chung cư bình thường là mấy
+
+16
+00:00:31,699 --> 00:00:32,200
+Khốn kiếp!
+
+17
+00:00:32,200 --> 00:00:33,100
+Chung cư Ác Linh!
+
+18
+00:00:33,100 --> 00:00:35,299
+Sao tôi lại bị phân vào phó bản này chứ, tiêu rồi
+
+19
+00:00:35,299 --> 00:00:36,399
+Lần này chết chắc rồi!
+
+20
+00:00:36,500 --> 00:00:37,500
+Thả tôi ra ngoài!
+
+21
+00:00:37,700 --> 00:00:39,100
+Hu hu hu, tôi không muốn chết!
+
+22
+00:00:39,299 --> 00:00:40,399
+Nếu không muốn chết đói
+
+23
+00:00:40,399 --> 00:00:42,600
+thì hãy tìm hàng xóm thân thiện của bạn mượn ít thức ăn đi
+
+24
+00:00:42,799 --> 00:00:44,100
+Cơn đói dữ dội ập tới
+
+25
+00:00:44,100 --> 00:00:45,700
+Hai người chơi kia bắt đầu kêu la đau đớn
+
+26
+00:00:45,700 --> 00:00:47,200
+Còn tôi chỉ khẽ xoa bụng một cái
+
+27
+00:00:47,200 --> 00:00:48,500
+đến chân mày cũng không nhíu lấy một lần
+
+28
+00:00:48,500 --> 00:00:50,600
+Từ nhỏ đến lớn, số lần tôi chịu đói nhiều lắm rồi
+
+29
+00:00:50,600 --> 00:00:52,399
+Thi không được một trăm điểm, không được ăn cơm
+
+30
+00:00:52,399 --> 00:00:54,100
+Cãi lại một câu, cũng không được ăn cơm
+
+31
+00:00:54,100 --> 00:00:56,299
+Em trai cướp đồ của tôi, tôi không nhường nó, cũng không được ăn cơm
+
+32
+00:00:56,500 --> 00:00:58,399
+Cô, đi kiếm chút đồ ăn cho tôi mau
+
+33
+00:00:58,399 --> 00:00:59,899
+Nếu không ông đây đánh chết cô
+
+34
+00:01:00,000 --> 00:01:01,000
+Tôi cũng muốn một phần
+
+35
+00:01:01,100 --> 00:01:03,299
+Giữa việc tự mình mạo hiểm và để người khác đi chịu chết
+
+36
+00:01:03,299 --> 00:01:04,900
+bọn họ không hề do dự mà chọn vế sau
+
+37
+00:01:04,900 --> 00:01:05,900
+Tôi đồng ý rất dứt khoát
+
+38
+00:01:05,900 --> 00:01:06,900
+Chuyện này chẳng có gì phải do dự cả
+
+39
+00:01:06,900 --> 00:01:08,599
+Bày ra trước mặt tôi chẳng qua chỉ có hai con đường
+
+40
+00:01:08,599 --> 00:01:10,000
+Một là chủ động đi xin đồ ăn
+
+41
+00:01:10,000 --> 00:01:12,299
+Hai là bị dạy dỗ một trận thật đau rồi mới đi xin đồ ăn
+
+42
+00:01:12,299 --> 00:01:13,400
+Trong hành lang chật hẹp này
+
+43
+00:01:13,400 --> 00:01:15,599
+Một nam sinh đại học trẻ như tôi phải đối mặt với hai người đàn ông trưởng thành
+
+44
+00:01:15,599 --> 00:01:16,700
+không có lấy một chút phần thắng nào
+
+45
+00:01:16,700 --> 00:01:18,799
+Đã vậy thì chi bằng để bản thân bớt chịu khổ một chút
+
+46
+00:01:18,799 --> 00:01:20,099
+Tôi đi về phía trước một đoạn
+
+47
+00:01:20,099 --> 00:01:21,900
+rồi dừng lại trước cửa phòng 403
+
+48
+00:01:21,900 --> 00:01:22,700
+sau đó gõ cửa
+
+49
+00:01:22,700 --> 00:01:23,299
+Cửa mở ra
+
+50
+00:01:23,299 --> 00:01:25,099
+Một gương mặt nhỏ nhắn tinh xảo đập vào mắt tôi
+
+51
+00:01:25,099 --> 00:01:27,099
+Càng thu hút hơn là mái tóc dài như thác đổ ấy
+
+52
+00:01:27,099 --> 00:01:28,400
+vừa bóng vừa mượt
+
+53
+00:01:28,400 --> 00:01:28,799
+Có việc gì sao?
+
+54
+00:01:28,799 --> 00:01:29,900
+Xin lỗi đã làm phiền cô
+
+55
+00:01:30,000 --> 00:01:32,099
+Video hay thế này nhất định phải xem cùng bạn gái
+
+56
+00:01:32,099 --> 00:01:32,900
+Nhắc đến bạn gái
+
+57
+00:01:33,099 --> 00:01:34,700
+Hãy lên Momo, một ứng dụng kết bạn đáng tin cậy
+
+58
+00:01:34,700 --> 00:01:35,400
+Toàn gái xinh, không chiêu trò
+
+59
+00:01:35,400 --> 00:01:36,099
+Ya Mỹ Niên
+
+60
+00:01:36,400 --> 00:01:37,799
+Các cô gái xinh đẹp đều sẽ chủ động liên lạc với bạn
+
+61
+00:01:37,799 --> 00:01:39,000
+Anh em có thể thử xem
+
+62
+00:01:39,000 --> 00:01:41,200
+Tôi là cư dân mới chuyển đến, chưa chuẩn bị đồ ăn
+
+63
+00:01:41,200 --> 00:01:42,700
+Cho hỏi chỗ cô có đồ ăn dư không?
+
+64
+00:01:42,799 --> 00:01:43,900
+Cơm thừa canh cặn cũng được
+
+65
+00:01:44,000 --> 00:01:44,400
+URJPIMJV
+
+66
+00:01:44,400 --> 00:01:44,799
+UUPUHUAV
+
+67
+00:01:45,700 --> 00:01:47,599
+Chỉ là tôi không giỏi nói chuyện với người lạ lắm
+
+68
+00:01:47,700 --> 00:01:48,700
+Tôi cúi đầu, không dám nhìn cô ấy
+
+69
+00:01:48,700 --> 00:01:50,500
+Nhưng nghĩ vậy thì hơi bất lịch sự nên lại ngẩng đầu lên
+
+70
+00:01:50,500 --> 00:01:52,000
+Kết quả lại chạm phải ánh mắt dò xét của cô ấy
+
+71
+00:01:52,000 --> 00:01:53,200
+Tôi lại xấu hổ cúi đầu xuống
+
+72
+00:01:53,200 --> 00:01:54,099
+Cô gái bật cười
+
+73
+00:01:54,099 --> 00:01:55,500
+Tiếng cười rất kỳ quái, khặc khặc, như băng từ bị kẹt
+
+74
+00:01:55,500 --> 00:01:57,000
+Tiếng cười rất kỳ quái, cục cục, như băng từ bị kẹt
+
+75
+00:01:57,099 --> 00:01:59,099
+Tôi không biết nấu ăn, nhưng mẹ tôi biết
+
+76
+00:01:59,099 --> 00:02:00,299
+Vào đi
+
+77
+00:02:00,299 --> 00:02:00,700
+Vừa dứt lời
+
+78
+00:02:00,700 --> 00:02:02,400
+Một sức mạnh khổng lồ ở ngang eo cuốn lấy tôi, kéo thốc vào nhà
+
+79
+00:02:02,400 --> 00:02:04,299
+Tôi nhìn thấy rồi, đó là tóc,
+
+80
+00:02:04,299 --> 00:02:06,700
+Mớ tóc như đang sống vươn ra từ trên đầu cô gái
+
+81
+00:02:06,700 --> 00:02:08,500
+Khác với cảnh tượng đáng sợ tôi tưởng tượng
+
+82
+00:02:08,500 --> 00:02:09,900
+Bên trong căn nhà được bài trí vô cùng ấm cúng
+
+83
+00:02:09,900 --> 00:02:10,500
+Trong bếp
+
+84
+00:02:10,500 --> 00:02:12,300
+Một người phụ nữ đeo tạp dề đang bận rộn luôn tay
+
+85
+00:02:12,300 --> 00:02:13,900
+Trong tay bà ta cầm một cây kéo khổng lồ
+
+86
+00:02:13,900 --> 00:02:15,599
+Ngay cả dao chặt xương bình thường cũng khó bổ nổi khúc xương to
+
+87
+00:02:15,599 --> 00:02:17,199
+Vậy mà lại bị cắt đứt dễ dàng như giấy
+
+88
+00:02:17,400 --> 00:02:18,900
+Mẹ, có hàng xóm mới đến này
+
+89
+00:02:18,900 --> 00:02:21,000
+Chúng ta gọi anh ấy ăn cơm cùng đi
+
+90
+00:02:21,000 --> 00:02:21,699
+Cháu, cháu chào cô
+
+91
+00:02:21,900 --> 00:02:23,300
+Ngay khoảnh khắc người phụ nữ quay người lại
+
+92
+00:02:23,300 --> 00:02:25,099
+Tôi nhìn thấy một thứ như xác chết bị ngâm đến trương phềnh trong nước
+
+93
+00:02:25,099 --> 00:02:27,300
+Phần lớn mô mềm trên cơ thể bà ta đã bị cá tôm gặm mất
+
+94
+00:02:27,300 --> 00:02:28,800
+Có thể nhìn rõ cả những đoạn xương trắng hếu
+
+95
+00:02:28,800 --> 00:02:30,099
+Tôi sợ hãi nhắm chặt mắt lại
+
+96
+00:02:30,099 --> 00:02:32,000
+Đến khi mở mắt ra, mọi thứ đã trở lại bình thường
+
+97
+00:02:32,199 --> 00:02:33,000
+Hàng xóm mới à?
+
+98
+00:02:33,000 --> 00:02:34,000
+Hoan nghênh, hoan nghênh
+
+99
+00:02:34,000 --> 00:02:36,000
+Đợi một lát nhé, vẫn còn món cuối cùng
+
+100
+00:02:36,000 --> 00:02:37,000
+Sườn xào chua ngọt
+
+101
+00:02:37,099 --> 00:02:39,500
+Nhìn bà ấy mỗi lần nhích một bước đều kéo theo chuỗi tiếng nước ọc ọc
+
+102
+00:02:39,500 --> 00:02:41,000
+Chắc hẳn đây là một dì bị chết đuối
+
+103
+00:02:41,099 --> 00:02:44,099
+Lại đây ngồi đi
+
+104
+00:02:44,099 --> 00:02:45,000
+Coi như cậu gặp may đó
+
+105
+00:02:45,099 --> 00:02:45,900
+Cảm ơn
+
+106
+00:02:45,900 --> 00:02:47,500
+Tôi tên là Tống Hy, còn cậu tên gì?
+
+107
+00:02:47,599 --> 00:02:48,400
+Lục Nam
+
+108
+00:02:48,400 --> 00:02:49,099
+Lục Nam?
+
+109
+00:02:49,099 --> 00:02:49,900
+Nam trong nam giới ấy à?
+
+110
+00:02:50,000 --> 00:02:51,699
+Sao lại có cái tên tùy tiện thế chứ
+
+111
+00:02:51,800 --> 00:02:53,099
+Bọn họ thích anh trai tôi hơn
+
+112
+00:02:53,199 --> 00:02:55,000
+Vậy có phải ở nhà cậu luôn bị bắt nạt không?
+
+113
+00:02:55,099 --> 00:02:56,000
+Cô ấy đầy vẻ phẫn nộ
+
+114
+00:02:56,000 --> 00:02:57,800
+Tức đến mức tóc sau gáy cũng bay dựng lên
+
+115
+00:02:57,800 --> 00:02:59,199
+Cô ấy đang bất bình thay cho tôi sao?
+
