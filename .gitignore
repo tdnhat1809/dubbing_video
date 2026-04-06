@@ -1,0 +1,56 @@
+# Dependencies
+node_modules/
+venv/
+env/
+__pycache__/
+*.pyc
+.env
+.env.local
+
+# Next.js
+website/.next/
+website/out/
+
+# OS
+.DS_Store
+Thumbs.db
+*.swp
+*.swo
+
+# IDE
+.vscode/
+.idea/
+
+# Build
+*.log
+npm-debug.log*
+
+# Media (large files)
+*.mp4
+*.avi
+*.mkv
+*.wav
+*.mp3
+*.flac
+
+# Model weights
+*.pt
+*.pth
+*.onnx
+
+# Large binaries
+*.dll
+*.exe
+*.so
+ffprobe.exe
+ffprobe
+
+# Large data files
+*.json
+!website/package.json
+!website/package-lock.json
+!website/tsconfig.json
+
+# Temp
+tmp/
+temp/

@@ -1,0 +1,36 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+body {
+  font-family: 'Be Vietnam Pro', sans-serif;
+}
+
+.material-symbols-outlined {
+  font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+  display: inline-block;
+  line-height: 1;
+  text-transform: none;
+  letter-spacing: normal;
+  word-wrap: normal;
+  white-space: nowrap;
+  direction: ltr;
+  vertical-align: middle;
+}
+
+.glass-panel {
+  background: rgba(225, 215, 255, 0.6);
+  backdrop-filter: blur(20px);
+}
+
+.hero-gradient {
+  background: radial-gradient(circle at 50% 50%, #f4eeff 0%, #faf4ff 100%);
+}
+
+.glow-soft {
+  box-shadow: 0 40px 60px -15px rgba(48, 41, 80, 0.06);
+}
+
+.tonal-transition {
+  background: linear-gradient(to bottom, transparent, #ece4ff);
+}
