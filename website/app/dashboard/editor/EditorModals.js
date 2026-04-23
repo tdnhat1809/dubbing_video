@@ -1,7 +1,7 @@
-'use client';
+﻿'use client';
 import { useEffect, useState, useRef } from 'react';
 
-/* ─── Modal Backdrop ─── */
+/* Modal Backdrop */
 function ModalBackdrop({ children, onClose }) {
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center" style={{ background: 'rgba(0,0,0,0.7)', backdropFilter: 'blur(4px)' }} onClick={onClose}>
@@ -12,9 +12,7 @@ function ModalBackdrop({ children, onClose }) {
   );
 }
 
-/* ═══════════════════════════════════════════
-   UPLOAD MODAL (Tải lên)
-   ═══════════════════════════════════════════ */
+/* Upload Modal */
 export function UploadModal({ onClose, onUpload }) {
   const [dragActive, setDragActive] = useState(false);
   const [uploading, setUploading] = useState(false);
@@ -215,9 +213,7 @@ export function UploadModal({ onClose, onUpload }) {
   );
 }
 
-/* ═══════════════════════════════════════════
-   EXPORT MODAL (Xuất bản)
-   ═══════════════════════════════════════════ */
+/* Export Modal */
 export function ExportModal({ onClose, onExport, videoTitle = 'DEMO', duration = '0:02:02.70', subtitles = [], settings = {}, videoPath, voiceoverPath, taskId, blurMode = 'manual', blurHeight = 15, blurWidth = 100, blurIntensity = 15, logoSrc = null, logoPos = { x: 10, y: 10 }, logoSize = 80, videoDisplayRect = null }) {
   const [title, setTitle] = useState(videoTitle);
   const [quality, setQuality] = useState('1080p');
@@ -291,7 +287,7 @@ export function ExportModal({ onClose, onExport, videoTitle = 'DEMO', duration =
     setExportMessage('');
 
     try {
-      // ═══════ CANVAS EXPORT ═══════
+      // Canvas export
       if (exportEngine === 'canvas') {
         setExportMessage('Đang chuẩn bị Canvas export...');
         // Dynamic import to avoid SSR issues
@@ -364,7 +360,7 @@ export function ExportModal({ onClose, onExport, videoTitle = 'DEMO', duration =
         return;
       }
 
-      // ═══════ CAPCUT EXPORT ═══════
+      // CapCut export
       if (exportEngine === 'capcut') {
         setExportMessage('Đang kết nối CapCut Mate...');
         setExportProgress(5);
@@ -427,7 +423,7 @@ export function ExportModal({ onClose, onExport, videoTitle = 'DEMO', duration =
         return;
       }
 
-      // ═══════ FFMPEG EXPORT (default) ═══════
+      // FFmpeg export
       // Upload logo to server if needed
       let serverLogoPath = null;
       let scaledLogoX = 10, scaledLogoY = 10, scaledLogoSize = 80;
@@ -534,7 +530,7 @@ export function ExportModal({ onClose, onExport, videoTitle = 'DEMO', duration =
     <ModalBackdrop onClose={onClose}>
       <div className="rounded-xl w-[680px]" style={{ background: '#1b1b2f', border: '1px solid rgba(255,255,255,0.08)' }}>
         <div className="px-6 py-4 border-b border-white/5 flex items-center justify-between">
-          <h2 className="text-white text-lg font-semibold">🎬 Xuất Video</h2>
+          <h2 className="text-white text-lg font-semibold">Xuất video</h2>
           <button onClick={onClose} className="text-white/30 hover:text-white/60"><span className="material-symbols-outlined">close</span></button>
         </div>
         <div className="p-6 space-y-4">
@@ -599,12 +595,12 @@ export function ExportModal({ onClose, onExport, videoTitle = 'DEMO', duration =
             </div>
             {exportEngine === 'canvas' && (
               <div className="rounded-lg px-3 py-2 text-xs text-emerald-200/80" style={{ background: 'rgba(16,185,129,0.08)', border: '1px solid rgba(16,185,129,0.15)' }}>
-                💡 Canvas export tạo video WebM giống hệt preview. Xử lý trên trình duyệt, không cần server.
+                Canvas export tạo video WebM giống hệt preview. Xử lý trên trình duyệt, không cần server.
               </div>
             )}
             {exportEngine === 'capcut' && capcutAvailable && (
               <div className="rounded-lg px-3 py-2 text-xs text-pink-200/80" style={{ background: 'rgba(236,72,153,0.08)', border: '1px solid rgba(236,72,153,0.15)' }}>
-                ⭐ CapCut Engine cho chất lượng chuyên nghiệp: phụ đề động, hiệu ứng đẹp, render cloud.
+                CapCut Engine cho chất lượng chuyên nghiệp: phụ đề động, hiệu ứng đẹp, render cloud.
               </div>
             )}
           </div>
@@ -615,7 +611,7 @@ export function ExportModal({ onClose, onExport, videoTitle = 'DEMO', duration =
             {[
               { label: 'Làm mờ phụ đề gốc (Blur Hardsub)', checked: blurHardsub, onChange: setBlurHardsub },
               { label: 'Chèn phụ đề dịch', checked: includeSubtitle, onChange: setIncludeSubtitle },
-              { label: 'Chèn Logo', checked: includeLogo, onChange: setIncludeLogo, disabled: !logoSrc },
+              { label: 'Chèn logo', checked: includeLogo, onChange: setIncludeLogo, disabled: !logoSrc },
               { label: 'Thêm lồng tiếng (Voiceover)', checked: includeVoiceover, onChange: setIncludeVoiceover, disabled: !voiceoverPath },
               { label: 'Dùng instrumental đã tách', checked: includeSeparatedBackground, onChange: setIncludeSeparatedBackground, disabled: !backgroundAudioPath },
             ].map(opt => (
@@ -687,7 +683,7 @@ export function ExportModal({ onClose, onExport, videoTitle = 'DEMO', duration =
                 <div className="h-full rounded-full transition-all duration-500" style={{ width: `${exportProgress}%`, background: 'linear-gradient(90deg, #6366f1, #8b5cf6, #ec4899)' }} />
               </div>
               <p className="text-white/40 text-xs text-center mt-1">
-                {exportProgress < 100 ? (exportMessage || `Đang render... ${exportProgress}%`) : '✅ Hoàn thành!'}
+                {exportProgress < 100 ? (exportMessage || `Đang render... ${exportProgress}%`) : 'Hoàn thành!'}
               </p>
             </div>
           )}
@@ -695,7 +691,7 @@ export function ExportModal({ onClose, onExport, videoTitle = 'DEMO', duration =
           {/* Error */}
           {error && (
             <div className="px-4 py-3 rounded-lg bg-red-500/10 border border-red-500/20">
-              <p className="text-red-400 text-sm">⚠️ {error}</p>
+              <p className="text-red-400 text-sm">Cảnh báo: {error}</p>
             </div>
           )}
 
@@ -718,7 +714,7 @@ export function ExportModal({ onClose, onExport, videoTitle = 'DEMO', duration =
           <div className="flex gap-2">
             {!exporting && !downloadUrl && (
               <button className="px-5 py-2 rounded-lg text-sm text-white font-semibold" style={{ background: 'linear-gradient(135deg, #6366f1, #8b5cf6)' }} onClick={handleExport}>
-                🎬 Xuất Video
+                Xuất video
               </button>
             )}
             <button className="px-4 py-2 rounded-lg text-sm text-white/40 border border-white/10 hover:bg-white/5" onClick={onClose}>
@@ -731,229 +727,318 @@ export function ExportModal({ onClose, onExport, videoTitle = 'DEMO', duration =
   );
 }
 
-/* ═══════════════════════════════════════════
-   DUBBING MODAL (Lồng tiếng OmniVoice)
-   ═══════════════════════════════════════════ */
+/* Dubbing Modal */
 export function DubbingModal({ onClose, onDub, videoTitle = 'DEMO', duration = '0:02:02.70', taskId, subtitles = [], existingAudioUrl = null }) {
+  const languageVoices = {
+    Vietnamese: [
+      { id: 'vi-VN-HoaiMyNeural', name: 'Hoài My', gender: 'Nữ', flag: 'VN' },
+      { id: 'vi-VN-NamMinhNeural', name: 'Nam Minh', gender: 'Nam', flag: 'VN' },
+    ],
+    English: [
+      { id: 'en-US-JennyNeural', name: 'Jenny', gender: 'Nữ', flag: 'US' },
+      { id: 'en-US-GuyNeural', name: 'Guy', gender: 'Nam', flag: 'US' },
+    ],
+    Chinese: [
+      { id: 'zh-CN-XiaoxiaoNeural', name: 'Xiaoxiao', gender: 'Nữ', flag: 'CN' },
+      { id: 'zh-CN-YunxiNeural', name: 'Yunxi', gender: 'Nam', flag: 'CN' },
+    ],
+    Japanese: [
+      { id: 'ja-JP-NanamiNeural', name: 'Nanami', gender: 'Nữ', flag: 'JP' },
+      { id: 'ja-JP-KeitaNeural', name: 'Keita', gender: 'Nam', flag: 'JP' },
+    ],
+    Korean: [
+      { id: 'ko-KR-SunHiNeural', name: 'Sun Hi', gender: 'Nữ', flag: 'KR' },
+      { id: 'ko-KR-InJoonNeural', name: 'In Joon', gender: 'Nam', flag: 'KR' },
+    ],
+  };
+
+  const capcutVoices = [
+    { type: 14, name: 'TikTok Nữ Mặc Định', gender: 'Nữ', tag: 'smooth' },
+    { type: 15, name: 'TikTok Nam Mặc Định', gender: 'Nam', tag: 'clear' },
+    { type: 12, name: 'Nữ Trẻ', gender: 'Nữ', tag: 'young' },
+    { type: 10, name: 'Nam Trầm', gender: 'Nam', tag: 'deep' },
+  ];
+
+  const cloneServers = [
+    {
+      id: 'omnivoice',
+      label: 'Server 1',
+      title: 'Clone Voice bằng OmniVoice',
+      desc: 'Clone voice local bằng OmniVoice và file tham chiếu.',
+      color: 'rgba(139,92,246,0.55)',
+      bg: 'bg-purple-400/10',
+      text: 'text-purple-300',
+    },
+    {
+      id: 'valtec',
+      label: 'Server 2',
+      title: 'Clone Voice bằng Valtec TTS',
+      desc: 'Clone voice local bằng Valtec TTS và file tham chiếu.',
+      color: 'rgba(34,211,238,0.55)',
+      bg: 'bg-cyan-400/10',
+      text: 'text-cyan-300',
+    },
+  ];
+
+  const b2Models = [
+    { id: 'default', label: 'OmniVoice mặc định', desc: 'Model gốc của OmniVoice.' },
+    { id: 'ngochuyen_ft_3000', label: 'Ngọc Huyền FT 3000', desc: 'Model fine-tune local cho B2 Server.' },
+  ];
+
+  const valtecVoices = [
+    { id: 'hoa-mai', label: 'Hoa Mai', meta: 'Nữ - Tự nhiên', voice: 'Vietnam_hoa-mai (woman).pt', available: true },
+    { id: 'my-huyen', label: 'Mỹ Huyền', meta: 'Nữ - Ấm áp', voice: 'Vietnam_my-huyen (woman).pt', available: true },
+    { id: 'ngoc-anh', label: 'Ngọc Anh', meta: 'Nữ - Rành rõ', voice: 'Vietnam_ngoc-anh (woman).pt', available: true },
+    { id: 'ngoc-duyen', label: 'Ngọc Duyên', meta: 'Nữ - Nhẹ nhàng', voice: 'Vietnam_ngoc-duyen (woman).pt', available: true },
+    { id: 'quynh-nhu', label: 'Quỳnh Như', meta: 'Nữ - Trẻ trung', voice: 'Vietnam_quynh-nhu (woman).pt', available: true },
+    { id: 'thao-van', label: 'Thảo Vân', meta: 'Nữ - MC', voice: 'Vietnam_thao-van (woman).pt', available: true },
+    { id: 'thuy-linh', label: 'Thùy Linh', meta: 'Nữ - Sang', voice: 'Vietnam_thuy-linh (woman).pt', available: true },
+    { id: 'ha-giang', label: 'Hà Giang', meta: 'Nữ - Độc đáo', voice: 'Vietnam_ha-giang (woman).pt', available: true },
+    { id: 'lan-my', label: 'Lan My', meta: 'Nữ - Tinh tế', voice: 'Vietnam_lan-my (woman).pt', available: true },
+    { id: 'minh-thu', label: 'Minh Thư', meta: 'Nữ - Diễn cảm', voice: 'Vietnam_minh-thu (woman).pt', available: true },
+    { id: 'hoang-son', label: 'Hoàng Sơn', meta: 'Nam - Chuyên nghiệp', voice: 'Vietnam_hoang-son (man).pt', available: true },
+    { id: 'le-nam', label: 'Lê Nam', meta: 'Nam - Năng động', voice: 'Vietnam_le-nam (man).pt', available: true },
+    { id: 'nguyen-thang', label: 'Nguyễn Thắng', meta: 'Nam - Vững vàng', voice: 'Vietnam_nguyen-thang (man).pt', available: true },
+    { id: 'nguyen-tung', label: 'Nguyễn Tùng', meta: 'Nam - Truyền cảm', voice: 'Vietnam_nguyen-tung (man).pt', available: true },
+    { id: 'tran-binh', label: 'Trần Bình', meta: 'Nam - Trầm ấm', voice: 'Vietnam_tran-binh (man).pt', available: true },
+    { id: 'trung-anh', label: 'Trung Anh', meta: 'Nam - Sạch sẽ', voice: 'Vietnam_trung-anh (man).pt', available: true },
+    { id: 'tung-lam', label: 'Tùng Lâm', meta: 'Nam - Mạnh mẽ', voice: 'Vietnam_tung-lam (man).pt', available: true },
+    { id: 'dinh-quan', label: 'Đình Quân', meta: 'Nam - Đĩnh đạc', voice: 'Vietnam_dinh-quan (man).pt', available: true },
+    { id: 'minh-tuan', label: 'Minh Tuấn', meta: 'Nam - Bình tĩnh', voice: 'Vietnam_minh-tuan (man).pt', available: true },
+    { id: 'the-trung', label: 'Thế Trung', meta: 'Nam - Rành rõ', voice: 'Vietnam_the-trung (man).pt', available: true },
+    { id: 'binh-an', label: 'Bình An', meta: 'Trẻ em - Dễ thương', voice: 'Vietnam_binh-an (child).pt', available: true },
+    { id: 'nguyen-lien', label: 'Nguyễn Liên', meta: 'Cao tuổi - Trầm lắng', voice: 'Vietnam_nguyen-lien (old woman).pt', available: true },
+    { id: 'tung-lam-old', label: 'Tùng Lâm (Lão)', meta: 'Cao tuổi - Nam', voice: 'Vietnam_tung-lam (old man).pt', available: true },
+    { id: 'quang-linh', label: 'Quang Linh', meta: 'Đặc biệt - Cá tính', voice: 'Vietnam_quang-linh (gay).pt', available: true },
+    { id: 'suca', label: 'Suca', meta: 'Đặc biệt - Vui nhộn', voice: 'Vietnam_suca.pt', available: true },
+  ];
+
+  const voiceTypes = [
+    { id: 'female', label: 'Giọng nữ', desc: 'TTS mặc định', icon: 'female' },
+    { id: 'male', label: 'Giọng nam', desc: 'TTS mặc định', icon: 'male' },
+  ];
+
+  const languages = ['Vietnamese', 'English', 'Chinese', 'Japanese', 'Korean'];
+  const speedOptions = [0.8, 0.9, 1.0, 1.1, 1.2, 1.5];
+
   const [title, setTitle] = useState(videoTitle);
   const [speed, setSpeed] = useState(1.0);
   const [language, setLanguage] = useState('Vietnamese');
   const [voiceType, setVoiceType] = useState('female');
-  const [engine, setEngine] = useState('edge');  // 'edge', 'omnivoice', 'capcut', or 'valtec'
+  const [engine, setEngine] = useState('edge');
+  const [cloneServer, setCloneServer] = useState('omnivoice');
+  const [b2Mode, setB2Mode] = useState('omnivoice');
   const [edgeVoice, setEdgeVoice] = useState('vi-VN-HoaiMyNeural');
   const [capcutVoiceType, setCapcutVoiceType] = useState(14);
+  const [omnivoiceModel, setOmnivoiceModel] = useState('ngochuyen_ft_3000');
   const [valtecVoice, setValtecVoice] = useState('Vietnam_hoa-mai (woman).pt');
-  const [omnivoiceModel, setOmnivoiceModel] = useState('default');
   const [autoPublish, setAutoPublish] = useState(false);
   const [dubbing, setDubbing] = useState(false);
   const [dubProgress, setDubProgress] = useState(existingAudioUrl ? 100 : 0);
-  const [statusMsg, setStatusMsg] = useState(existingAudioUrl ? 'Da tai ban long tieng da luu.' : '');
-  const [voiceTaskId, setVoiceTaskId] = useState(null);
+  const [statusMsg, setStatusMsg] = useState(existingAudioUrl ? 'Đã tải bản lồng tiếng đã lưu.' : '');
   const [audioUrl, setAudioUrl] = useState(existingAudioUrl);
   const [error, setError] = useState(null);
   const [refAudioFile, setRefAudioFile] = useState(null);
   const [refAudioName, setRefAudioName] = useState('Chưa chọn file tham chiếu');
   const [previewVoice, setPreviewVoice] = useState(null);
+  const pollRef = useRef(null);
   const previewAudioRef = useRef(null);
 
-  // Play voice preview sample
-  const playVoicePreview = async (voiceFile, e) => {
-    e?.stopPropagation();
+  const currentVoices = languageVoices[language] || languageVoices.Vietnamese;
+  const selectedEdgeVoice = currentVoices.find((voice) => voice.id === edgeVoice) || currentVoices[0];
+  const selectedCapcutVoice = capcutVoices.find((voice) => voice.type === capcutVoiceType) || capcutVoices[0];
+  const selectedCloneServer = cloneServers.find((server) => server.id === cloneServer) || cloneServers[0];
+  const selectedB2Model = b2Models.find((model) => model.id === omnivoiceModel) || b2Models[0];
+  const selectedValtecVoice = valtecVoices.find((voice) => voice.voice === valtecVoice) || valtecVoices[0];
+
+  const currentEngineLabel = engine === 'edge'
+    ? 'Edge TTS'
+    : engine === 'capcut'
+      ? 'CapCut'
+      : engine === 'clone'
+        ? 'Clone Voice'
+        : 'B2 Server';
+
+  const currentModelLabel = engine === 'edge'
+    ? (selectedEdgeVoice?.name || edgeVoice)
+    : engine === 'capcut'
+      ? (selectedCapcutVoice?.name || 'CapCut')
+      : engine === 'clone'
+        ? `${selectedCloneServer.label} - ${selectedCloneServer.title}`
+        : b2Mode === 'valtec'
+          ? selectedValtecVoice.label
+          : selectedB2Model.label;
+
+  const effectiveEngine = engine === 'edge'
+    ? 'edge'
+    : engine === 'capcut'
+      ? 'capcut'
+      : engine === 'clone'
+        ? (cloneServer === 'valtec' ? 'valtec' : 'omnivoice')
+        : b2Mode === 'valtec'
+          ? 'valtec'
+          : 'omnivoice';
+
+  useEffect(() => {
+    if (existingAudioUrl) {
+      setAudioUrl(existingAudioUrl);
+      setDubProgress(100);
+      setStatusMsg('Đã tải bản lồng tiếng đã lưu.');
+    }
+  }, [existingAudioUrl]);
+
+  useEffect(() => {
+    if (!currentVoices.some((voice) => voice.id === edgeVoice) && currentVoices[0]) {
+      setEdgeVoice(currentVoices[0].id);
+    }
+  }, [currentVoices, edgeVoice]);
+
+  useEffect(() => {
+    return () => {
+      if (pollRef.current) {
+        clearInterval(pollRef.current);
+        pollRef.current = null;
+      }
+      if (previewAudioRef.current) {
+        previewAudioRef.current.pause();
+        previewAudioRef.current = null;
+      }
+    };
+  }, []);
+
+  const playVoicePreview = async (voiceFile, event) => {
+    event?.stopPropagation();
     if (previewVoice === voiceFile) {
-      // Stop current preview
-      if (previewAudioRef.current) { previewAudioRef.current.pause(); previewAudioRef.current = null; }
+      if (previewAudioRef.current) {
+        previewAudioRef.current.pause();
+        previewAudioRef.current = null;
+      }
       setPreviewVoice(null);
       return;
     }
-    // Stop any existing preview
-    if (previewAudioRef.current) { previewAudioRef.current.pause(); }
+
+    if (previewAudioRef.current) {
+      previewAudioRef.current.pause();
+      previewAudioRef.current = null;
+    }
+
     setPreviewVoice(voiceFile);
     try {
       const res = await fetch('/api/voice-preview', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ voice: voiceFile, text: 'Xin chào, tôi là trợ lý ảo. Rất vui được gặp bạn.' }),
+        body: JSON.stringify({ voice: voiceFile }),
       });
-      if (!res.ok) { setPreviewVoice(null); return; }
+      if (!res.ok) {
+        setPreviewVoice(null);
+        return;
+      }
+
       const blob = await res.blob();
       const url = URL.createObjectURL(blob);
       const audio = new Audio(url);
       previewAudioRef.current = audio;
-      audio.onended = () => { setPreviewVoice(null); URL.revokeObjectURL(url); };
+      audio.onended = () => {
+        setPreviewVoice(null);
+        URL.revokeObjectURL(url);
+      };
       audio.play().catch(() => setPreviewVoice(null));
-    } catch { setPreviewVoice(null); }
+    } catch {
+      setPreviewVoice(null);
+    }
   };
 
-  const languages = ['Vietnamese', 'English', 'Chinese', 'Japanese', 'Korean'];
-  const speedOptions = [0.8, 0.9, 1.0, 1.1, 1.2, 1.5];
+  const handleRefAudioUpload = (event) => {
+    const file = event.target.files?.[0];
+    if (!file) return;
+    setRefAudioFile(file);
+    setRefAudioName(file.name);
+  };
 
-  useEffect(() => {
-    let cancelled = false;
-
-    if (existingAudioUrl) {
-      setAudioUrl(existingAudioUrl);
-      setDubProgress(100);
-      setStatusMsg('Da tai ban long tieng da luu.');
-      return undefined;
+  const stopPolling = () => {
+    if (pollRef.current) {
+      clearInterval(pollRef.current);
+      pollRef.current = null;
     }
+  };
 
-    if (!taskId) return undefined;
-
-    const hydrateExistingAudio = async () => {
+  const pollProgress = (voiceTaskId) => {
+    stopPolling();
+    pollRef.current = setInterval(async () => {
       try {
-        const res = await fetch(`/api/status/${taskId}`);
-        if (!res.ok) return;
+        const res = await fetch(`/api/voiceover?taskId=${voiceTaskId}`);
         const data = await res.json();
-        if (!cancelled && data.audioUrl) {
-          setAudioUrl(data.audioUrl);
+
+        setDubProgress(data.progress || 0);
+        setStatusMsg(data.message || '');
+
+        if (data.status === 'completed') {
+          stopPolling();
+          setDubbing(false);
           setDubProgress(100);
-          setStatusMsg('Da tai ban long tieng da luu.');
+          setAudioUrl(data.audioUrl);
+          setStatusMsg('Lồng tiếng hoàn thành.');
+          if (onDub) onDub({ audioUrl: data.audioUrl, taskId: voiceTaskId });
+        } else if (data.status === 'error') {
+          stopPolling();
+          setDubbing(false);
+          setError(data.message || 'Lồng tiếng thất bại');
         }
-      } catch (err) {
-        // Silent fallback: modal still works for new dubbing requests.
+      } catch {
+        // keep polling
       }
-    };
-
-    hydrateExistingAudio();
-
-    return () => {
-      cancelled = true;
-    };
-  }, [existingAudioUrl, taskId]);
-
-  // Edge TTS voice models by language
-  const edgeVoices = {
-    Vietnamese: [
-      { id: 'vi-VN-HoaiMyNeural', name: 'HoaiMy', gender: 'Nữ', flag: '🇻🇳' },
-      { id: 'vi-VN-NamMinhNeural', name: 'NamMinh', gender: 'Nam', flag: '🇻🇳' },
-    ],
-    Chinese: [
-      { id: 'zh-CN-XiaoxiaoNeural', name: 'Xiaoxiao', gender: 'Nữ', flag: '🇨🇳' },
-      { id: 'zh-CN-XiaoyiNeural', name: 'Xiaoyi', gender: 'Nữ', flag: '🇨🇳' },
-      { id: 'zh-CN-YunjianNeural', name: 'Yunjian', gender: 'Nam', flag: '🇨🇳' },
-      { id: 'zh-CN-YunxiNeural', name: 'Yunxi', gender: 'Nam', flag: '🇨🇳' },
-      { id: 'zh-CN-YunyangNeural', name: 'Yunyang', gender: 'Nam', flag: '🇨🇳' },
-    ],
-    English: [
-      { id: 'en-US-EmmaNeural', name: 'Emma', gender: 'Nữ', flag: '🇺🇸' },
-      { id: 'en-US-AvaNeural', name: 'Ava', gender: 'Nữ', flag: '🇺🇸' },
-      { id: 'en-US-BrianNeural', name: 'Brian', gender: 'Nam', flag: '🇺🇸' },
-      { id: 'en-US-AndrewNeural', name: 'Andrew', gender: 'Nam', flag: '🇺🇸' },
-    ],
-    Japanese: [
-      { id: 'ja-JP-NanamiNeural', name: 'Nanami', gender: 'Nữ', flag: '🇯🇵' },
-      { id: 'ja-JP-KeitaNeural', name: 'Keita', gender: 'Nam', flag: '🇯🇵' },
-    ],
-    Korean: [
-      { id: 'ko-KR-SunHiNeural', name: 'SunHi', gender: 'Nữ', flag: '🇰🇷' },
-      { id: 'ko-KR-InJoonNeural', name: 'InJoon', gender: 'Nam', flag: '🇰🇷' },
-    ],
+    }, 2000);
   };
 
-  const voiceTypes = [
-    { id: 'female', label: 'Giọng nữ', icon: 'female', desc: 'TTS mặc định' },
-    { id: 'male', label: 'Giọng nam', icon: 'male', desc: 'TTS mặc định' },
-    { id: 'clone', label: 'Voice Clone', icon: 'mic', desc: 'OmniVoice only' },
-  ];
-
-  const omnivoiceModels = [
-    { id: 'default', label: 'OmniVoice mặc định', desc: 'k2-fsa/OmniVoice' },
-    { id: 'ngochuyen_ft_3000', label: 'Ngọc Huyền FT 3000', desc: 'Checkpoint fine-tune local' },
-  ];
-
-  // CapCut TTS fallback voices (always available)
-  const capcutVoices = [
-    { type: 0, name: 'Labebe', gender: 'Nữ', tag: 'Dễ thương' },
-    { type: 1, name: 'Cool Lady', gender: 'Nữ', tag: 'Phong cách' },
-    { type: 4, name: 'Popular Guy', gender: 'Nam', tag: 'Đại chúng' },
-    { type: 6, name: 'Game Host', gender: 'Nam', tag: 'MC Game' },
-    { type: 7, name: 'Calm Dubbing', gender: 'Nữ', tag: 'Nhẹ nhàng' },
-    { type: 8, name: 'Gruff Uncle', gender: 'Nam', tag: 'Trầm' },
-    { type: 10, name: 'High Tension', gender: 'Nam', tag: 'Sôi động' },
-    { type: 11, name: 'Serious Man', gender: 'Nam', tag: 'Nghiêm túc' },
-    { type: 12, name: 'Manager', gender: 'Nam', tag: 'Quản lý' },
-    { type: 13, name: 'Little Sister', gender: 'Nữ', tag: 'Trẻ trung' },
-    { type: 14, name: 'Young Girl', gender: 'Nữ', tag: 'Thiếu nữ' },
-    { type: 15, name: 'Peaceful Woman', gender: 'Nữ', tag: 'Bình yên' },
-  ];
-
-  // Valtec Vietnamese TTS voices (25 local models)
-  const valtecVoices = [
-    // === Giọng Nữ (10) ===
-    { file: 'Vietnam_hoa-mai (woman).pt', name: 'Hoa Mai', gender: 'Nữ', tag: 'Dịu dàng' },
-    { file: 'Vietnam_my-huyen (woman).pt', name: 'Mỹ Huyền', gender: 'Nữ', tag: 'Tự nhiên' },
-    { file: 'Vietnam_ngoc-anh (woman).pt', name: 'Ngọc Anh', gender: 'Nữ', tag: 'Nhẹ nhàng' },
-    { file: 'Vietnam_ngoc-duyen (woman).pt', name: 'Ngọc Duyên', gender: 'Nữ', tag: 'Thanh thoát' },
-    { file: 'Vietnam_quynh-nhu (woman).pt', name: 'Quỳnh Như', gender: 'Nữ', tag: 'Truyền cảm' },
-    { file: 'Vietnam_thao-van (woman).pt', name: 'Thảo Vân', gender: 'Nữ', tag: 'Ấm áp' },
-    { file: 'Vietnam_thuy-linh (woman).pt', name: 'Thùy Linh', gender: 'Nữ', tag: 'Ngọt ngào' },
-    { file: 'Vietnam_ha-giang (woman).pt', name: 'Hà Giang', gender: 'Nữ', tag: 'Miền núi' },
-    { file: 'Vietnam_lan-my (woman).pt', name: 'Lan My', gender: 'Nữ', tag: 'Trẻ trung' },
-    { file: 'Vietnam_minh-thu (woman).pt', name: 'Minh Thu', gender: 'Nữ', tag: 'Sáng sủa' },
-    // === Giọng Nam (9) ===
-    { file: 'Vietnam_hoang-son (man).pt', name: 'Hoàng Sơn', gender: 'Nam', tag: 'Trầm ấm' },
-    { file: 'Vietnam_le-nam (man).pt', name: 'Lê Nam', gender: 'Nam', tag: 'Phóng viên' },
-    { file: 'Vietnam_nguyen-thang (man).pt', name: 'Nguyễn Thắng', gender: 'Nam', tag: 'Mạnh mẽ' },
-    { file: 'Vietnam_nguyen-tung (man).pt', name: 'Nguyễn Tùng', gender: 'Nam', tag: 'MC' },
-    { file: 'Vietnam_tran-binh (man).pt', name: 'Trần Bình', gender: 'Nam', tag: 'Điềm đạm' },
-    { file: 'Vietnam_trung-anh (man).pt', name: 'Trung Anh', gender: 'Nam', tag: 'Chuyên nghiệp' },
-    { file: 'Vietnam_tung-lam (man).pt', name: 'Tùng Lâm', gender: 'Nam', tag: 'Năng động' },
-    { file: 'Vietnam_dinh-quan (man).pt', name: 'Đình Quân', gender: 'Nam', tag: 'Phong cách' },
-    { file: 'Vietnam_minh-tuan (man).pt', name: 'Minh Tuấn', gender: 'Nam', tag: 'Đĩnh đạc' },
-    { file: 'Vietnam_the-trung (man).pt', name: 'Thế Trung', gender: 'Nam', tag: 'Vững vàng' },
-    // === Giọng Đặc biệt (5) ===
-    { file: 'Vietnam_binh-an (child).pt', name: 'Bình An', gender: 'Trẻ em', tag: 'Dễ thương' },
-    { file: 'Vietnam_nguyen-lien (old woman).pt', name: 'Nguyễn Liên', gender: 'Cao tuổi (Nữ)', tag: 'Trầm lắng' },
-    { file: 'Vietnam_tung-lam (old man).pt', name: 'Tùng Lâm (Lão)', gender: 'Cao tuổi (Nam)', tag: 'Uy nghiêm' },
-    { file: 'Vietnam_quang-linh (gay).pt', name: 'Quang Linh', gender: 'Đặc biệt', tag: 'Cá tính' },
-    { file: 'Vietnam_suca.pt', name: 'Suca', gender: 'Đặc biệt', tag: 'Vui nhộn' },
-  ];
-
-  // Auto-select first voice when language changes
-  const currentVoices = edgeVoices[language] || edgeVoices.Vietnamese;
-  if (engine === 'edge' && !currentVoices.find(v => v.id === edgeVoice)) {
-    // Pick matching gender or first
-    const match = currentVoices.find(v => v.gender === (voiceType === 'male' ? 'Nam' : 'Nữ'));
-    setEdgeVoice(match ? match.id : currentVoices[0].id);
-  }
-
-  // Upload reference audio
-  const handleRefAudioUpload = (e) => {
-    const file = e.target.files[0];
-    if (file) {
-      setRefAudioFile(file);
-      setRefAudioName(file.name);
-    }
-  };
-
-  // Start dubbing
   const handleDub = async () => {
     setDubbing(true);
     setDubProgress(0);
-    setStatusMsg(
-      engine === 'edge' ? `Đang tạo giọng Edge TTS (${edgeVoice})...` :
-        engine === 'capcut' ? `Đang tạo giọng CapCut TTS...` :
-          engine === 'valtec' ? `Đang tạo giọng Server 2 (${valtecVoice.split('(')[0].replace('Vietnam_', '').replace(/-/g, ' ').trim()})...` :
-            voiceType === 'clone' ? 'Đang gửi yêu cầu voice clone...' :
-              `Đang tạo giọng ${voiceType === 'female' ? 'nữ' : 'nam'}...`
-    );
     setError(null);
     setAudioUrl(null);
 
+    const runningMessage = engine === 'edge'
+      ? `Đang tạo giọng Edge TTS (${selectedEdgeVoice?.name || edgeVoice})...`
+      : engine === 'capcut'
+        ? `Đang tạo giọng CapCut (${selectedCapcutVoice?.name || 'default'})...`
+        : engine === 'clone'
+          ? `Đang gửi yêu cầu Clone Voice (${selectedCloneServer.title})...`
+          : b2Mode === 'valtec'
+            ? `Đang tạo giọng B2 Server (${selectedValtecVoice.label} - thư viện giọng Valtec)...`
+            : `Đang tạo giọng B2 Server (${selectedB2Model.label} - ${voiceType === 'female' ? 'nữ' : 'nam'})...`;
+    setStatusMsg(runningMessage);
+
     try {
-      // If voice clone mode and user uploaded ref audio, upload it first
       let refAudioPath = null;
-      if (voiceType === 'clone' && refAudioFile) {
+      if (engine === 'clone' && refAudioFile) {
         const formData = new FormData();
         formData.append('audio', refAudioFile);
         const uploadRes = await fetch('/api/upload-audio', { method: 'POST', body: formData });
-        if (uploadRes.ok) {
-          const uploadData = await uploadRes.json();
-          refAudioPath = uploadData.path;
+        const uploadData = await uploadRes.json();
+        if (!uploadRes.ok) {
+          throw new Error(uploadData.error || 'Không upload được file tham chiếu');
         }
+        refAudioPath = uploadData.path;
       }
 
-      // Send voiceover request with current subtitles
+      const requestVoiceType = engine === 'clone' ? 'clone' : voiceType;
+      const requestOmniModel = effectiveEngine === 'omnivoice'
+        ? (engine === 'clone' ? 'default' : omnivoiceModel)
+        : undefined;
+      const requestValtecVoice = engine === 'clone' && cloneServer === 'valtec'
+        ? '__clone__'
+        : engine === 'b2' && b2Mode === 'valtec'
+          ? valtecVoice
+          : undefined;
+      const requestModelLabel = engine === 'edge'
+        ? (selectedEdgeVoice?.name || edgeVoice)
+        : engine === 'capcut'
+          ? (selectedCapcutVoice?.name || 'CapCut')
+          : engine === 'clone'
+            ? `${selectedCloneServer.label} - ${selectedCloneServer.title}`
+            : b2Mode === 'valtec'
+              ? selectedValtecVoice.label
+              : selectedB2Model.label;
+
       const res = await fetch('/api/voiceover', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
@@ -963,71 +1048,45 @@ export function DubbingModal({ onClose, onDub, videoTitle = 'DEMO', duration = '
           speed,
           language,
           autoPublish,
-          voiceType,
-          engine,
-          omnivoiceModel: engine === 'omnivoice' ? omnivoiceModel : undefined,
+          voiceType: requestVoiceType,
+          engine: effectiveEngine,
+          engineLabel: currentEngineLabel,
+          voiceoverModelLabel: requestModelLabel,
+          omnivoiceModel: requestOmniModel,
           edgeVoice: engine === 'edge' ? edgeVoice : undefined,
           capcutVoiceType: engine === 'capcut' ? capcutVoiceType : undefined,
-          valtecVoice: engine === 'valtec' ? valtecVoice : undefined,
+          valtecVoice: requestValtecVoice,
           refAudioPath,
-          subtitles: subtitles.map(s => ({
-            start: s.start,
-            end: s.end,
-            original: s.original,
-            translation: s.translation,
+          subtitles: subtitles.map((subtitle) => ({
+            start: subtitle.start,
+            end: subtitle.end,
+            original: subtitle.original,
+            translation: subtitle.translation,
           })),
         }),
       });
 
       const data = await res.json();
+      if (!res.ok) {
+        throw new Error(data.error || 'Không tạo được bản lồng tiếng');
+      }
 
       if (data.status === 'processing' && data.taskId) {
-        setVoiceTaskId(data.taskId);
         setStatusMsg(data.message || 'Đang xử lý...');
-        // Start polling
         pollProgress(data.taskId);
-      } else if (data.error) {
-        setError(data.error);
-        setDubbing(false);
+        return;
       }
+
+      throw new Error(data.error || 'Không tạo được bản lồng tiếng');
     } catch (err) {
-      setError('Lỗi kết nối: ' + err.message);
       setDubbing(false);
+      setError(err.message || 'Không tạo được bản lồng tiếng');
     }
-  };
-
-  // Poll progress
-  const pollProgress = (tid) => {
-    const interval = setInterval(async () => {
-      try {
-        const res = await fetch(`/api/voiceover?taskId=${tid}`);
-        const data = await res.json();
-
-        setDubProgress(data.progress || 0);
-        setStatusMsg(data.message || '');
-
-        if (data.status === 'completed') {
-          clearInterval(interval);
-          setDubbing(false);
-          setDubProgress(100);
-          setAudioUrl(data.audioUrl);
-          setStatusMsg('✓ Lồng tiếng hoàn thành!');
-          if (onDub) onDub({ audioUrl: data.audioUrl, taskId: tid });
-        } else if (data.status === 'error') {
-          clearInterval(interval);
-          setDubbing(false);
-          setError(data.message || 'Lồng tiếng thất bại');
-        }
-      } catch (err) {
-        // Network error, keep polling
-      }
-    }, 2000);
   };
 
   return (
     <ModalBackdrop onClose={onClose}>
       <div className="rounded-xl w-[680px] max-h-[90vh] flex flex-col" style={{ background: '#1b1b2f', border: '1px solid rgba(255,255,255,0.08)' }}>
-        {/* Header */}
         <div className="px-6 py-4 border-b border-white/5 flex items-center justify-between">
           <div className="flex items-center gap-3">
             <div className="w-9 h-9 rounded-lg flex items-center justify-center" style={{ background: 'linear-gradient(135deg, #8b5cf6, #d946ef)' }}>
@@ -1035,42 +1094,46 @@ export function DubbingModal({ onClose, onDub, videoTitle = 'DEMO', duration = '
             </div>
             <div>
               <h2 className="text-white text-lg font-semibold">Lồng tiếng AI</h2>
-              <p className="text-white/30 text-xs">Edge TTS • Server 1 • CapCut • Server 2</p>
+              <p className="text-white/30 text-xs">Edge TTS - Clone Voice - CapCut - B2 Server</p>
             </div>
           </div>
-          <button onClick={onClose} className="text-white/30 hover:text-white/60"><span className="material-symbols-outlined">close</span></button>
+          <button onClick={onClose} className="text-white/30 hover:text-white/60">
+            <span className="material-symbols-outlined">close</span>
+          </button>
         </div>
 
         <div className="p-6 space-y-5 overflow-y-auto flex-1">
-          {/* Engine tabs */}
           <div className="flex gap-2 p-1 rounded-lg" style={{ background: '#0d1117' }}>
-            <button onClick={() => setEngine('edge')}
-              className={`flex-1 py-2 px-3 rounded-md text-sm font-medium transition-all flex items-center justify-center gap-2 ${engine === 'edge' ? 'bg-purple-500/20 text-purple-300 border border-purple-400/30' : 'text-white/40 hover:text-white/60 border border-transparent'}`}>
+            <button
+              onClick={() => setEngine('edge')}
+              className={`flex-1 py-2 px-3 rounded-md text-sm font-medium transition-all flex items-center justify-center gap-2 ${engine === 'edge' ? 'bg-purple-500/20 text-purple-300 border border-purple-400/30' : 'text-white/40 hover:text-white/60 border border-transparent'}`}
+            >
               <span className="material-symbols-outlined text-base">cloud</span>
               Edge TTS
-              <span className="text-[10px] px-1.5 py-0.5 rounded-full bg-emerald-500/20 text-emerald-400">Free</span>
             </button>
-            <button onClick={() => { setEngine('omnivoice'); setVoiceType('female'); }}
-              className={`flex-1 py-2 px-3 rounded-md text-sm font-medium transition-all flex items-center justify-center gap-2 ${engine === 'omnivoice' ? 'bg-purple-500/20 text-purple-300 border border-purple-400/30' : 'text-white/40 hover:text-white/60 border border-transparent'}`}>
+            <button
+              onClick={() => setEngine('clone')}
+              className={`flex-1 py-2 px-3 rounded-md text-sm font-medium transition-all flex items-center justify-center gap-2 ${engine === 'clone' ? 'bg-purple-500/20 text-purple-300 border border-purple-400/30' : 'text-white/40 hover:text-white/60 border border-transparent'}`}
+            >
               <span className="material-symbols-outlined text-base">memory</span>
-              Server 1
-              <span className="text-[10px] px-1.5 py-0.5 rounded-full bg-amber-500/20 text-amber-400">GPU</span>
+              Clone Voice
             </button>
-            <button onClick={() => { setEngine('capcut'); }}
-              className={`flex-1 py-2 px-3 rounded-md text-sm font-medium transition-all flex items-center justify-center gap-2 ${engine === 'capcut' ? 'bg-purple-500/20 text-purple-300 border border-purple-400/30' : 'text-white/40 hover:text-white/60 border border-transparent'}`}>
+            <button
+              onClick={() => setEngine('capcut')}
+              className={`flex-1 py-2 px-3 rounded-md text-sm font-medium transition-all flex items-center justify-center gap-2 ${engine === 'capcut' ? 'bg-purple-500/20 text-purple-300 border border-purple-400/30' : 'text-white/40 hover:text-white/60 border border-transparent'}`}
+            >
               <span className="material-symbols-outlined text-base">smart_toy</span>
               CapCut
-              <span className="text-[10px] px-1.5 py-0.5 rounded-full bg-cyan-500/20 text-cyan-400">TikTok</span>
             </button>
-            <button onClick={() => { setEngine('valtec'); }}
-              className={`flex-1 py-2 px-3 rounded-md text-sm font-medium transition-all flex items-center justify-center gap-2 ${engine === 'valtec' ? 'bg-purple-500/20 text-purple-300 border border-purple-400/30' : 'text-white/40 hover:text-white/60 border border-transparent'}`}>
+            <button
+              onClick={() => setEngine('b2')}
+              className={`flex-1 py-2 px-3 rounded-md text-sm font-medium transition-all flex items-center justify-center gap-2 ${engine === 'b2' ? 'bg-purple-500/20 text-purple-300 border border-purple-400/30' : 'text-white/40 hover:text-white/60 border border-transparent'}`}
+            >
               <span className="material-symbols-outlined text-base">spatial_audio</span>
-              Server 2
-              <span className="text-[10px] px-1.5 py-0.5 rounded-full bg-rose-500/20 text-rose-400">🇻🇳</span>
+              B2 Server
             </button>
           </div>
 
-          {/* Info cards */}
           <div className="grid grid-cols-3 gap-3">
             <div className="rounded-lg p-3 text-center" style={{ background: '#0d1117', border: '1px solid rgba(139,92,246,0.2)' }}>
               <span className="material-symbols-outlined text-2xl text-purple-400">subtitles</span>
@@ -1084,230 +1147,252 @@ export function DubbingModal({ onClose, onDub, videoTitle = 'DEMO', duration = '
             </div>
             <div className="rounded-lg p-3 text-center" style={{ background: '#0d1117', border: '1px solid rgba(16,185,129,0.2)' }}>
               <span className="material-symbols-outlined text-2xl text-emerald-400">graphic_eq</span>
-              <p className="text-white/80 text-sm font-medium mt-1">{engine === 'edge' ? 'Edge TTS' : engine === 'capcut' ? 'CapCut TTS' : engine === 'valtec' ? 'Server 2' : 'Server 1'}</p>
+              <p className="text-white/80 text-sm font-medium mt-1">{currentEngineLabel}</p>
               <p className="text-white/30 text-xs">Engine</p>
             </div>
           </div>
 
-          {/* Edge TTS: Voice model selector */}
           {engine === 'edge' && (
             <div className="rounded-lg p-4" style={{ background: '#0d1117', border: '1px solid rgba(255,255,255,0.05)' }}>
-              <span className="text-white/60 text-sm font-medium block mb-3">🎤 Chọn giọng nói ({language})</span>
+              <span className="text-white/60 text-sm font-medium block mb-3">Chọn giọng nói ({language})</span>
               <div className="grid grid-cols-2 gap-2">
-                {currentVoices.map(v => (
-                  <button key={v.id} onClick={() => setEdgeVoice(v.id)}
-                    className={`p-3 rounded-lg text-left transition-all flex items-center gap-3 ${edgeVoice === v.id ? 'bg-purple-400/10' : 'hover:bg-white/5'}`}
-                    style={{ border: `1px solid ${edgeVoice === v.id ? 'rgba(139,92,246,0.5)' : 'rgba(255,255,255,0.1)'}` }}>
-                    <span className="text-xl">{v.flag}</span>
+                {currentVoices.map((voice) => (
+                  <button
+                    key={voice.id}
+                    onClick={() => setEdgeVoice(voice.id)}
+                    className={`p-3 rounded-lg text-left transition-all flex items-center gap-3 ${edgeVoice === voice.id ? 'bg-purple-400/10' : 'hover:bg-white/5'}`}
+                    style={{ border: `1px solid ${edgeVoice === voice.id ? 'rgba(139,92,246,0.5)' : 'rgba(255,255,255,0.1)'}` }}
+                  >
+                    <span className="text-xs font-semibold text-white/60">{voice.flag}</span>
                     <div className="flex-1 min-w-0">
-                      <p className={`text-sm font-medium ${edgeVoice === v.id ? 'text-purple-300' : 'text-white/70'}`}>{v.name}</p>
-                      <p className="text-white/30 text-[10px] truncate">{v.gender} • {v.id}</p>
+                      <p className={`text-sm font-medium ${edgeVoice === voice.id ? 'text-purple-300' : 'text-white/70'}`}>{voice.name}</p>
+                      <p className="text-white/30 text-[10px]">{voice.gender} - {voice.id}</p>
                     </div>
-                    {edgeVoice === v.id && <span className="material-symbols-outlined text-purple-400 text-sm">check_circle</span>}
+                    {edgeVoice === voice.id && <span className="material-symbols-outlined text-purple-400 text-sm">check_circle</span>}
                   </button>
                 ))}
               </div>
             </div>
           )}
 
-          {/* CapCut TTS: Voice Type Selector */}
+          {engine === 'clone' && (
+            <>
+              <div className="rounded-lg p-4" style={{ background: '#0d1117', border: '1px solid rgba(255,255,255,0.05)' }}>
+              <span className="text-white/60 text-sm font-medium block mb-3">Clone Voice có 2 server</span>
+                <div className="grid grid-cols-2 gap-2">
+                  {cloneServers.map((server) => (
+                    <button
+                      key={server.id}
+                      onClick={() => setCloneServer(server.id)}
+                      className={`p-3 rounded-lg text-left transition-all ${cloneServer === server.id ? server.bg : 'hover:bg-white/5'}`}
+                      style={{ border: `1px solid ${cloneServer === server.id ? server.color : 'rgba(255,255,255,0.1)'}` }}
+                    >
+                      <div className="flex items-start justify-between gap-2">
+                        <div>
+                          <p className={`text-sm font-medium ${cloneServer === server.id ? server.text : 'text-white/70'}`}>{server.label}</p>
+                          <p className="text-white/70 text-xs mt-1">{server.title}</p>
+                          <p className="text-white/30 text-[10px] mt-1">{server.desc}</p>
+                        </div>
+                        {cloneServer === server.id && <span className="material-symbols-outlined text-sm text-white/80">check_circle</span>}
+                      </div>
+                    </button>
+                  ))}
+                </div>
+                <p className="text-white/20 text-[10px] mt-2">{cloneServer === 'valtec' ? 'Server 2 dùng Valtec TTS để clone voice từ file tham chiếu.' : 'Server 1 dùng OmniVoice để clone voice từ file tham chiếu.'}</p>
+              </div>
+
+              <div className="rounded-lg p-4" style={{ background: '#0d1117', border: '1px solid rgba(255,255,255,0.05)' }}>
+                <div className="flex items-center justify-between mb-3">
+                  <span className="text-white/60 text-sm font-medium">File giọng tham chiếu</span>
+                  <label className="px-3 py-1 rounded text-xs cursor-pointer transition-all text-purple-300 border border-purple-400/20 hover:bg-purple-400/10">
+                    Tải lên .WAV
+                    <input type="file" accept=".wav,.mp3,.ogg" className="hidden" onChange={handleRefAudioUpload} />
+                  </label>
+                </div>
+                <div className="flex items-center gap-2 px-3 py-2 rounded" style={{ background: '#161b22' }}>
+                  <span className="material-symbols-outlined text-sm text-purple-400">mic</span>
+                  <span className="text-white/50 text-xs flex-1">{refAudioName}</span>
+                  {refAudioFile && <span className="text-emerald-400 text-xs">Đã chọn</span>}
+                </div>
+                {!refAudioFile && <p className="text-amber-400/60 text-xs mt-2">Cần file tham chiếu để clone voice.</p>}
+              </div>
+            </>
+          )}
+
           {engine === 'capcut' && (
             <div className="rounded-lg p-4" style={{ background: '#0d1117', border: '1px solid rgba(255,255,255,0.05)' }}>
-              <span className="text-white/60 text-sm font-medium block mb-3">🎤 Giọng CapCut TTS (TikTok Voices)</span>
-              <div className="grid grid-cols-3 gap-2 max-h-[240px] overflow-y-auto pr-1">
-                {capcutVoices.map(v => (
-                  <button key={v.type} onClick={() => setCapcutVoiceType(v.type)}
-                    className={`p-2.5 rounded-lg text-left transition-all ${capcutVoiceType === v.type ? 'bg-cyan-400/10' : 'hover:bg-white/5'}`}
-                    style={{ border: `1px solid ${capcutVoiceType === v.type ? 'rgba(34,211,238,0.5)' : 'rgba(255,255,255,0.08)'}` }}>
-                    <div className="flex items-center gap-2">
-                      <span className={`material-symbols-outlined text-base ${capcutVoiceType === v.type ? 'text-cyan-400' : 'text-white/30'}`}>
-                        {v.gender === 'Nữ' ? 'female' : 'male'}
-                      </span>
-                      <div className="flex-1 min-w-0">
-                        <p className={`text-xs font-medium ${capcutVoiceType === v.type ? 'text-cyan-300' : 'text-white/60'}`}>{v.name}</p>
-                        <p className="text-white/25 text-[9px]">{v.gender} • {v.tag}</p>
-                      </div>
-                      {capcutVoiceType === v.type && <span className="material-symbols-outlined text-cyan-400 text-sm">check_circle</span>}
-                    </div>
+              <span className="text-white/60 text-sm font-medium block mb-3">Giọng CapCut TTS</span>
+              <div className="grid grid-cols-2 gap-2">
+                {capcutVoices.map((voice) => (
+                  <button
+                    key={voice.type}
+                    onClick={() => setCapcutVoiceType(voice.type)}
+                    className={`p-3 rounded-lg text-left transition-all ${capcutVoiceType === voice.type ? 'bg-cyan-400/10' : 'hover:bg-white/5'}`}
+                    style={{ border: `1px solid ${capcutVoiceType === voice.type ? 'rgba(34,211,238,0.5)' : 'rgba(255,255,255,0.1)'}` }}
+                  >
+                    <p className={`text-sm font-medium ${capcutVoiceType === voice.type ? 'text-cyan-300' : 'text-white/70'}`}>{voice.name}</p>
+                    <p className="text-white/30 text-[10px] mt-1">{voice.gender} - {voice.tag}</p>
                   </button>
                 ))}
               </div>
-              <p className="text-white/20 text-[10px] mt-2 flex items-center gap-1">
-                <span className="material-symbols-outlined text-[10px]">info</span>
-                Requires CapCut TTS server running at localhost:8080
-              </p>
             </div>
           )}
 
-          {/* Valtec: Vietnamese TTS Voice Selector */}
-          {engine === 'valtec' && (
+          {engine === 'b2' && (
             <div className="rounded-lg p-4" style={{ background: '#0d1117', border: '1px solid rgba(255,255,255,0.05)' }}>
-              <span className="text-white/60 text-sm font-medium block mb-3">🇻🇳 Giọng Valtec (Tiếng Việt) — {valtecVoices.length} giọng</span>
-
-              {/* Gender filter tabs */}
-              <div className="flex gap-1.5 mb-3">
-                {[
-                  { id: 'all', label: 'Tất cả', icon: 'group' },
-                  { id: 'Nữ', label: 'Nữ', icon: 'female' },
-                  { id: 'Nam', label: 'Nam', icon: 'male' },
-                  { id: 'special', label: 'Đặc biệt', icon: 'diversity_3' },
-                ].map(tab => (
-                  <button key={tab.id}
-                    onClick={() => setValtecFilter?.(tab.id) || (window._valtecFilter = tab.id, setValtecVoice(valtecVoice))}
-                    className={`px-2.5 py-1 rounded-md text-[10px] font-medium transition-all flex items-center gap-1 ${(window._valtecFilter || 'all') === tab.id
-                      ? 'bg-rose-500/20 text-rose-300 border border-rose-400/30'
-                      : 'text-white/40 border border-white/8 hover:text-white/60'
-                      }`}>
-                    <span className="material-symbols-outlined text-xs">{tab.icon}</span>
-                    {tab.label}
-                  </button>
-                ))}
-              </div>
-
-              <div className="grid grid-cols-3 gap-2 max-h-[280px] overflow-y-auto pr-1">
-                {valtecVoices
-                  .filter(v => {
-                    const f = window._valtecFilter || 'all';
-                    if (f === 'all') return true;
-                    if (f === 'special') return !['Nữ', 'Nam'].includes(v.gender);
-                    return v.gender === f;
-                  })
-                  .map(v => (
-                    <div key={v.file} className={`p-2.5 rounded-lg text-left transition-all ${valtecVoice === v.file ? 'bg-rose-400/10' : 'hover:bg-white/5'}`}
-                      style={{ border: `1px solid ${valtecVoice === v.file ? 'rgba(244,63,94,0.5)' : 'rgba(255,255,255,0.08)'}` }}>
-                      <div className="flex items-center gap-1.5" onClick={() => setValtecVoice(v.file)} style={{ cursor: 'pointer' }}>
-                        <span className={`material-symbols-outlined text-base ${valtecVoice === v.file ? 'text-rose-400' : 'text-white/30'}`}>
-                          {v.gender === 'Nữ' ? 'female' : v.gender === 'Nam' ? 'male' : v.gender === 'Trẻ em' ? 'child_care' : v.gender.includes('Cao tuổi') ? 'elderly' : 'face'}
-                        </span>
-                        <div className="flex-1 min-w-0">
-                          <p className={`text-xs font-medium ${valtecVoice === v.file ? 'text-rose-300' : 'text-white/60'}`}>{v.name}</p>
-                          <p className="text-white/25 text-[9px]">{v.gender} • {v.tag}</p>
-                        </div>
-                        <button onClick={(e) => playVoicePreview(v.file, e)}
-                          className={`w-6 h-6 rounded-full flex items-center justify-center transition-all shrink-0 ${previewVoice === v.file ? 'bg-rose-500 text-white animate-pulse' : 'bg-white/5 text-white/30 hover:bg-white/10 hover:text-white/60'}`}
-                          title={previewVoice === v.file ? 'Dừng' : 'Nghe thử'}>
-                          <span className="material-symbols-outlined text-xs">
-                            {previewVoice === v.file ? 'stop' : 'play_arrow'}
-                          </span>
-                        </button>
-                        {valtecVoice === v.file && <span className="material-symbols-outlined text-rose-400 text-sm">check_circle</span>}
-                      </div>
-                    </div>
-                  ))}
-              </div>
-
-              <p className="text-white/20 text-[10px] mt-2 flex items-center gap-1">
-                <span className="material-symbols-outlined text-[10px]">info</span>
-                25 giọng Việt Nam chất lượng cao • Local GPU
-              </p>
-            </div>
-          )}
-
-          {/* Server 1 (OmniVoice): Voice Type Selector */}
-          {engine === 'omnivoice' && (
-            <div className="rounded-lg p-4" style={{ background: '#0d1117', border: '1px solid rgba(255,255,255,0.05)' }}>
-              <span className="text-white/60 text-sm font-medium block mb-3">Model Server 1</span>
+              <span className="text-white/60 text-sm font-medium block mb-3">B2 Server gồm OmniVoice và thư viện Valtec</span>
               <div className="grid grid-cols-2 gap-2 mb-4">
-                {omnivoiceModels.map(model => (
-                  <button key={model.id} onClick={() => setOmnivoiceModel(model.id)}
-                    className={`p-3 rounded-lg text-left transition-all ${omnivoiceModel === model.id ? 'bg-purple-400/10' : 'hover:bg-white/5'}`}
-                    style={{ border: `1px solid ${omnivoiceModel === model.id ? 'rgba(139,92,246,0.5)' : 'rgba(255,255,255,0.1)'}` }}>
-                    <p className={`text-sm font-medium ${omnivoiceModel === model.id ? 'text-purple-300' : 'text-white/70'}`}>{model.label}</p>
-                    <p className="text-white/30 text-[10px] mt-1">{model.desc}</p>
-                  </button>
-                ))}
+                <button
+                  onClick={() => setB2Mode('omnivoice')}
+                  className={`p-3 rounded-lg text-left transition-all ${b2Mode === 'omnivoice' ? 'bg-purple-400/10' : 'hover:bg-white/5'}`}
+                  style={{ border: `1px solid ${b2Mode === 'omnivoice' ? 'rgba(139,92,246,0.5)' : 'rgba(255,255,255,0.1)'}` }}
+                >
+                  <p className={`text-sm font-medium ${b2Mode === 'omnivoice' ? 'text-purple-300' : 'text-white/70'}`}>OmniVoice Model</p>
+                  <p className="text-white/30 text-[10px] mt-1">Dùng model TTS local, có Ngọc Huyền FT 3000.</p>
+                </button>
+                <button
+                  onClick={() => setB2Mode('valtec')}
+                  className={`p-3 rounded-lg text-left transition-all ${b2Mode === 'valtec' ? 'bg-cyan-400/10' : 'hover:bg-white/5'}`}
+                  style={{ border: `1px solid ${b2Mode === 'valtec' ? 'rgba(34,211,238,0.5)' : 'rgba(255,255,255,0.1)'}` }}
+                >
+                  <p className={`text-sm font-medium ${b2Mode === 'valtec' ? 'text-cyan-300' : 'text-white/70'}`}>Valtec Voice Library</p>
+                  <p className="text-white/30 text-[10px] mt-1">Gộp lại hơn 25 giọng của server 2 cũ vào đây.</p>
+                </button>
               </div>
-              <span className="text-white/60 text-sm font-medium block mb-3">🎤 Chọn giọng nói</span>
-              <div className="grid grid-cols-3 gap-2">
-                {voiceTypes.map(vt => (
-                  <button key={vt.id} onClick={() => setVoiceType(vt.id)}
-                    className={`p-3 rounded-lg text-center transition-all ${voiceType === vt.id ? 'bg-purple-400/10' : 'hover:bg-white/5'}`}
-                    style={{ border: `1px solid ${voiceType === vt.id ? 'rgba(139,92,246,0.5)' : 'rgba(255,255,255,0.1)'}` }}>
-                    <span className={`material-symbols-outlined text-xl ${voiceType === vt.id ? 'text-purple-400' : 'text-white/40'}`}>{vt.icon}</span>
-                    <p className={`text-xs font-medium mt-1 ${voiceType === vt.id ? 'text-purple-300' : 'text-white/60'}`}>{vt.label}</p>
-                    <p className="text-white/25 text-[10px] mt-0.5">{vt.desc}</p>
-                  </button>
-                ))}
-              </div>
-            </div>
-          )}
 
-          {/* Reference Audio - only for OmniVoice Clone mode */}
-          {engine === 'omnivoice' && voiceType === 'clone' && (
-            <div className="rounded-lg p-4" style={{ background: '#0d1117', border: '1px solid rgba(255,255,255,0.05)' }}>
-              <div className="flex items-center justify-between mb-3">
-                <span className="text-white/60 text-sm font-medium">🎧 File giọng tham chiếu</span>
-                <label className="px-3 py-1 rounded text-xs cursor-pointer transition-all text-purple-300 border border-purple-400/20 hover:bg-purple-400/10">
-                  Tải lên .WAV
-                  <input type="file" accept=".wav,.mp3,.ogg" className="hidden" onChange={handleRefAudioUpload} />
-                </label>
-              </div>
-              <div className="flex items-center gap-2 px-3 py-2 rounded" style={{ background: '#161b22' }}>
-                <span className="material-symbols-outlined text-sm text-purple-400">mic</span>
-                <span className="text-white/50 text-xs flex-1">{refAudioName}</span>
-                {refAudioFile && <span className="text-emerald-400 text-xs">✓ Đã chọn</span>}
-              </div>
-              {!refAudioFile && (
-                <p className="text-amber-400/60 text-xs mt-2 flex items-center gap-1">
-                  <span className="material-symbols-outlined text-xs">warning</span>
-                  Cần file tham chiếu để clone giọng nói
-                </p>
+              {b2Mode === 'omnivoice' && (
+                <>
+                  <span className="text-white/60 text-sm font-medium block mb-3">Model B2 Server</span>
+                  <div className="grid grid-cols-2 gap-2 mb-4">
+                    {b2Models.map((model) => (
+                      <button
+                        key={model.id}
+                        onClick={() => setOmnivoiceModel(model.id)}
+                        className={`p-3 rounded-lg text-left transition-all ${omnivoiceModel === model.id ? 'bg-purple-400/10' : 'hover:bg-white/5'}`}
+                        style={{ border: `1px solid ${omnivoiceModel === model.id ? 'rgba(139,92,246,0.5)' : 'rgba(255,255,255,0.1)'}` }}
+                      >
+                        <p className={`text-sm font-medium ${omnivoiceModel === model.id ? 'text-purple-300' : 'text-white/70'}`}>{model.label}</p>
+                        <p className="text-white/30 text-[10px] mt-1">{model.desc}</p>
+                      </button>
+                    ))}
+                  </div>
+                  <span className="text-white/60 text-sm font-medium block mb-3">Chọn giọng nói</span>
+                  <div className="grid grid-cols-2 gap-2">
+                    {voiceTypes.map((type) => (
+                      <button
+                        key={type.id}
+                        onClick={() => setVoiceType(type.id)}
+                        className={`p-3 rounded-lg text-center transition-all ${voiceType === type.id ? 'bg-purple-400/10' : 'hover:bg-white/5'}`}
+                        style={{ border: `1px solid ${voiceType === type.id ? 'rgba(139,92,246,0.5)' : 'rgba(255,255,255,0.1)'}` }}
+                      >
+                        <span className={`material-symbols-outlined text-xl ${voiceType === type.id ? 'text-purple-400' : 'text-white/40'}`}>{type.icon}</span>
+                        <p className={`text-xs font-medium mt-1 ${voiceType === type.id ? 'text-purple-300' : 'text-white/60'}`}>{type.label}</p>
+                        <p className="text-white/25 text-[10px] mt-0.5">{type.desc}</p>
+                      </button>
+                    ))}
+                  </div>
+                </>
+              )}
+
+              {b2Mode === 'valtec' && (
+                <>
+                  <div className="flex items-center justify-between mb-3">
+                    <span className="text-white/60 text-sm font-medium block">Thư viện 25+ giọng Valtec</span>
+                    <span className="text-white/20 text-[10px]">Đã nạp đầy đủ voice embedding local</span>
+                  </div>
+                  <div className="grid grid-cols-3 gap-2 max-h-[310px] overflow-y-auto pr-1">
+                    {valtecVoices.map((voice) => (
+                      <div
+                        key={voice.id}
+                        onClick={() => voice.available && setValtecVoice(voice.voice)}
+                        className={`p-2.5 rounded-lg text-left transition-all ${valtecVoice === voice.voice ? 'bg-cyan-400/10' : 'hover:bg-white/5'} ${voice.available ? '' : 'opacity-50 cursor-not-allowed'}`}
+                        style={{ border: `1px solid ${valtecVoice === voice.voice ? 'rgba(34,211,238,0.5)' : 'rgba(255,255,255,0.08)'}` }}
+                      >
+                        <div className="flex items-start gap-2">
+                          <div className="flex-1 min-w-0">
+                            <p className={`text-xs font-medium ${valtecVoice === voice.voice ? 'text-cyan-300' : 'text-white/70'}`}>{voice.label}</p>
+                            <p className="text-white/25 text-[9px]">{voice.meta}</p>
+                          </div>
+                          <button
+                            type="button"
+                            onClick={(event) => playVoicePreview(voice.voice, event)}
+                            className="text-white/50 hover:text-white text-xs"
+                            title="Nghe thử"
+                          >
+                            <span className="material-symbols-outlined text-base">
+                              {previewVoice === voice.voice ? 'pause_circle' : 'play_circle'}
+                            </span>
+                          </button>
+                        </div>
+                      </div>
+                    ))}
+                  </div>
+                </>
               )}
             </div>
           )}
 
-          {/* Voice Settings */}
           <div className="grid grid-cols-2 gap-4">
-            {/* Language */}
             <div>
               <label className="text-white/40 text-xs mb-1 block">Ngôn ngữ đầu ra</label>
-              <select value={language} onChange={e => setLanguage(e.target.value)}
-                className="w-full px-3 py-2 rounded text-sm text-white bg-[#0d1117] border border-white/10 focus:outline-none focus:border-purple-400/40">
-                {languages.map(l => <option key={l} value={l}>{l}</option>)}
+              <select
+                value={language}
+                onChange={(event) => setLanguage(event.target.value)}
+                className="w-full px-3 py-2 rounded text-sm text-white bg-[#0d1117] border border-white/10 focus:outline-none focus:border-purple-400/40"
+              >
+                {languages.map((lang) => <option key={lang} value={lang}>{lang}</option>)}
               </select>
             </div>
-            {/* Speed */}
             <div>
               <label className="text-white/40 text-xs mb-1 block">Tốc độ nói: {speed}x</label>
               <div className="flex gap-1">
-                {speedOptions.map(s => (
-                  <button key={s} onClick={() => setSpeed(s)}
-                    className={`flex-1 py-1.5 rounded text-xs transition-all ${speed === s ? 'bg-purple-500 text-white' : 'text-white/40 border border-white/10 hover:text-white/60'}`}>
-                    {s}x
+                {speedOptions.map((option) => (
+                  <button
+                    key={option}
+                    onClick={() => setSpeed(option)}
+                    className={`flex-1 py-1.5 rounded text-xs transition-all ${speed === option ? 'bg-purple-500 text-white' : 'text-white/40 border border-white/10 hover:text-white/60'}`}
+                  >
+                    {option}x
                   </button>
                 ))}
               </div>
             </div>
           </div>
 
-          {/* Title */}
           <div className="flex items-center gap-3">
             <span className="text-white/40 text-sm">Tiêu đề:</span>
-            <input value={title} onChange={e => setTitle(e.target.value)}
-              className="flex-1 px-3 py-1.5 rounded text-sm text-white bg-[#0d1117] border border-white/10 focus:outline-none focus:border-purple-400/40" />
+            <input
+              value={title}
+              onChange={(event) => setTitle(event.target.value)}
+              className="flex-1 px-3 py-1.5 rounded text-sm text-white bg-[#0d1117] border border-white/10 focus:outline-none focus:border-purple-400/40"
+            />
           </div>
 
-          {/* Auto publish */}
           <label className="flex items-center gap-3 cursor-pointer">
-            <input type="checkbox" checked={autoPublish} onChange={e => setAutoPublish(e.target.checked)} className="w-4 h-4 accent-[#8b5cf6]" />
+            <input
+              type="checkbox"
+              checked={autoPublish}
+              onChange={(event) => setAutoPublish(event.target.checked)}
+              className="w-4 h-4 accent-[#8b5cf6]"
+            />
             <span className="text-white/60 text-sm">Xuất bản sau khi lồng tiếng</span>
           </label>
 
-          {/* Progress */}
           {(dubbing || audioUrl) && (
             <div className="rounded-lg p-4" style={{ background: '#0d1117', border: `1px solid ${audioUrl ? 'rgba(16,185,129,0.3)' : 'rgba(139,92,246,0.2)'}` }}>
-              <div className="flex items-center justify-between mb-2">
-                <span className="text-white/60 text-xs">{statusMsg}</span>
+              <div className="flex items-center justify-between mb-2 gap-4">
+                <span className="text-white/60 text-xs break-all">{statusMsg}</span>
                 <span className="text-white/40 text-xs font-mono">{dubProgress}%</span>
               </div>
               <div className="h-2 rounded-full overflow-hidden" style={{ background: '#161b22' }}>
-                <div className="h-full rounded-full transition-all duration-500" style={{
-                  width: `${dubProgress}%`,
-                  background: audioUrl ? 'linear-gradient(90deg, #10b981, #34d399)' : 'linear-gradient(90deg, #8b5cf6, #d946ef)',
-                }} />
+                <div
+                  className="h-full rounded-full transition-all duration-500"
+                  style={{
+                    width: `${dubProgress}%`,
+                    background: audioUrl ? 'linear-gradient(90deg, #10b981, #34d399)' : 'linear-gradient(90deg, #8b5cf6, #d946ef)',
+                  }}
+                />
               </div>
-
-              {/* Audio Preview */}
               {audioUrl && (
                 <div className="mt-3 flex items-center gap-3">
                   <span className="material-symbols-outlined text-emerald-400">check_circle</span>
@@ -1320,31 +1405,27 @@ export function DubbingModal({ onClose, onDub, videoTitle = 'DEMO', duration = '
             </div>
           )}
 
-          {/* Error */}
           {error && (
-            <div className="rounded-lg p-3 flex items-start gap-2 max-h-[80px] overflow-y-auto" style={{ background: 'rgba(239,68,68,0.1)', border: '1px solid rgba(239,68,68,0.2)' }}>
+            <div className="rounded-lg p-3 flex items-start gap-2 max-h-[100px] overflow-y-auto" style={{ background: 'rgba(239,68,68,0.1)', border: '1px solid rgba(239,68,68,0.2)' }}>
               <span className="material-symbols-outlined text-red-400 text-sm flex-shrink-0 mt-0.5">error</span>
-              <span className="text-red-300 text-xs break-all">{typeof error === 'string' && error.length > 200 ? error.substring(0, 200) + '...' : error}</span>
+              <span className="text-red-300 text-xs break-all">{error}</span>
             </div>
           )}
         </div>
 
-        {/* Footer */}
         <div className="px-6 py-4 border-t border-white/5 flex items-center justify-between">
           <div className="flex items-center gap-2 text-white/20 text-xs">
             <span className="material-symbols-outlined text-sm">info</span>
-            <span>GPU CUDA • Model: {engine === 'omnivoice' ? (omnivoiceModels.find(m => m.id === omnivoiceModel)?.label || 'Server 1') : engine === 'edge' ? 'Edge TTS' : engine === 'valtec' ? 'Server 2' : 'CapCut TTS'}</span>
+            <span>GPU CUDA - Model: {currentModelLabel}</span>
           </div>
           <div className="flex gap-2">
-            <button className="px-5 py-2 rounded-lg text-sm font-semibold text-white transition-all disabled:opacity-50"
+            <button
+              className="px-5 py-2 rounded-lg text-sm font-semibold text-white transition-all disabled:opacity-50"
               style={{ background: 'linear-gradient(135deg, #8b5cf6, #d946ef)' }}
-              onClick={handleDub} disabled={dubbing || subtitles.length === 0 || (voiceType === 'clone' && !refAudioFile)}>
-              {dubbing ? (
-                <span className="flex items-center gap-2">
-                  <span className="w-4 h-4 border-2 border-white/30 border-t-white rounded-full animate-spin" />
-                  Đang xử lý...
-                </span>
-              ) : audioUrl ? '🔄 Tạo lại lồng tiếng' : '🎙️ Bắt đầu lồng tiếng'}
+              onClick={handleDub}
+              disabled={dubbing || subtitles.length === 0 || (engine === 'clone' && !refAudioFile) || (engine === 'b2' && b2Mode === 'valtec' && !selectedValtecVoice?.available)}
+            >
+              {dubbing ? 'Đang xử lý...' : audioUrl ? 'Tạo lại lồng tiếng' : 'Bắt đầu lồng tiếng'}
             </button>
             <button className="px-5 py-2 rounded-lg text-sm text-white/50 border border-white/10 hover:bg-white/5" onClick={onClose}>
               {audioUrl ? 'Đóng' : 'Hủy'}

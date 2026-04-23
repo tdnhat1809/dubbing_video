@@ -2,6 +2,7 @@ import { NextResponse } from 'next/server';
 import path from 'path';
 import fs from 'fs';
 import { spawn } from 'child_process';
+import { getPythonRuntime } from '../../../lib/pythonRuntime.js';
 
 const rootDir = path.resolve(process.cwd(), '..');
 
@@ -32,6 +33,7 @@ function resolveAudioFile(audioPath, taskId) {
 
 export async function POST(req) {
   try {
+    const pythonRuntime = getPythonRuntime();
     const body = await req.json();
     const {
       videoPath,      // URL like /api/video/xxx.mp4 OR filename
@@ -210,7 +212,7 @@ export async function POST(req) {
     // Run in background
     console.log(`[Render] Starting: python ${path.basename(pythonScript)} --video ${path.basename(fullVideoPath)}`);
 
-    const proc = spawn('python', cmdArgs, {
+    const proc = spawn(pythonRuntime, cmdArgs, {
       cwd: rootDir,
       env: { ...process.env, PYTHONIOENCODING: 'utf-8', KMP_DUPLICATE_LIB_OK: 'TRUE' },
     });

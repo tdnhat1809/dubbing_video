@@ -2,7 +2,7 @@ import { NextResponse } from 'next/server';
 import fs from 'fs';
 import path from 'path';
 
-const PROMPTS_PATH = path.resolve('C:/python/ommivoice/prompts.json');
+const PROMPTS_PATH = path.join(process.cwd(), '..', 'prompts.json');
 
 export async function GET() {
   try {

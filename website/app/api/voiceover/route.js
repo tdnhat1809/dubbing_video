@@ -2,6 +2,7 @@ import { NextResponse } from 'next/server';
 import path from 'path';
 import { copyFileSync, existsSync, mkdirSync, writeFileSync } from 'fs';
 import { getTaskDir, loadTask, saveTask } from '../../../lib/taskStore.js';
+import { getPythonRuntime } from '../../../lib/pythonRuntime.js';
 
 function formatSubtitleTime(value) {
   if (!value) return '00:00:00,000';
@@ -33,14 +34,16 @@ function buildStartMessage(engine) {
   if (engine === 'edge') return 'Dang khoi tao Edge TTS...';
   if (engine === 'capcut') return 'Dang khoi tao CapCut TTS...';
   if (engine === 'valtec') return 'Dang khoi tao Valtec TTS...';
-  return 'Dang khoi tao OmniVoice...';
+  if (engine === 'omnivoice') return 'Dang khoi tao OmniVoice...';
+  return `Dang khoi tao ${engine}...`;
 }
 
 function buildQueuedMessage(engine) {
   if (engine === 'edge') return 'Dang tao long tieng Edge TTS...';
   if (engine === 'capcut') return 'Dang tao long tieng CapCut TTS...';
   if (engine === 'valtec') return 'Dang tao long tieng Valtec...';
-  return 'Dang tao long tieng OmniVoice...';
+  if (engine === 'omnivoice') return 'Dang tao long tieng OmniVoice...';
+  return `Dang tao long tieng ${engine}...`;
 }
 
 function saveParentVoiceoverState(taskId, data) {
@@ -79,9 +82,12 @@ export async function POST(request) {
       capcutVoiceId,
       omnivoiceModel,
       valtecVoice,
+      engineLabel,
+      voiceoverModelLabel,
     } = body;
 
     const rootDir = path.join(process.cwd(), '..');
+    const pythonRuntime = getPythonRuntime();
     const uploadsDir = path.join(rootDir, 'uploads');
     const taskDir = taskId ? getTaskDir(taskId) : null;
 
@@ -118,6 +124,8 @@ export async function POST(request) {
     const isCapcut = ttsEngine === 'capcut';
     const isValtec = ttsEngine === 'valtec';
     const selectedOmniVoiceModel = omniVoiceModels[omnivoiceModel] || omniVoiceModels.default;
+    const effectiveEngineLabel = engineLabel || (isEdge ? 'Edge TTS' : isCapcut ? 'CapCut TTS' : isValtec ? 'Valtec TTS' : 'OmniVoice');
+    const effectiveModelLabel = voiceoverModelLabel || selectedOmniVoiceModel.label;
 
     if (!isEdge && !isCapcut && !isValtec) {
       const customModelPath = selectedOmniVoiceModel.model;
@@ -155,7 +163,7 @@ export async function POST(request) {
     const outputFilename = taskId ? `voiceover_${taskId}.wav` : `voiceover_${voiceTaskId}.wav`;
     const outputFile = path.join(rootDir, outputFilename);
     const audioUrl = `/api/audio/${outputFilename}`;
-    const startMessage = buildStartMessage(ttsEngine);
+    const startMessage = buildStartMessage(effectiveEngineLabel);
 
     globalThis.__tasks = globalThis.__tasks || {};
     globalThis.__tasks[voiceTaskId] = {
@@ -169,8 +177,8 @@ export async function POST(request) {
       refAudio,
       outputFile,
       parentTaskId: taskId,
-      engine: ttsEngine,
-      model: selectedOmniVoiceModel.label,
+      engine: effectiveEngineLabel,
+      model: effectiveModelLabel,
     };
 
     saveParentVoiceoverState(taskId, {
@@ -178,8 +186,8 @@ export async function POST(request) {
       voiceoverStatus: 'processing',
       voiceoverProgress: 0,
       voiceoverMessage: startMessage,
-      voiceoverEngine: ttsEngine,
-      voiceoverModel: selectedOmniVoiceModel.label,
+      voiceoverEngine: effectiveEngineLabel,
+      voiceoverModel: effectiveModelLabel,
       voiceoverRequestedAt: new Date().toISOString(),
     });
 
@@ -192,28 +200,29 @@ export async function POST(request) {
       const langArg = language ? ` --language "${language}"` : '';
       const genderArg = voiceType === 'male' ? ' --gender male' : ' --gender female';
       const voiceArg = edgeVoice ? ` --voice "${edgeVoice}"` : '';
-      cmd = `python "${pythonScript}" --srt "${srtPath}"${voiceArg || (genderArg + langArg)} --output "${outputFile}"${speedArg}`;
+      cmd = `"${pythonRuntime}" "${pythonScript}" --srt "${srtPath}"${voiceArg || (genderArg + langArg)} --output "${outputFile}"${speedArg}`;
     } else if (isCapcut) {
       const pythonScript = path.join(rootDir, 'generate_voiceover_capcut.py');
       const vtArg = capcutVoiceType !== undefined ? ` --voice-type ${capcutVoiceType}` : ' --voice-type 14';
       const vidArg = capcutVoiceId ? ` --voice-id "${capcutVoiceId}"` : '';
       const speedArg = speed && speed !== 1.0 ? ` --speed ${Math.round(speed * 10)}` : '';
-      cmd = `python "${pythonScript}" --srt "${srtPath}"${vtArg}${vidArg} --output "${outputFile}"${speedArg}`;
+      cmd = `"${pythonRuntime}" "${pythonScript}" --srt "${srtPath}"${vtArg}${vidArg} --output "${outputFile}"${speedArg}`;
     } else if (isValtec) {
       const pythonScript = path.join(rootDir, 'generate_voiceover_valtec.py');
       const isClone = valtecVoice === '__clone__' && refAudio;
       const voiceFileArg = isClone ? ` --ref-audio "${refAudio}"` : (valtecVoice ? ` --voice "${valtecVoice}"` : ' --voice "Vietnam_hoa-mai (woman).pt"');
       const speedArg = speed && speed !== 1.0 ? ` --speed ${speed}` : '';
-      cmd = `python "${pythonScript}" --srt "${srtPath}"${voiceFileArg} --output "${outputFile}"${speedArg}`;
+      cmd = `"${pythonRuntime}" "${pythonScript}" --srt "${srtPath}"${voiceFileArg} --output "${outputFile}"${speedArg}`;
     } else {
       const pythonScript = path.join(rootDir, 'generate_voiceover.py');
       const speedArg = speed && speed !== 1.0 ? ` --speed ${speed}` : '';
       const refArg = refAudio ? ` --ref "${refAudio}"` : '';
       const voiceArg = !refAudio ? ` --voice ${voiceType === 'male' ? 'male' : 'female'}` : '';
       const modelArg = selectedOmniVoiceModel?.model ? ` --model "${selectedOmniVoiceModel.model}"` : '';
-      cmd = `python "${pythonScript}" --srt "${srtPath}"${refArg}${voiceArg}${modelArg} --output "${outputFile}"${speedArg}`;
+      cmd = `"${pythonRuntime}" "${pythonScript}" --srt "${srtPath}"${refArg}${voiceArg}${modelArg} --output "${outputFile}"${speedArg}`;
     }
 
+    console.log(`[Voiceover] Python runtime: ${pythonRuntime}`);
     console.log(`[Voiceover] Starting (${ttsEngine}): ${cmd}`);
 
     const child = exec(cmd, {
@@ -308,8 +317,8 @@ export async function POST(request) {
           voiceoverStatus: 'completed',
           voiceoverProgress: 100,
           voiceoverMessage: 'Long tieng hoan thanh!',
-          voiceoverEngine: ttsEngine,
-          voiceoverModel: selectedOmniVoiceModel.label,
+          voiceoverEngine: effectiveEngineLabel,
+          voiceoverModel: effectiveModelLabel,
           dubbedAudioPath: taskAudioCopy || outputFile,
           voiceoverUpdatedAt: new Date().toISOString(),
         });
@@ -349,7 +358,7 @@ export async function POST(request) {
       {
         status: 'processing',
         taskId: voiceTaskId,
-        message: buildQueuedMessage(ttsEngine),
+        message: buildQueuedMessage(effectiveEngineLabel),
       },
       { status: 202 },
     );

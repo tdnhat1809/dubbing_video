@@ -67,12 +67,14 @@ MULTI_SUB_Y_MERGE = 60      # Y-distance threshold to merge into same track (pix
 MAX_INTERPOLATE_GAP = 50
 
 # OCR / text processing
-TEXT_DIFF_THRESHOLD = 20    # Similarity threshold for dedup
-MIN_SUB_DURATION = 0.3      # Minimum subtitle duration (seconds)
+TEXT_DIFF_THRESHOLD = 12    # Lower = treat small OCR changes as new subtitles
+MIN_SUB_DURATION = 0.15     # Keep short dialogue beats instead of dropping them
 DEDUP_LOOKBACK = 3          # Recent subs to check for A-B-A-B pattern
 
 # Binarized diff sensitivity
-CHANGE_THRESHOLD = 0.015    # 1.5% pixel change = new subtitle
+CHANGE_THRESHOLD = 0.01     # Lower = OCR more subtitle transitions
+GOOGLE_CHANGE_THRESHOLD = 0.02
+OCR_EVERY_BBOX_FRAME = False
 
 # Google OCR fallback: if the first frame of a new crop group returns empty,
 # OCR up to N additional early frames from that same group before giving up.
@@ -186,6 +188,13 @@ def crop_changed(prev_bin, curr_bin, threshold=None):
         return change_ratio > threshold
     except Exception:
         return True
+
+
+def should_ocr_bbox_frame(prev_bin, curr_bin, threshold=None):
+    """Decide whether a bbox frame should be sent to OCR."""
+    if OCR_EVERY_BBOX_FRAME:
+        return True
+    return crop_changed(prev_bin, curr_bin, threshold=threshold)
 
 
 def ocr_crop(engine, crop_bgr):
@@ -506,19 +515,20 @@ def scan_yolo_detections(model, video_path, multi_sub=False):
     print(f"\n  PASS 1: YOLO Detection Scan ({mode_label})")
     print(f"  {'='*45}")
     print(f"  Resolution: {frame_width}x{frame_height}, FPS: {fps:.1f}")
+    device_label = f"cuda:{YOLO_DEVICE}" if YOLO_DEVICE != 'cpu' else 'cpu'
     print(f"  Total frames: {total_frames}, Sampling every {frame_skip} frames")
+    print(f"  Inference device: {device_label}")
     print(f"  Frames to scan: ~{num_samples}")
 
     detections = []  # list of (frame_num, bbox_or_None) or (frame_num, [boxes])
     detected_count = 0
     t0 = time.time()
 
-    frame_number = 0
     scanned = 0
     last_bbox = None  # For constrained bbox smoothing between similar frames
 
+    frame_number = 0
     while frame_number < total_frames:
-        cap.set(cv2.CAP_PROP_POS_FRAMES, frame_number)
         ret, frame = cap.read()
         if not ret:
             break
@@ -555,6 +565,10 @@ def scan_yolo_detections(model, video_path, multi_sub=False):
                   f"| Detected: {detected_count}/{scanned} "
                   f"| ETA: {eta:.0f}s")
 
+        for _ in range(frame_skip - 1):
+            if not cap.grab():
+                frame_number = total_frames
+                break
         frame_number += frame_skip
 
     cap.release()
@@ -571,6 +585,131 @@ def scan_yolo_detections(model, video_path, multi_sub=False):
 # ========================
 # FAST YOLO: GPU BATCH + THREADED PREFETCH
 # ========================
+def _probe_best_bottom_box(result, frame_height, frame_width):
+    """Return a finite best subtitle box for probe comparisons, or None."""
+    data = result.boxes.data.detach().cpu().numpy()
+    if len(data) == 0:
+        return None
+
+    best = select_best_bottom_box(data, frame_height, frame_width)
+    if best is None:
+        return None
+
+    box = np.asarray(best[:4], dtype=np.float32)
+    if not np.isfinite(box).all():
+        return None
+    return tuple(float(v) for v in box.tolist())
+
+
+def _bbox_iou(box_a, box_b):
+    """Simple IoU for probe validation."""
+    ax1, ay1, ax2, ay2 = box_a
+    bx1, by1, bx2, by2 = box_b
+    inter_x1 = max(ax1, bx1)
+    inter_y1 = max(ay1, by1)
+    inter_x2 = min(ax2, bx2)
+    inter_y2 = min(ay2, by2)
+    inter_w = max(0.0, inter_x2 - inter_x1)
+    inter_h = max(0.0, inter_y2 - inter_y1)
+    inter_area = inter_w * inter_h
+    if inter_area <= 0:
+        return 0.0
+
+    area_a = max(0.0, ax2 - ax1) * max(0.0, ay2 - ay1)
+    area_b = max(0.0, bx2 - bx1) * max(0.0, by2 - by1)
+    denom = area_a + area_b - inter_area
+    if denom <= 0:
+        return 0.0
+    return inter_area / denom
+
+
+def _resolve_safe_batch_size(model, video_path, requested_batch_size, frame_height, frame_width):
+    """Pick the largest stable fast-scan batch size for this runtime/video.
+
+    Some Windows/CUDA runtimes misbehave only at larger batch sizes. We compare
+    batched predictions against single-frame predictions on real consecutive
+    frames from the target video, then keep the largest batch size whose bottom
+    subtitle boxes stay consistent.
+    """
+    if requested_batch_size <= 1:
+        return requested_batch_size
+
+    probe_cap = cv2.VideoCapture(video_path)
+    if not probe_cap.isOpened():
+        return requested_batch_size
+
+    try:
+        total_frames = int(probe_cap.get(cv2.CAP_PROP_FRAME_COUNT))
+        sample_positions = sorted(set([
+            0,
+            max(total_frames // 8, 0),
+            max(total_frames // 4, 0),
+            max(total_frames // 2, 0),
+            max((total_frames * 3) // 4, 0),
+        ]))
+        candidate_batch_sizes = []
+        for candidate in [requested_batch_size, 6, 5, 4, 3, 2]:
+            candidate = min(candidate, requested_batch_size)
+            if candidate >= 2 and candidate not in candidate_batch_sizes:
+                candidate_batch_sizes.append(candidate)
+
+        for candidate in candidate_batch_sizes:
+            tested_positive_sample = False
+            candidate_ok = True
+
+            for pos in sample_positions:
+                probe_cap.set(cv2.CAP_PROP_POS_FRAMES, pos)
+                batch_frames = []
+                for _ in range(candidate):
+                    ret, frame = probe_cap.read()
+                    if not ret or frame is None:
+                        break
+                    batch_frames.append(np.ascontiguousarray(frame.copy()))
+
+                if len(batch_frames) < candidate:
+                    continue
+
+                single_results = []
+                for frame in batch_frames:
+                    result = model.predict(
+                        source=[frame], show=False, save=False, verbose=False,
+                        imgsz=YOLO_IMGSZ, conf=YOLO_CONF, device=YOLO_DEVICE, half=YOLO_HALF,
+                    )[0]
+                    single_results.append(_probe_best_bottom_box(result, frame_height, frame_width))
+
+                if not any(box is not None for box in single_results):
+                    continue
+
+                tested_positive_sample = True
+                batch_results = model.predict(
+                    source=batch_frames, show=False, save=False, verbose=False,
+                    imgsz=YOLO_IMGSZ, conf=YOLO_CONF, device=YOLO_DEVICE, half=YOLO_HALF,
+                )
+                batch_boxes = [
+                    _probe_best_bottom_box(result, frame_height, frame_width)
+                    for result in batch_results
+                ]
+
+                for single_box, batch_box in zip(single_results, batch_boxes):
+                    if single_box is None:
+                        continue
+                    if batch_box is None or _bbox_iou(single_box, batch_box) < 0.5:
+                        candidate_ok = False
+                        break
+
+                if not candidate_ok:
+                    break
+
+            if tested_positive_sample and candidate_ok:
+                return candidate
+
+        # Inconclusive probe: keep a conservative fast batch size instead of
+        # disabling fast mode entirely.
+        return min(requested_batch_size, 4)
+    finally:
+        probe_cap.release()
+
+
 def scan_yolo_fast(model, video_path, batch_size=None, multi_sub=False):
     """Optimized YOLO detection using GPU batch inference + threaded frame prefetch.
     
@@ -627,7 +766,16 @@ def scan_yolo_fast(model, video_path, batch_size=None, multi_sub=False):
     if batch_size <= 1 or video_duration < 10:
         cap.release()
         return scan_yolo_detections(model, video_path, multi_sub=False)
-    
+
+    resolved_batch_size = _resolve_safe_batch_size(
+        model, video_path, batch_size, frame_height, frame_width
+    )
+    if resolved_batch_size != batch_size:
+        print(f"\n  PASS 1: FAST YOLO Detection (batch={batch_size}, GPU)")
+        print(f"  {'='*50}")
+        print(f"  Adjusted batch size for runtime stability: {batch_size} -> {resolved_batch_size}")
+        batch_size = resolved_batch_size
+
     print(f"\n  PASS 1: FAST YOLO Detection (batch={batch_size}, GPU)")
     print(f"  {'='*50}")
     print(f"  Resolution: {frame_width}x{frame_height}, FPS: {fps:.1f}")
@@ -650,7 +798,11 @@ def scan_yolo_fast(model, video_path, batch_size=None, multi_sub=False):
                 ret, frame = cap.read()
                 if not ret:
                     break
-                frame_queue.put((fn, frame))
+                # Detach from OpenCV's internal decode buffer before handing
+                # frames to another thread / batched predictor. Without this,
+                # some Windows + CUDA setups intermittently batch-infer on
+                # reused frame memory and return zero detections.
+                frame_queue.put((fn, np.ascontiguousarray(frame.copy())))
                 fn += 1
         else:
             # Skip frames - need to seek or skip-read
@@ -658,7 +810,7 @@ def scan_yolo_fast(model, video_path, batch_size=None, multi_sub=False):
                 ret, frame = cap.read()
                 if not ret:
                     break
-                frame_queue.put((fn, frame))
+                frame_queue.put((fn, np.ascontiguousarray(frame.copy())))
                 fn += frame_skip
                 # Skip intermediate frames by reading and discarding
                 for _ in range(frame_skip - 1):
@@ -750,7 +902,16 @@ def scan_yolo_fast(model, video_path, batch_size=None, multi_sub=False):
     fps_rate = scanned / max(elapsed, 0.01)
     print(f"\n  PASS 1 DONE (FAST) in {elapsed:.1f}s ({fps_rate:.0f} frames/sec)")
     print(f"  Scanned: {scanned} frames, Detected: {detected_count} ({detect_rate:.1f}%)")
-    
+
+    # Safety fallback: on some Windows/CUDA setups, batch inference can
+    # silently return zero detections for the entire video even though the
+    # same model detects correctly frame-by-frame. In that case, rerun the
+    # reliable sequential scan instead of continuing to OCR with empty bboxes.
+    if scanned > 0 and detected_count == 0:
+        print(f"  WARNING: Fast batch scan returned 0 detections.")
+        print(f"  Falling back to sequential YOLO scan for verification...")
+        return scan_yolo_detections(model, video_path, multi_sub=False)
+
     return detections, video_info
 
 
@@ -970,8 +1131,7 @@ def _extract_with_google_ocr(filled_detections, video_info, video_path):
         
         crop_bin = binarize_crop(crop)
         
-        # Slightly higher threshold for Google OCR: reduce false positives → fewer API calls
-        if not crop_changed(prev_crop_bin, crop_bin, threshold=0.03):
+        if not should_ocr_bbox_frame(prev_crop_bin, crop_bin, threshold=GOOGLE_CHANGE_THRESHOLD):
             skipped_same += 1
             # Mark as "same as previous" - will extend timing later
             crop_metadata.append((idx, frame_num, 'same', source, new_start, new_end))
@@ -1187,7 +1347,7 @@ def _extract_with_rapidocr(filled_detections, video_info, video_path, engine):
         # Binarize and diff
         crop_bin = binarize_crop(crop)
         
-        if not crop_changed(prev_crop_bin, crop_bin):
+        if not should_ocr_bbox_frame(prev_crop_bin, crop_bin, threshold=CHANGE_THRESHOLD):
             # Same subtitle text — just extend
             skipped_same += 1
             if current_text:
@@ -1575,7 +1735,7 @@ def _extract_multi_track_google_ocr(detections, video_info, video_path):
             # Add ALL detection frames to bbox_timeline for blur coverage
             all_bbox_timeline.append({'frame': frame_num, 'x1': x1, 'y1': y1, 'x2': x2, 'y2': y2, 'track': tid})
             
-            if not crop_changed(prev_crop_bin, crop_bin, threshold=0.03):
+            if not should_ocr_bbox_frame(prev_crop_bin, crop_bin, threshold=GOOGLE_CHANGE_THRESHOLD):
                 skipped_same += 1
                 crop_metadata.append((idx, frame_num, 'same', bbox, start_tc, end_tc))
                 if current_group_idx is not None:
@@ -1698,7 +1858,9 @@ def _extract_multi_track_google_ocr(detections, video_info, video_path):
 def process_video_v3(video_path, output_srt=OUTPUT_SRT, output_bbox=OUTPUT_BBOX_JSON,
                      ocr_engine='google', multi_sub=False, batch_size=None,
                      retry_from='full', reuse_bbox_path=None,
-                     detect_zone_top=None):
+                     detect_zone_top=None, ocr_every_bbox_frame=False,
+                     crop_change_threshold=None, text_diff_threshold=None,
+                     min_sub_duration=None):
     """Two-pass subtitle extraction pipeline.
     
     Args:
@@ -1716,10 +1878,24 @@ def process_video_v3(video_path, output_srt=OUTPUT_SRT, output_bbox=OUTPUT_BBOX_
     total_start = time.time()
 
     # Override detection zone if custom value provided
-    global BOTTOM_ZONE_FRAC
+    global BOTTOM_ZONE_FRAC, OCR_EVERY_BBOX_FRAME, CHANGE_THRESHOLD
+    global GOOGLE_CHANGE_THRESHOLD, TEXT_DIFF_THRESHOLD, MIN_SUB_DURATION
     if detect_zone_top is not None:
         BOTTOM_ZONE_FRAC = detect_zone_top
         print(f"  Custom detection zone: top={detect_zone_top:.0%} (detect bottom {(1-detect_zone_top)*100:.0f}% of frame)")
+    if ocr_every_bbox_frame:
+        OCR_EVERY_BBOX_FRAME = True
+        print(f"  Debug OCR mode: OCR every frame that has a bbox")
+    if crop_change_threshold is not None:
+        CHANGE_THRESHOLD = crop_change_threshold
+        GOOGLE_CHANGE_THRESHOLD = crop_change_threshold
+        print(f"  OCR crop-change threshold: {crop_change_threshold:.4f}")
+    if text_diff_threshold is not None:
+        TEXT_DIFF_THRESHOLD = text_diff_threshold
+        print(f"  Text diff threshold: {text_diff_threshold}")
+    if min_sub_duration is not None:
+        MIN_SUB_DURATION = min_sub_duration
+        print(f"  Minimum subtitle duration: {min_sub_duration:.3f}s")
 
     if retry_from not in ('full', 'ocr'):
         raise ValueError("retry_from must be 'full' or 'ocr'")
@@ -1839,6 +2015,14 @@ if __name__ == '__main__':
     parser.add_argument('--detect-zone-top', type=float, default=None,
                         help='Detection zone top boundary (0-1 fraction, default 0.82). '
                              'Lower = detect higher in frame. E.g. 0.5 detects bottom 50%%.')
+    parser.add_argument('--ocr-every-bbox-frame', action='store_true', default=False,
+                        help='Debug mode: OCR every frame that has a bbox, do not skip "same" crops')
+    parser.add_argument('--crop-change-threshold', type=float, default=None,
+                        help='Override crop diff threshold. Lower = OCR more frame-to-frame changes')
+    parser.add_argument('--text-diff-threshold', type=float, default=None,
+                        help='Override text dedup threshold. Lower = keep more near-duplicate short changes')
+    parser.add_argument('--min-sub-duration', type=float, default=None,
+                        help='Override minimum subtitle duration in seconds')
     args = parser.parse_args()
     
     video_file = args.video
@@ -1870,6 +2054,10 @@ if __name__ == '__main__':
         retry_from=args.retry_from,
         reuse_bbox_path=args.reuse_bbox,
         detect_zone_top=args.detect_zone_top,
+        ocr_every_bbox_frame=args.ocr_every_bbox_frame,
+        crop_change_threshold=args.crop_change_threshold,
+        text_diff_threshold=args.text_diff_threshold,
+        min_sub_duration=args.min_sub_duration,
     )
 
     if os.path.exists(OUTPUT_SRT):

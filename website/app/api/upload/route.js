@@ -5,6 +5,7 @@ import path from 'path';
 import { v4 as uuidv4 } from 'uuid';
 import { saveTask, loadTask, saveTaskSubtitles, getTaskDir } from '../../../lib/taskStore.js';
 import { incrementUserStats, upsertUser } from '../../../lib/userStore.js';
+import { getPythonRuntime } from '../../../lib/pythonRuntime.js';
 
 export async function POST(request) {
   try {
@@ -44,6 +45,10 @@ export async function POST(request) {
     const whisperModel = formData.get('whisper_model') || 'large-v3';
     const userEmail = formData.get('userEmail') || '';
     const detectZoneTop = formData.get('detect_zone_top') ? parseFloat(formData.get('detect_zone_top')) : null;
+    const ocrEveryBboxFrame = formData.get('ocr_every_bbox_frame') === 'true';
+    const cropChangeThreshold = formData.get('crop_change_threshold') ? parseFloat(formData.get('crop_change_threshold')) : null;
+    const textDiffThreshold = formData.get('text_diff_threshold') ? parseFloat(formData.get('text_diff_threshold')) : null;
+    const minSubDuration = formData.get('min_sub_duration') ? parseFloat(formData.get('min_sub_duration')) : null;
 
     // Create persistent task
     const task = saveTask(taskId, {
@@ -64,6 +69,10 @@ export async function POST(request) {
       whisperModel,
       userEmail,
       detectZoneTop,
+      ocrEveryBboxFrame,
+      cropChangeThreshold: Number.isFinite(cropChangeThreshold) ? cropChangeThreshold : null,
+      textDiffThreshold: Number.isFinite(textDiffThreshold) ? textDiffThreshold : null,
+      minSubDuration: Number.isFinite(minSubDuration) ? minSubDuration : null,
       createdAt: new Date().toISOString(),
     });
 
@@ -104,7 +113,13 @@ export async function POST(request) {
       if (extractionMethod === 'whisper') {
         runWhisperSubprocess(taskId, filepath, whisperModel, sourceLang);
       } else {
-        startExtraction(taskId, filepath, ocrEngine, multiSub, detectZoneTop);
+        startExtraction(taskId, filepath, ocrEngine, multiSub, {
+          detectZoneTop,
+          ocrEveryBboxFrame,
+          cropChangeThreshold,
+          textDiffThreshold,
+          minSubDuration,
+        });
       }
     }
 
@@ -151,7 +166,7 @@ function persistExtractionOutputs(taskId, srtPath, bboxPath) {
   }
 }
 
-async function startExtraction(taskId, filepath, ocrEngine = 'google', multiSub = false, detectZoneTop = null) {
+async function startExtraction(taskId, filepath, ocrEngine = 'google', multiSub = false, options = {}) {
   const task = saveTask(taskId, {
     status: 'extracting',
     step: 'extract',
@@ -179,17 +194,18 @@ async function startExtraction(taskId, filepath, ocrEngine = 'google', multiSub 
       pollFlaskStatus(taskId, data.task_id);
     } else {
       saveTask(taskId, { message: 'Flask API not available. Running standalone...' });
-      runExtractSubprocess(taskId, filepath, ocrEngine, multiSub, { detectZoneTop });
+      runExtractSubprocess(taskId, filepath, ocrEngine, multiSub, options);
     }
   } catch (err) {
     saveTask(taskId, { message: 'Flask API not available. Running standalone...' });
-    runExtractSubprocess(taskId, filepath, ocrEngine, multiSub, { detectZoneTop });
+    runExtractSubprocess(taskId, filepath, ocrEngine, multiSub, options);
   }
 }
 
 async function runExtractSubprocess(taskId, filepath, ocrEngine = 'google', multiSub = false, options = {}) {
   const { spawn } = await import('child_process');
   const pythonScript = path.join(process.cwd(), '..', 'extract_subtitle_v3.py');
+  const pythonRuntime = getPythonRuntime();
   const taskDir = getTaskDir(taskId);
   const srtOutput = path.join(taskDir, 'text_ocr.srt');
   const bboxOutput = path.join(taskDir, 'subtitle_bboxes.json');
@@ -220,11 +236,24 @@ async function runExtractSubprocess(taskId, filepath, ocrEngine = 'google', mult
   if (options.detectZoneTop != null && !isNaN(options.detectZoneTop)) {
     args.push('--detect-zone-top', String(options.detectZoneTop));
   }
+  if (options.ocrEveryBboxFrame) {
+    args.push('--ocr-every-bbox-frame');
+  }
+  if (options.cropChangeThreshold != null && !isNaN(options.cropChangeThreshold)) {
+    args.push('--crop-change-threshold', String(options.cropChangeThreshold));
+  }
+  if (options.textDiffThreshold != null && !isNaN(options.textDiffThreshold)) {
+    args.push('--text-diff-threshold', String(options.textDiffThreshold));
+  }
+  if (options.minSubDuration != null && !isNaN(options.minSubDuration)) {
+    args.push('--min-sub-duration', String(options.minSubDuration));
+  }
   if (retryMode === 'ocr') {
     args.push('--retry-from', 'ocr', '--reuse-bbox', reuseBboxPath);
   }
 
-  const child = spawn('python', args, {
+  console.log('[Extract] Python runtime:', pythonRuntime);
+  const child = spawn(pythonRuntime, args, {
     cwd: path.join(process.cwd(), '..'),
     env: { ...process.env, PYTHONIOENCODING: 'utf-8', PYTHONUNBUFFERED: '1' },
     stdio: ['ignore', 'pipe', 'pipe'],
@@ -355,6 +384,7 @@ async function runExtractSubprocess(taskId, filepath, ocrEngine = 'google', mult
 async function runWhisperSubprocess(taskId, filepath, whisperModel = 'large-v3', sourceLang = '') {
   const { spawn } = await import('child_process');
   const pythonScript = path.join(process.cwd(), '..', 'extract_subtitle_whisper.py');
+  const pythonRuntime = getPythonRuntime();
 
   // Map source language name to whisper code
   const langMap = {
@@ -378,7 +408,8 @@ async function runWhisperSubprocess(taskId, filepath, whisperModel = 'large-v3',
   const srtOutput = path.join(taskDir, 'text_ocr.srt');
   args.push('--output', srtOutput);
 
-  const child = spawn('python', args, {
+  console.log('[Whisper] Python runtime:', pythonRuntime);
+  const child = spawn(pythonRuntime, args, {
     cwd: path.join(process.cwd(), '..'),
     env: { ...process.env, PYTHONIOENCODING: 'utf-8', PYTHONUNBUFFERED: '1', KMP_DUPLICATE_LIB_OK: 'TRUE' },
     stdio: ['ignore', 'pipe', 'pipe'],
