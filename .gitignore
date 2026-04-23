@@ -1,0 +1,205 @@
+# =========================
+# Dependencies & Environments
+# =========================
+node_modules/
+venv/
+env/
+.uvcache/
+.uvpython/
+__pycache__/
+*.pyc
+.env
+.env.local
+.env.*
+
+# =========================
+# Next.js
+# =========================
+website/.next/
+website/out/
+
+# =========================
+# OS & IDE
+# =========================
+.DS_Store
+Thumbs.db
+*.swp
+*.swo
+.vscode/
+.idea/
+
+# =========================
+# Build & Logs
+# =========================
+*.log
+npm-debug.log*
+
+# =========================
+# Media files (large)
+# =========================
+*.mp4
+*.avi
+*.mkv
+*.wav
+*.mp3
+*.flac
+*.webm
+
+# =========================
+# Image outputs (debug/test)
+# =========================
+debug_*.png
+debug_*.jpg
+rendered_frame_*.jpg
+v3_frame_*.jpg
+
+# =========================
+# Model weights & binaries
+# =========================
+*.pt
+*.pth
+*.onnx
+*.safetensors
+*.bin
+!website/**/*.bin
+
+# =========================
+# Large executables
+# =========================
+*.dll
+*.exe
+*.so
+ffmpeg.exe
+ffplay.exe
+ffprobe.exe
+ffmpeg
+ffplay
+ffprobe
+
+# =========================
+# Large data & archives
+# =========================
+*.zip
+data.zip
+
+# =========================
+# Credentials & tokens (sensitive)
+# =========================
+credentials*.json
+token*.json
+token*.json.bak
+
+# =========================
+# JSON (exclude all except website configs)
+# =========================
+*.json
+!website/package.json
+!website/package-lock.json
+!website/tsconfig.json
+!website/jsconfig.json
+!website/**/prompts.json
+
+# =========================
+# Temp & output directories
+# =========================
+tmp/
+temp/
+New folder/
+uploads/
+output_process/
+exports/
+rendered_videos/
+voiceover_clips/
+
+# =========================
+# Test files & outputs
+# =========================
+test_*
+test_voices/
+test_voices_f5tts/
+test_voices_valtec/
+
+# =========================
+# Model directories
+# =========================
+model/
+models/
+model_last_train/
+data/models/
+pretrained/
+*checkpoint*/
+OmniVoice_*/
+
+# =========================
+# Training runs
+# =========================
+runs/
+runs_local/
+
+# =========================
+# Extracted/decompiled binaries
+# =========================
+tv_engine.exe_extracted/
+
+# =========================
+# Large project-specific outputs
+# =========================
+voiceover_*.wav
+voiceover_*.srt
+voiceover_combined.wav
+
+# =========================
+# Debug & analyze scripts
+# =========================
+analyze_*
+debug_*.py
+debug_*.txt
+debug_*.log
+
+# =========================
+# Crop subtitle data (training images)
+# =========================
+crop_subtitle/
+
+# =========================
+# SRT files (subtitle outputs)
+# =========================
+*.srt
+
+# =========================
+# Misc
+# =========================
+seed_users.mjs
+d4.txt
+extract_log*.txt
+install_log*.txt
+render_log*.txt
+render_test.txt
+run_log.txt
+copy_previews.ps1
+subtitle_bboxes.json
+*.ipynb
+
+# =========================
+# Stitch clone (reference only)
+# =========================
+stitch_dichtudong_clone/
+
+# =========================
+# MBBank API (separate project)
+# =========================
+mbbank_api/
+
+# =========================
+# Tasks directory
+# =========================
+tasks/
+
+# =========================
+# Website large test screenshots
+# =========================
+website/public/images/*_test_*.webp
+website/public/images/auth_flow_*.webp
+website/public/images/auth_guard_*.webp
+website/public/images/admin_*.webp
+website/public/images/tasks_*.webp

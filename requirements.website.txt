@@ -1,0 +1,51 @@
+# Python requirements used by the Next.js website API routes in ./website
+# Install from repo root.
+#
+# Notes:
+# - The website also needs the Node.js dependencies in website/package-lock.json.
+# - Versions were intentionally removed from this file.
+# - If you run on CPU only, replace onnxruntime-gpu with onnxruntime.
+
+# Core media / OCR
+numpy
+opencv-python
+rapidfuzz
+Pillow
+requests
+pydub
+soundfile
+
+# YOLO / subtitle extraction
+torch
+torchaudio
+torchvision
+ultralytics
+ultralytics-thop
+
+# RapidOCR
+onnxruntime-gpu
+rapidocr-onnxruntime
+
+# Google Drive OCR
+google-api-python-client
+google-auth
+google-auth-httplib2
+google-auth-oauthlib
+
+# Video render / OmniVoice path
+omnivoice
+safetensors
+transformers
+huggingface-hub
+
+# Voiceover options
+edge-tts
+
+# Optional features referenced by code, but not pinned anywhere reliable in this repo:
+# faster-whisper
+# stable-ts
+# openai-whisper
+# valtec-tts
+# vietnormalizer
+# viphoneme
+# underthesea

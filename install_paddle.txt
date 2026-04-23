@@ -1,0 +1,43 @@
+﻿Collecting paddlepaddle
+  Downloading paddlepaddle-3.3.1-cp311-cp311-win_amd64.whl (104.8 MB)
+     ------------------------------------- 104.8/104.8 MB 20.5 MB/s eta 0:00:00
+Requirement already satisfied: httpx in c:\python\ommivoice\env\lib\site-packages (from paddlepaddle) (0.28.1)
+Requirement already satisfied: numpy>=1.21 in c:\python\ommivoice\env\lib\site-packages (from paddlepaddle) (2.4.4)
+Requirement already satisfied: protobuf>=3.20.2 in c:\python\ommivoice\env\lib\site-packages (from paddlepaddle) (5.29.6)
+Requirement already satisfied: Pillow in c:\python\ommivoice\env\lib\site-packages (from paddlepaddle) (12.2.0)
+Collecting opt-einsum==3.3.0
+  Using cached opt_einsum-3.3.0-py3-none-any.whl (65 kB)
+Requirement already satisfied: networkx in c:\python\ommivoice\env\lib\site-packages (from paddlepaddle) (3.6.1)
+Requirement already satisfied: typing-extensions in c:\python\ommivoice\env\lib\site-packages (from paddlepaddle) (4.15.0)
+Requirement already satisfied: safetensors>=0.6.0 in c:\python\ommivoice\env\lib\site-packages (from paddlepaddle) (0.7.0)
+Requirement already satisfied: anyio in c:\python\ommivoice\env\lib\site-packages (from httpx->paddlepaddle) (4.13.0)
+Requirement already satisfied: certifi in c:\python\ommivoice\env\lib\site-packages (from httpx->paddlepaddle) (2026.2.25)
+Requirement already satisfied: httpcore==1.* in c:\python\ommivoice\env\lib\site-packages (from httpx->paddlepaddle) (1.0.9)
+Requirement already satisfied: idna in c:\python\ommivoice\env\lib\site-packages (from httpx->paddlepaddle) (3.11)
+Requirement already satisfied: h11>=0.16 in c:\python\ommivoice\env\lib\site-packages (from httpcore==1.*->httpx->paddlepaddle) (0.16.0)
+Installing collected packages: opt-einsum, paddlepaddle
+Successfully installed opt-einsum-3.3.0 paddlepaddle-3.3.1
+c:\python\ommivoice\env\Sc
+ripts\pip.exe : 
+At line:1 char:1
++ c:\python\ommivoice\env\
+Scripts\pip.exe install 
+paddlepaddle 2>&1 | O ...
++ ~~~~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~
+    + CategoryInfo        
+      : NotSpecified: (:  
+  String) [], RemoteExc   
+ eption
+    + FullyQualifiedError 
+   Id : NativeCommandErr  
+  or
+ 
+[notice] A new release of 
+pip available: 22.3 -> 
+26.0.1
+[notice] To update, run: C
+:\python\ommivoice\env\Scr
+ipts\python.exe -m pip 
+install --upgrade pip

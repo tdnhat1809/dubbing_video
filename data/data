@@ -1,0 +1,970 @@
+{
+    "font_sub": [
+        "Arial",
+        "Comfortaa",
+        "VarelaRound",
+        "Quicksand",
+        "SpaceMono",
+        "PlayfairDisplay",
+        "PlaywriteVN",
+        "AlexBrush",
+        "Lobster",
+        "Bungee",
+        "BungeeShade",
+        "BungeeOutline",
+        "Montserrat",
+        "MontserratAlternates",
+        "MontserratUnderline",
+        "NotoSansSC"
+    ],
+    "lang_code_trans": {
+        "Tiếng Việt": {
+            "Tiếng Việt": "vi",
+            "Tiếng Anh": "en",
+            "Tiếng Nhật": "ja",
+            "Tiếng Hàn": "ko",
+            "Tiếng Trung (Giản thể)": "zh-CN",
+            "Tiếng Trung (Phồn thể)": "zh-TW",
+            "Tiếng Pháp": "fr",
+            "Tiếng Đức": "de",
+            "Tiếng Tây Ban Nha": "es",
+            "Tiếng Bồ Đào Nha": "pt",
+            "Tiếng Ý": "it",
+            "Tiếng Nga": "ru",
+            "Tiếng Thái": "th",
+            "Tiếng Indonesia": "id",
+            "Tiếng Malaysia": "ms",
+            "Tiếng Ả Rập": "ar",
+            "Tiếng Hindi": "hi",
+            "Tiếng Hà Lan": "nl",
+            "Tiếng Ba Lan": "pl",
+            "Tiếng Thổ Nhĩ Kỳ": "tr",
+            "Tiếng Hy Lạp": "el",
+            "Tiếng Séc": "cs",
+            "Tiếng Thụy Điển": "sv",
+            "Tiếng Ukraina": "uk",
+            "Tiếng Đan Mạch": "da",
+            "Tiếng Na Uy": "no",
+            "Tiếng Philippines (Tagalog)": "tl",
+            "Tiếng Bengal": "bn",
+            "Tiếng Hungary": "hu",
+            "Tiếng Phần Lan": "fi",
+            "Tiếng Romania": "ro",
+            "Tiếng Slovak": "sk",
+            "Tiếng Croatia": "hr",
+            "Tiếng Serbia": "sr",
+            "Tiếng Hebrew (Do Thái)": "he",
+            "Tiếng Slovenia": "sl",
+            "Tiếng Latvia": "lv",
+            "Tiếng Lithuania": "lt",
+            "Tiếng Estonia": "et"
+        },
+        "English": {
+            "Vietnamese": "vi",
+            "English": "en",
+            "Japanese": "ja",
+            "Korean": "ko",
+            "Chinese (Simplified)": "zh-CN",
+            "Chinese (Traditional)": "zh-TW",
+            "French": "fr",
+            "German": "de",
+            "Spanish": "es",
+            "Portuguese": "pt",
+            "Italian": "it",
+            "Russian": "ru",
+            "Thai": "th",
+            "Indonesian": "id",
+            "Malay": "ms",
+            "Arabic": "ar",
+            "Hindi": "hi",
+            "Dutch": "nl",
+            "Polish": "pl",
+            "Turkish": "tr",
+            "Greek": "el",
+            "Czech": "cs",
+            "Swedish": "sv",
+            "Ukrainian": "uk",
+            "Danish": "da",
+            "Norwegian": "no",
+            "Filipino (Tagalog)": "tl",
+            "Bengali": "bn",
+            "Hungarian": "hu",
+            "Finnish": "fi",
+            "Romanian": "ro",
+            "Slovak": "sk",
+            "Croatian": "hr",
+            "Serbian": "sr",
+            "Hebrew": "he",
+            "Slovenian": "sl",
+            "Latvian": "lv",
+            "Lithuanian": "lt",
+            "Estonian": "et"
+        }
+    },
+    "lang_code_extract": {
+	"Auto Detect": "",
+        "Vietnamese": "vi",
+        "English": "en",
+        "Japanese": "ja",
+        "Korean": "ko",
+        "Chinese (Simplified)": "zh",
+        "Chinese (Traditional)": "zh",
+        "French": "fr",
+        "German": "de",
+        "Spanish": "es",
+        "Portuguese": "pt",
+        "Italian": "it",
+        "Russian": "ru",
+        "Thai": "th",
+        "Indonesian": "id",
+        "Malay": "ms",
+        "Arabic": "ar",
+        "Hindi": "hi",
+        "Dutch": "nl",
+        "Polish": "pl",
+        "Turkish": "tr",
+        "Greek": "el",
+        "Czech": "cs",
+        "Swedish": "sv",
+        "Ukrainian": "uk",
+        "Danish": "da",
+        "Norwegian": "no",
+        "Filipino (Tagalog)": "tl",
+        "Bengali": "bn",
+        "Hungarian": "hu",
+        "Finnish": "fi",
+        "Romanian": "ro",
+        "Slovak": "sk",
+        "Croatian": "hr",
+        "Serbian": "sr",
+        "Hebrew": "he",
+        "Slovenian": "sl",
+        "Latvian": "lv",
+        "Lithuanian": "lt",
+        "Estonian": "et"
+    },
+    "lang_code_split": {
+        "Tiếng Việt": {
+            "Tiếng Việt": "vi",
+            "Tiếng Anh": "en",
+            "Tiếng Nhật": "ja",
+            "Tiếng Hàn": "ko",
+            "Tiếng Trung (Giản thể)": "ch_sim",
+            "Tiếng Trung (Phồn thể)": "ch_tra",
+            "Tiếng Pháp": "fr",
+            "Tiếng Đức": "de",
+            "Tiếng Tây Ban Nha": "es",
+            "Tiếng Bồ Đào Nha": "pt",
+            "Tiếng Ý": "it",
+            "Tiếng Nga": "ru",
+            "Tiếng Thái": "th",
+            "Tiếng Indonesia": "id",
+            "Tiếng Malaysia": "ms",
+            "Tiếng Ả Rập": "ar",
+            "Tiếng Hindi": "hi",
+            "Tiếng Hà Lan": "nl",
+            "Tiếng Ba Lan": "pl",
+            "Tiếng Thổ Nhĩ Kỳ": "tr",
+            "Tiếng Hy Lạp": "el",
+            "Tiếng Séc": "cs",
+            "Tiếng Thụy Điển": "sv",
+            "Tiếng Ukraina": "uk",
+            "Tiếng Đan Mạch": "da",
+            "Tiếng Na Uy": "no",
+            "Tiếng Philippines (Tagalog)": "tl",
+            "Tiếng Bengal": "bn",
+            "Tiếng Hungary": "hu",
+            "Tiếng Phần Lan": "fi",
+            "Tiếng Romania": "ro",
+            "Tiếng Slovak": "sk",
+            "Tiếng Croatia": "hr",
+            "Tiếng Serbia": "sr",
+            "Tiếng Hebrew (Do Thái)": "he",
+            "Tiếng Slovenia": "sl",
+            "Tiếng Latvia": "lv",
+            "Tiếng Lithuania": "lt",
+            "Tiếng Estonia": "et"
+        },
+        "English": {
+            "Vietnamese": "vi",
+            "English": "en",
+            "Japanese": "ja",
+            "Korean": "ko",
+            "Chinese (Simplified)": "ch_sim",
+            "Chinese (Traditional)": "ch_tra",
+            "French": "fr",
+            "German": "de",
+            "Spanish": "es",
+            "Portuguese": "pt",
+            "Italian": "it",
+            "Russian": "ru",
+            "Thai": "th",
+            "Indonesian": "id",
+            "Malay": "ms",
+            "Arabic": "ar",
+            "Hindi": "hi",
+            "Dutch": "nl",
+            "Polish": "pl",
+            "Turkish": "tr",
+            "Greek": "el",
+            "Czech": "cs",
+            "Swedish": "sv",
+            "Ukrainian": "uk",
+            "Danish": "da",
+            "Norwegian": "no",
+            "Filipino (Tagalog)": "tl",
+            "Bengali": "bn",
+            "Hungarian": "hu",
+            "Finnish": "fi",
+            "Romanian": "ro",
+            "Slovak": "sk",
+            "Croatian": "hr",
+            "Serbian": "sr",
+            "Hebrew": "he",
+            "Slovenian": "sl",
+            "Latvian": "lv",
+            "Lithuanian": "lt",
+            "Estonian": "et"
+        }
+    },
+    "lang_voice_bmtts": {
+        "Vietnam": [
+            "hoa-mai (woman)",
+            "tran-binh (man)",
+            "thuy-linh (woman)",
+            "le-nam (man)",
+            "ngoc-anh (woman)",
+            "dinh-quan (man)",
+            "my-huyen (woman)",
+            "trung-anh (man)",
+            "quynh-nhu (woman)",
+            "hoang-son (man)",
+            "ha-giang (woman)",
+            "the-trung (man)",
+            "thao-van (woman)",
+            "nguyen-thang (man)",
+            "ngoc-duyen (woman)",
+            "minh-tuan (man)",
+            "minh-thu (woman)",
+            "nguyen-tung (man)",
+            "lan-my (woman)",
+            "tung-lam (old man)",
+            "nguyen-lien (old woman)",
+            "binh-an (child)",
+            "quang-linh (gay)"
+        ]
+    },
+    "lang_voice_piper": {
+        "Algeria": [
+            "kareem",
+            "laran"
+        ],
+        "Bulgaria": [
+            "dimitar"
+        ],
+        "Canada": [
+            "michael"
+        ],
+        "CzechRepublic": [
+            "jirka"
+        ],
+        "Wales": [
+            "bucur",
+            "groddol"
+        ],
+        "Denmark": [
+            "talesyntese"
+        ],
+        "Germany": [
+            "eva",
+            "karlsson",
+            "kerstin",
+            "thorsten"
+        ],
+        "Greece": [
+            "rapunzelina"
+        ],
+        "UnitedKingdom": [
+            "alan",
+            "alba",
+            "aru",
+            "cori",
+            "jenny",
+            "arri",
+            "semaine",
+            "claire",
+            "valres",
+            "amy"
+        ],
+        "Spain": [
+            "daniela",
+            "davefx",
+            "claude"
+        ],
+        "Iran": [
+            "amir",
+            "ganji",
+            "gyro"
+        ],
+        "Finland": [
+            "harri"
+        ],
+        "France": [
+            "gilles",
+            "malis",
+            "siwis",
+            "tom"
+        ],
+        "India": [
+            "pratham",
+            "priyamvada",
+            "rohan"
+        ],
+        "Hungary": [
+            "anna",
+            "berta",
+            "imre"
+        ],
+        "Indonesia": [
+            "ardi"
+        ],
+        "Iceland": [
+            "bui",
+            "salka",
+            "steinn",
+            "ugla"
+        ],
+        "Italy": [
+            "paola",
+            "ricardo"
+        ],
+        "Georgia": [
+            "natia"
+        ],
+        "Kazakhstan": [
+            "issai"
+        ],
+        "Luxembourg": [
+            "marylux"
+        ],
+        "Latvia": [
+            "aivars"
+        ],
+        "Vietnam": ["hoa-mai (woman)", "tran-binh (man)", "thuy-linh (woman)", "le-nam (man)", "ngoc-anh (woman)", "trung-anh (man)", "my-huyen (woman)", "hoang-son (man)", "quynh-nhu (woman)", "nguyen-thang (man)", "thao-van (woman)", "nguyen-tung (man)", "ngoc-duyen (woman)", "tung-lam (man)", "binh-an (child)"],
+        "China": [
+            "huayan"
+        ],
+        "Japan": [
+            "yui",
+            "sakura",
+            "hana",
+            "aoi",
+            "haruto",
+            "ren"
+        ]
+    },
+    "lang_voice_edge": {
+        "af-ZA": [
+            "AdriNeural",
+            "WillemNeural"
+        ],
+        "am-ET": [
+            "AmehaNeural",
+            "MekdesNeural"
+        ],
+        "ar-AE": [
+            "FatimaNeural",
+            "HamdanNeural"
+        ],
+        "ar-BH": [
+            "AliNeural",
+            "LailaNeural"
+        ],
+        "ar-DZ": [
+            "AminaNeural",
+            "IsmaelNeural"
+        ],
+        "ar-EG": [
+            "SalmaNeural",
+            "ShakirNeural"
+        ],
+        "ar-IQ": [
+            "BasselNeural",
+            "RanaNeural"
+        ],
+        "ar-JO": [
+            "SanaNeural",
+            "TaimNeural"
+        ],
+        "ar-KW": [
+            "FahedNeural",
+            "NouraNeural"
+        ],
+        "ar-LB": [
+            "LaylaNeural",
+            "RamiNeural"
+        ],
+        "ar-LY": [
+            "ImanNeural",
+            "OmarNeural"
+        ],
+        "ar-MA": [
+            "JamalNeural",
+            "MounaNeural"
+        ],
+        "ar-OM": [
+            "AbdullahNeural",
+            "AyshaNeural"
+        ],
+        "ar-QA": [
+            "AmalNeural",
+            "MoazNeural"
+        ],
+        "ar-SA": [
+            "HamedNeural",
+            "ZariyahNeural"
+        ],
+        "ar-SY": [
+            "AmanyNeural",
+            "LaithNeural"
+        ],
+        "ar-TN": [
+            "HediNeural",
+            "ReemNeural"
+        ],
+        "ar-YE": [
+            "MaryamNeural",
+            "SalehNeural"
+        ],
+        "az-AZ": [
+            "BabekNeural",
+            "BanuNeural"
+        ],
+        "bg-BG": [
+            "BorislavNeural",
+            "KalinaNeural"
+        ],
+        "bn-BD": [
+            "NabanitaNeural",
+            "PradeepNeural"
+        ],
+        "bn-IN": [
+            "BashkarNeural",
+            "TanishaaNeural"
+        ],
+        "bs-BA": [
+            "GoranNeural",
+            "VesnaNeural"
+        ],
+        "ca-ES": [
+            "EnricNeural",
+            "JoanaNeural"
+        ],
+        "cs-CZ": [
+            "AntoninNeural",
+            "VlastaNeural"
+        ],
+        "cy-GB": [
+            "AledNeural",
+            "NiaNeural"
+        ],
+        "da-DK": [
+            "ChristelNeural",
+            "JeppeNeural"
+        ],
+        "de-AT": [
+            "IngridNeural",
+            "JonasNeural"
+        ],
+        "de-CH": [
+            "JanNeural",
+            "LeniNeural"
+        ],
+        "de-DE": [
+            "AmalaNeural",
+            "ConradNeural",
+            "FlorianMultilingualNeural",
+            "KatjaNeural",
+            "KillianNeural",
+            "SeraphinaMultilingualNeural"
+        ],
+        "el-GR": [
+            "AthinaNeural",
+            "NestorasNeural"
+        ],
+        "en-AU": [
+            "NatashaNeural",
+            "WilliamNeural"
+        ],
+        "en-CA": [
+            "ClaraNeural",
+            "LiamNeural"
+        ],
+        "en-GB": [
+            "LibbyNeural",
+            "MaisieNeural",
+            "RyanNeural",
+            "SoniaNeural",
+            "ThomasNeural"
+        ],
+        "en-HK": [
+            "SamNeural",
+            "YanNeural"
+        ],
+        "en-IE": [
+            "ConnorNeural",
+            "EmilyNeural"
+        ],
+        "en-IN": [
+            "NeerjaExpressiveNeural",
+            "NeerjaNeural",
+            "PrabhatNeural"
+        ],
+        "en-KE": [
+            "AsiliaNeural",
+            "ChilembaNeural"
+        ],
+        "en-NG": [
+            "AbeoNeural",
+            "EzinneNeural"
+        ],
+        "en-NZ": [
+            "MitchellNeural",
+            "MollyNeural"
+        ],
+        "en-PH": [
+            "JamesNeural",
+            "RosaNeural"
+        ],
+        "en-SG": [
+            "LunaNeural",
+            "WayneNeural"
+        ],
+        "en-TZ": [
+            "ElimuNeural",
+            "ImaniNeural"
+        ],
+        "en-US": [
+            "AnaNeural",
+            "AndrewMultilingualNeural",
+            "AndrewNeural",
+            "AriaNeural",
+            "AvaMultilingualNeural",
+            "AvaNeural",
+            "BrianMultilingualNeural",
+            "BrianNeural",
+            "ChristopherNeural",
+            "EmmaMultilingualNeural",
+            "EmmaNeural",
+            "EricNeural",
+            "GuyNeural",
+            "JennyNeural",
+            "MichelleNeural",
+            "RogerNeural",
+            "SteffanNeural"
+        ],
+        "en-ZA": [
+            "LeahNeural",
+            "LukeNeural"
+        ],
+        "es-AR": [
+            "ElenaNeural",
+            "TomasNeural"
+        ],
+        "es-BO": [
+            "MarceloNeural",
+            "SofiaNeural"
+        ],
+        "es-CL": [
+            "CatalinaNeural",
+            "LorenzoNeural"
+        ],
+        "es-CO": [
+            "GonzaloNeural",
+            "SalomeNeural"
+        ],
+        "es-CR": [
+            "JuanNeural",
+            "MariaNeural"
+        ],
+        "es-CU": [
+            "BelkysNeural",
+            "ManuelNeural"
+        ],
+        "es-DO": [
+            "EmilioNeural",
+            "RamonaNeural"
+        ],
+        "es-EC": [
+            "AndreaNeural",
+            "LuisNeural"
+        ],
+        "es-ES": [
+            "AlvaroNeural",
+            "ElviraNeural",
+            "XimenaNeural"
+        ],
+        "es-GQ": [
+            "JavierNeural",
+            "TeresaNeural"
+        ],
+        "es-GT": [
+            "AndresNeural",
+            "MartaNeural"
+        ],
+        "es-HN": [
+            "CarlosNeural",
+            "KarlaNeural"
+        ],
+        "es-MX": [
+            "DaliaNeural",
+            "JorgeNeural"
+        ],
+        "es-NI": [
+            "FedericoNeural",
+            "YolandaNeural"
+        ],
+        "es-PA": [
+            "MargaritaNeural",
+            "RobertoNeural"
+        ],
+        "es-PE": [
+            "AlexNeural",
+            "CamilaNeural"
+        ],
+        "es-PR": [
+            "KarinaNeural",
+            "VictorNeural"
+        ],
+        "es-PY": [
+            "MarioNeural",
+            "TaniaNeural"
+        ],
+        "es-SV": [
+            "LorenaNeural",
+            "RodrigoNeural"
+        ],
+        "es-US": [
+            "AlonsoNeural",
+            "PalomaNeural"
+        ],
+        "es-UY": [
+            "MateoNeural",
+            "ValentinaNeural"
+        ],
+        "es-VE": [
+            "PaolaNeural",
+            "SebastianNeural"
+        ],
+        "et-EE": [
+            "AnuNeural",
+            "KertNeural"
+        ],
+        "fa-IR": [
+            "DilaraNeural",
+            "FaridNeural"
+        ],
+        "fi-FI": [
+            "HarriNeural",
+            "NooraNeural"
+        ],
+        "fil-PH": [
+            "AngeloNeural",
+            "BlessicaNeural"
+        ],
+        "fr-BE": [
+            "CharlineNeural",
+            "GerardNeural"
+        ],
+        "fr-CA": [
+            "AntoineNeural",
+            "JeanNeural",
+            "SylvieNeural",
+            "ThierryNeural"
+        ],
+        "fr-CH": [
+            "ArianeNeural",
+            "FabriceNeural"
+        ],
+        "fr-FR": [
+            "DeniseNeural",
+            "EloiseNeural",
+            "HenriNeural",
+            "RemyMultilingualNeural",
+            "VivienneMultilingualNeural"
+        ],
+        "ga-IE": [
+            "ColmNeural",
+            "OrlaNeural"
+        ],
+        "gl-ES": [
+            "RoiNeural",
+            "SabelaNeural"
+        ],
+        "gu-IN": [
+            "DhwaniNeural",
+            "NiranjanNeural"
+        ],
+        "he-IL": [
+            "AvriNeural",
+            "HilaNeural"
+        ],
+        "hi-IN": [
+            "MadhurNeural",
+            "SwaraNeural"
+        ],
+        "hr-HR": [
+            "GabrijelaNeural",
+            "SreckoNeural"
+        ],
+        "hu-HU": [
+            "NoemiNeural",
+            "TamasNeural"
+        ],
+        "id-ID": [
+            "ArdiNeural",
+            "GadisNeural"
+        ],
+        "is-IS": [
+            "GudrunNeural",
+            "GunnarNeural"
+        ],
+        "it-IT": [
+            "DiegoNeural",
+            "ElsaNeural",
+            "GiuseppeMultilingualNeural",
+            "IsabellaNeural"
+        ],
+        "iu-Cans": [
+            "SiqiniqNeural",
+            "TaqqiqNeural"
+        ],
+        "iu-Latn": [
+            "SiqiniqNeural",
+            "TaqqiqNeural"
+        ],
+        "ja-JP": [
+            "KeitaNeural",
+            "NanamiNeural"
+        ],
+        "jv-ID": [
+            "DimasNeural",
+            "SitiNeural"
+        ],
+        "ka-GE": [
+            "EkaNeural",
+            "GiorgiNeural"
+        ],
+        "kk-KZ": [
+            "AigulNeural",
+            "DauletNeural"
+        ],
+        "km-KH": [
+            "PisethNeural",
+            "SreymomNeural"
+        ],
+        "kn-IN": [
+            "GaganNeural",
+            "SapnaNeural"
+        ],
+        "ko-KR": [
+            "HyunsuMultilingualNeural",
+            "InJoonNeural",
+            "SunHiNeural"
+        ],
+        "lo-LA": [
+            "ChanthavongNeural",
+            "KeomanyNeural"
+        ],
+        "lt-LT": [
+            "LeonasNeural",
+            "OnaNeural"
+        ],
+        "lv-LV": [
+            "EveritaNeural",
+            "NilsNeural"
+        ],
+        "mk-MK": [
+            "AleksandarNeural",
+            "MarijaNeural"
+        ],
+        "ml-IN": [
+            "MidhunNeural",
+            "SobhanaNeural"
+        ],
+        "mn-MN": [
+            "BataaNeural",
+            "YesuiNeural"
+        ],
+        "mr-IN": [
+            "AarohiNeural",
+            "ManoharNeural"
+        ],
+        "ms-MY": [
+            "OsmanNeural",
+            "YasminNeural"
+        ],
+        "mt-MT": [
+            "GraceNeural",
+            "JosephNeural"
+        ],
+        "my-MM": [
+            "NilarNeural",
+            "ThihaNeural"
+        ],
+        "nb-NO": [
+            "FinnNeural",
+            "PernilleNeural"
+        ],
+        "ne-NP": [
+            "HemkalaNeural",
+            "SagarNeural"
+        ],
+        "nl-BE": [
+            "ArnaudNeural",
+            "DenaNeural"
+        ],
+        "nl-NL": [
+            "ColetteNeural",
+            "FennaNeural",
+            "MaartenNeural"
+        ],
+        "pl-PL": [
+            "MarekNeural",
+            "ZofiaNeural"
+        ],
+        "ps-AF": [
+            "GulNawazNeural",
+            "LatifaNeural"
+        ],
+        "pt-BR": [
+            "AntonioNeural",
+            "FranciscaNeural",
+            "ThalitaMultilingualNeural"
+        ],
+        "pt-PT": [
+            "DuarteNeural",
+            "RaquelNeural"
+        ],
+        "ro-RO": [
+            "AlinaNeural",
+            "EmilNeural"
+        ],
+        "ru-RU": [
+            "DmitryNeural",
+            "SvetlanaNeural"
+        ],
+        "si-LK": [
+            "SameeraNeural",
+            "ThiliniNeural"
+        ],
+        "sk-SK": [
+            "LukasNeural",
+            "ViktoriaNeural"
+        ],
+        "sl-SI": [
+            "PetraNeural",
+            "RokNeural"
+        ],
+        "so-SO": [
+            "MuuseNeural",
+            "UbaxNeural"
+        ],
+        "sq-AL": [
+            "AnilaNeural",
+            "IlirNeural"
+        ],
+        "sr-RS": [
+            "NicholasNeural",
+            "SophieNeural"
+        ],
+        "su-ID": [
+            "JajangNeural",
+            "TutiNeural"
+        ],
+        "sv-SE": [
+            "MattiasNeural",
+            "SofieNeural"
+        ],
+        "sw-KE": [
+            "RafikiNeural",
+            "ZuriNeural"
+        ],
+        "sw-TZ": [
+            "DaudiNeural",
+            "RehemaNeural"
+        ],
+        "ta-IN": [
+            "PallaviNeural",
+            "ValluvarNeural"
+        ],
+        "ta-LK": [
+            "KumarNeural",
+            "SaranyaNeural"
+        ],
+        "ta-MY": [
+            "KaniNeural",
+            "SuryaNeural"
+        ],
+        "ta-SG": [
+            "AnbuNeural",
+            "VenbaNeural"
+        ],
+        "te-IN": [
+            "MohanNeural",
+            "ShrutiNeural"
+        ],
+        "th-TH": [
+            "NiwatNeural",
+            "PremwadeeNeural"
+        ],
+        "tr-TR": [
+            "AhmetNeural",
+            "EmelNeural"
+        ],
+        "uk-UA": [
+            "OstapNeural",
+            "PolinaNeural"
+        ],
+        "ur-IN": [
+            "GulNeural",
+            "SalmanNeural"
+        ],
+        "ur-PK": [
+            "AsadNeural",
+            "UzmaNeural"
+        ],
+        "uz-UZ": [
+            "MadinaNeural",
+            "SardorNeural"
+        ],
+        "vi-VN": [
+            "HoaiMyNeural",
+            "NamMinhNeural"
+        ],
+        "zh-CN": [
+            "XiaoxiaoNeural",
+            "XiaoyiNeural",
+            "YunjianNeural",
+            "YunxiNeural",
+            "YunxiaNeural",
+            "YunyangNeural",
+            "XiaobeiNeural",
+            "XiaoniNeural"
+        ],
+        "zh-HK": [
+            "HiuGaaiNeural",
+            "HiuMaanNeural",
+            "WanLungNeural"
+        ],
+        "zh-TW": [
+            "HsiaoChenNeural",
+            "HsiaoYuNeural",
+            "YunJheNeural"
+        ],
+        "zu-ZA": [
+            "ThandoNeural",
+            "ThembaNeural"
+        ]
+    }
+}
